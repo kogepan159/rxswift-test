@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		03CE50AEC78CB7C2B04D8FBA /* Pods_kogepan_qTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44D61E78B1899A83558383A2 /* Pods_kogepan_qTests.framework */; };
+		090FDCB120B1518700B4B7F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 090FDCB020B1518700B4B7F6 /* GoogleService-Info.plist */; };
 		093C19F720B1413A000D125D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093C19F620B1413A000D125D /* AppDelegate.swift */; };
 		093C19F920B1413A000D125D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093C19F820B1413A000D125D /* ViewController.swift */; };
 		093C19FC20B1413A000D125D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 093C19FA20B1413A000D125D /* Main.storyboard */; };
@@ -38,7 +39,7 @@
 
 /* Begin PBXFileReference section */
 		017EF77AC9F8CCB286027A63 /* Pods_kogepan_q.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kogepan_q.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		090FDCAF20B1507300B4B7F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		090FDCB020B1518700B4B7F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		093C19F320B1413A000D125D /* kogepan-q.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kogepan-q.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		093C19F620B1413A000D125D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		093C19F820B1413A000D125D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -115,10 +116,10 @@
 		093C19F520B1413A000D125D /* kogepan-q */ = {
 			isa = PBXGroup;
 			children = (
+				090FDCB020B1518700B4B7F6 /* GoogleService-Info.plist */,
 				093C19F620B1413A000D125D /* AppDelegate.swift */,
 				093C19F820B1413A000D125D /* ViewController.swift */,
 				093C19FA20B1413A000D125D /* Main.storyboard */,
-				090FDCAF20B1507300B4B7F6 /* GoogleService-Info.plist */,
 				093C19FD20B1413A000D125D /* Assets.xcassets */,
 				093C19FF20B1413A000D125D /* LaunchScreen.storyboard */,
 				093C1A0220B1413A000D125D /* Info.plist */,
@@ -280,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				093C1A0120B1413A000D125D /* LaunchScreen.storyboard in Resources */,
+				090FDCB120B1518700B4B7F6 /* GoogleService-Info.plist in Resources */,
 				093C19FE20B1413A000D125D /* Assets.xcassets in Resources */,
 				093C19FC20B1413A000D125D /* Main.storyboard in Resources */,
 			);
