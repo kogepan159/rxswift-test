@@ -38,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		017EF77AC9F8CCB286027A63 /* Pods_kogepan_q.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kogepan_q.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		090FDCAF20B1507300B4B7F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		093C19F320B1413A000D125D /* kogepan-q.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kogepan-q.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		093C19F620B1413A000D125D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		093C19F820B1413A000D125D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +118,7 @@
 				093C19F620B1413A000D125D /* AppDelegate.swift */,
 				093C19F820B1413A000D125D /* ViewController.swift */,
 				093C19FA20B1413A000D125D /* Main.storyboard */,
+				090FDCAF20B1507300B4B7F6 /* GoogleService-Info.plist */,
 				093C19FD20B1413A000D125D /* Assets.xcassets */,
 				093C19FF20B1413A000D125D /* LaunchScreen.storyboard */,
 				093C1A0220B1413A000D125D /* Info.plist */,
@@ -307,13 +309,17 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-kogepan-q/Pods-kogepan-q-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -572,9 +578,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V2QA7J53GT;
 				INFOPLIST_FILE = "kogepan-q/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "junyakengo.kogepan-q";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.junyakengo.kogepan-q";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -587,9 +594,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V2QA7J53GT;
 				INFOPLIST_FILE = "kogepan-q/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "junyakengo.kogepan-q";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.junyakengo.kogepan-q";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
