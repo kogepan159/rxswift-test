@@ -1,0 +1,6 @@
+framework module Pods_kogepan_q {
+  umbrella header "Pods-kogepan-q-umbrella.h"
+
+  export *
+  module * { export * }
+}

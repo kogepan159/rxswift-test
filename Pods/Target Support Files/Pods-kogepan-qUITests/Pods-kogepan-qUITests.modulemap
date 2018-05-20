@@ -1,0 +1,6 @@
+framework module Pods_kogepan_qUITests {
+  umbrella header "Pods-kogepan-qUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
