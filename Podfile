@@ -8,6 +8,9 @@ target 'kogepan-q' do
   pod 'RxSwift','~> 4.0'
   pod 'RxCocoa','~> 4.0'
   pod 'Firebase/Core'
+  pod 'Firebase/Database'
+  pod 'TwitterKit'
+  pod 'GoogleSignIn'
 
   # Pods for kogepan-q
 

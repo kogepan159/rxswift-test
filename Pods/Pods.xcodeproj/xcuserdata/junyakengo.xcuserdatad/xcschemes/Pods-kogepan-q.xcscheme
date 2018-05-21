@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C21FED40DE557A83532C270D849771E6"
+               BlueprintIdentifier = "B5EA6EADF53B3C8CD86DDFF3BE896659"
                BuildableName = "Pods_kogepan_q.framework"
                BlueprintName = "Pods-kogepan-q"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -26,7 +26,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -37,7 +36,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -47,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C21FED40DE557A83532C270D849771E6"
+            BlueprintIdentifier = "B5EA6EADF53B3C8CD86DDFF3BE896659"
             BuildableName = "Pods_kogepan_q.framework"
             BlueprintName = "Pods-kogepan-q"
             ReferencedContainer = "container:Pods.xcodeproj">
