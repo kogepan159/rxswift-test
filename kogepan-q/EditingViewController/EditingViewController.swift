@@ -12,16 +12,13 @@ import TwitterKit
 import RxSwift
 import RxCocoa
 
-class ViewController: UIViewController {
+class EditingViewController: UIViewController {
 
     @IBOutlet weak var twitterButton: UIButton!
     let dis = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        twitterButton.rx.tap.bind{
-                print("did tap")
-            }
+        self.title = "音声編集"
     }
 
     override func didReceiveMemoryWarning() {

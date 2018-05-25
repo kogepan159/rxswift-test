@@ -9,22 +9,24 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--HOME-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="kogepan_q" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="kogepan_q" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="07I-rb-gLY">
-                                <rect key="frame" x="117" y="84" width="140" height="140"/>
+                                <rect key="frame" x="82" y="174" width="210" height="80"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="140" id="2cf-Tj-aRl"/>
-                                    <constraint firstAttribute="width" constant="140" id="khv-1b-GPl"/>
+                                    <constraint firstAttribute="height" constant="80" id="2cf-Tj-aRl"/>
+                                    <constraint firstAttribute="width" constant="210" id="khv-1b-GPl"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="音声録音">
+                                <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="音声録音 &gt;">
                                     <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -32,30 +34,32 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="miX-DJ-emr">
-                                <rect key="frame" x="118" y="264" width="140" height="140"/>
+                                <rect key="frame" x="83" y="294" width="210" height="80"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="140" id="GWY-nR-2Mq"/>
-                                    <constraint firstAttribute="width" constant="140" id="TyB-cO-Ehp"/>
+                                    <constraint firstAttribute="height" constant="80" id="GWY-nR-2Mq"/>
+                                    <constraint firstAttribute="width" constant="210" id="TyB-cO-Ehp"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="音声編集"/>
+                                <state key="normal" title="音声編集 &gt;">
+                                    <color key="titleShadowColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="gPy-7A-hHJ" kind="show" id="s9O-9V-nLj"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lhl-mZ-lz2">
-                                <rect key="frame" x="118" y="444" width="140" height="140"/>
+                                <rect key="frame" x="83" y="414" width="210" height="80"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="140" id="cIC-Le-epy"/>
-                                    <constraint firstAttribute="height" constant="140" id="nZz-JD-3Zn"/>
+                                    <constraint firstAttribute="width" constant="210" id="cIC-Le-epy"/>
+                                    <constraint firstAttribute="height" constant="80" id="nZz-JD-3Zn"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="投稿">
+                                <color key="tintColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="シェア">
                                     <color key="titleColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <connections>
-                                    <segue destination="hz1-Ba-5xO" kind="show" id="aQS-UY-OYq"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -69,7 +73,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="5Cd-fu-Osm"/>
+                    <navigationItem key="navigationItem" title="HOME" id="5Cd-fu-Osm"/>
                     <connections>
                         <outlet property="twitterButton" destination="07I-rb-gLY" id="XUY-4i-lVN"/>
                     </connections>
@@ -78,10 +82,10 @@
             </objects>
             <point key="canvasLocation" x="1076" y="124.58770614692655"/>
         </scene>
-        <!--View Controller-->
+        <!--Recode View Controller-->
         <scene sceneID="ffn-XC-G2z">
             <objects>
-                <viewController id="liu-q7-SQj" sceneMemberID="viewController">
+                <viewController id="liu-q7-SQj" customClass="RecodeViewController" customModule="kogepan_q" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="C5b-cs-II5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -93,25 +97,10 @@
             </objects>
             <point key="canvasLocation" x="1990" y="104"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="ObJ-zC-yi7">
-            <objects>
-                <viewController id="hz1-Ba-5xO" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="IxZ-wd-eaK">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="svJ-vh-mCi"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pur-fT-3fo" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1076" y="847"/>
-        </scene>
-        <!--View Controller-->
+        <!--Editing View Controller-->
         <scene sceneID="hgy-W5-Qbg">
             <objects>
-                <viewController id="gPy-7A-hHJ" sceneMemberID="viewController">
+                <viewController id="gPy-7A-hHJ" customClass="EditingViewController" customModule="kogepan_q" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Pu-It-PAG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

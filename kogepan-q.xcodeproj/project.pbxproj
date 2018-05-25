@@ -10,12 +10,14 @@
 		03CE50AEC78CB7C2B04D8FBA /* Pods_kogepan_qTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44D61E78B1899A83558383A2 /* Pods_kogepan_qTests.framework */; };
 		090FDCB120B1518700B4B7F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 090FDCB020B1518700B4B7F6 /* GoogleService-Info.plist */; };
 		093C19F720B1413A000D125D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093C19F620B1413A000D125D /* AppDelegate.swift */; };
-		093C19F920B1413A000D125D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093C19F820B1413A000D125D /* ViewController.swift */; };
 		093C19FC20B1413A000D125D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 093C19FA20B1413A000D125D /* Main.storyboard */; };
 		093C19FE20B1413A000D125D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 093C19FD20B1413A000D125D /* Assets.xcassets */; };
 		093C1A0120B1413A000D125D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 093C19FF20B1413A000D125D /* LaunchScreen.storyboard */; };
 		093C1A0C20B1413A000D125D /* kogepan_qTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093C1A0B20B1413A000D125D /* kogepan_qTests.swift */; };
 		093C1A1720B1413A000D125D /* kogepan_qUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093C1A1620B1413A000D125D /* kogepan_qUITests.swift */; };
+		09F1FD0720B8CF3300D58A60 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F1FD0420B8CF3300D58A60 /* HomeViewController.swift */; };
+		09F1FD0920B8D47300D58A60 /* RecodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F1FD0820B8D47300D58A60 /* RecodeViewController.swift */; };
+		09F1FD0B20B8D4B700D58A60 /* EditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F1FD0A20B8D4B700D58A60 /* EditingViewController.swift */; };
 		21B2B287BFE446AB64EB89A8 /* Pods_kogepan_q.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 017EF77AC9F8CCB286027A63 /* Pods_kogepan_q.framework */; };
 		578E1B5443EABC05912C1967 /* Pods_kogepan_qUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831B6E82D547B13A5833A8C0 /* Pods_kogepan_qUITests.framework */; };
 /* End PBXBuildFile section */
@@ -42,7 +44,6 @@
 		090FDCB020B1518700B4B7F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		093C19F320B1413A000D125D /* kogepan-q.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kogepan-q.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		093C19F620B1413A000D125D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		093C19F820B1413A000D125D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		093C19FB20B1413A000D125D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		093C19FD20B1413A000D125D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		093C1A0020B1413A000D125D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -53,6 +54,9 @@
 		093C1A1220B1413A000D125D /* kogepan-qUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "kogepan-qUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		093C1A1620B1413A000D125D /* kogepan_qUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kogepan_qUITests.swift; sourceTree = "<group>"; };
 		093C1A1820B1413A000D125D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09F1FD0420B8CF3300D58A60 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		09F1FD0820B8D47300D58A60 /* RecodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecodeViewController.swift; sourceTree = "<group>"; };
+		09F1FD0A20B8D4B700D58A60 /* EditingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditingViewController.swift; sourceTree = "<group>"; };
 		324283A2D8DF857221400E57 /* Pods-kogepan-qUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kogepan-qUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-kogepan-qUITests/Pods-kogepan-qUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		44D61E78B1899A83558383A2 /* Pods_kogepan_qTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kogepan_qTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F052B7D24BF0AA143221638 /* Pods-kogepan-q.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kogepan-q.release.xcconfig"; path = "Pods/Target Support Files/Pods-kogepan-q/Pods-kogepan-q.release.xcconfig"; sourceTree = "<group>"; };
@@ -116,9 +120,11 @@
 		093C19F520B1413A000D125D /* kogepan-q */ = {
 			isa = PBXGroup;
 			children = (
+				09F1FD0520B8CF3300D58A60 /* EditingViewController */,
+				09F1FD0320B8CF3300D58A60 /* HomeViewController */,
+				09F1FD0620B8CF3300D58A60 /* RecodeViewController */,
 				090FDCB020B1518700B4B7F6 /* GoogleService-Info.plist */,
 				093C19F620B1413A000D125D /* AppDelegate.swift */,
-				093C19F820B1413A000D125D /* ViewController.swift */,
 				093C19FA20B1413A000D125D /* Main.storyboard */,
 				093C19FD20B1413A000D125D /* Assets.xcassets */,
 				093C19FF20B1413A000D125D /* LaunchScreen.storyboard */,
@@ -143,6 +149,30 @@
 				093C1A1820B1413A000D125D /* Info.plist */,
 			);
 			path = "kogepan-qUITests";
+			sourceTree = "<group>";
+		};
+		09F1FD0320B8CF3300D58A60 /* HomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				09F1FD0420B8CF3300D58A60 /* HomeViewController.swift */,
+			);
+			path = HomeViewController;
+			sourceTree = "<group>";
+		};
+		09F1FD0520B8CF3300D58A60 /* EditingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				09F1FD0A20B8D4B700D58A60 /* EditingViewController.swift */,
+			);
+			path = EditingViewController;
+			sourceTree = "<group>";
+		};
+		09F1FD0620B8CF3300D58A60 /* RecodeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				09F1FD0820B8D47300D58A60 /* RecodeViewController.swift */,
+			);
+			path = RecodeViewController;
 			sourceTree = "<group>";
 		};
 		0B5E1772406D63D650F43E40 /* Pods */ = {
@@ -444,8 +474,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				093C19F920B1413A000D125D /* ViewController.swift in Sources */,
 				093C19F720B1413A000D125D /* AppDelegate.swift in Sources */,
+				09F1FD0B20B8D4B700D58A60 /* EditingViewController.swift in Sources */,
+				09F1FD0720B8CF3300D58A60 /* HomeViewController.swift in Sources */,
+				09F1FD0920B8D47300D58A60 /* RecodeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
