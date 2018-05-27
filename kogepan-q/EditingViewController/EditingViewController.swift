@@ -14,13 +14,20 @@ import RxCocoa
 import AVFoundation
 
 
-class EditingViewController: UIViewController {
+class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
 
-    @IBOutlet weak var twitterButton: UIButton!
+    @IBOutlet weak var playButton: UIButton!
+    var audioRecorder: AVAudioRecorder!
+    var audioPlayer: AVAudioPlayer!
+    var isRecording = false
+    var isPlaying = false
     let dis = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "音声編集"
+        playButton.rx.tap.bind(){
+            self.play()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,24 +35,29 @@ class EditingViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func twitterLogin(_ sender: Any) {
-        print("Twitterログイン")
-//        let logInButton = TWTRLogInButton(logInCompletion: { session, error in
-//            if (session != nil) {
-//                let authToken = session?.authToken
-//                let authTokenSecret = session?.authTokenSecret
-//                let credential = TwitterAuthProvider.credential(withToken: authToken, secret: authTokenSecret)
-//                Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
-//                    if let error = error {
-//                        // ...
-//                        return
-//                    }
-//                    // User is signed in
-//                    // ...
-//                }
-//            } else {
-//            }
-//        })
+    func getURL() -> URL{
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let docsDirect = paths[0]
+        let url = docsDirect.appendingPathComponent("recording.m4a")
+        return url
+    }
+    
+    func play(){
+        if !isPlaying {
+            audioPlayer = try! AVAudioPlayer(contentsOf: getURL())
+            audioPlayer.delegate = self as AVAudioPlayerDelegate
+            audioPlayer.play()
+            
+            isPlaying = true
+            
+            playButton.setTitle("STOP", for: .normal)
+        }else{
+            
+            audioPlayer.stop()
+            isPlaying = false
+            playButton.setTitle("PLAY", for: .normal)
+            
+        }
     }
 }
 

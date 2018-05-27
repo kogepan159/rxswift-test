@@ -60,7 +60,6 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
             audioRecorder.record()
             
             isRecording = true
-            
             label.text = "録音中"
             playButton.isEnabled = false
             
@@ -68,7 +67,6 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
             
             audioRecorder.stop()
             isRecording = false
-            
             label.text = "待機中"
             playButton.isEnabled = true
             
@@ -84,9 +82,8 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
     
     func play(){
         if !isPlaying {
-            
             audioPlayer = try! AVAudioPlayer(contentsOf: getURL())
-            audioPlayer.delegate = self as! AVAudioPlayerDelegate
+            audioPlayer.delegate = self as AVAudioPlayerDelegate
             audioPlayer.play()
             
             isPlaying = true
@@ -94,7 +91,6 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
             label.text = "再生中"
             playButton.setTitle("STOP", for: .normal)
             recodeButton.isEnabled = false
-            
         }else{
             
             audioPlayer.stop()
@@ -105,6 +101,5 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
             
         }
     }
-
 }
 
