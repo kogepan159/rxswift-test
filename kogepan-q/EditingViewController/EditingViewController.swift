@@ -11,6 +11,8 @@ import Firebase
 import TwitterKit
 import RxSwift
 import RxCocoa
+import AVFoundation
+
 
 class EditingViewController: UIViewController {
 

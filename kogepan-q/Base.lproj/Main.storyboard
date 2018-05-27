@@ -89,13 +89,54 @@
                     <view key="view" contentMode="scaleToFill" id="C5b-cs-II5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCh-Rx-3Vy">
+                                <rect key="frame" x="137.5" y="283.5" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="2wm-bd-vgj"/>
+                                    <constraint firstAttribute="width" constant="100" id="k8Z-kE-Eec"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="recoding.png"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n7M-Ba-sIO">
+                                <rect key="frame" x="137" y="409" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="0n7-zg-f5O"/>
+                                    <constraint firstAttribute="width" constant="100" id="8F9-BK-S9J"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="play.png"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJJ-d5-AV4">
+                                <rect key="frame" x="137" y="223.5" width="100" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Jj2-iY-3aa"/>
+                                    <constraint firstAttribute="height" constant="20" id="Swe-ED-2fl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ZJJ-d5-AV4" firstAttribute="centerX" secondItem="C5b-cs-II5" secondAttribute="centerX" id="LJW-5S-gJp"/>
+                            <constraint firstItem="n7M-Ba-sIO" firstAttribute="centerX" secondItem="C5b-cs-II5" secondAttribute="centerX" id="QQf-qv-fo6"/>
+                            <constraint firstItem="yCh-Rx-3Vy" firstAttribute="top" secondItem="ZJJ-d5-AV4" secondAttribute="bottom" constant="40" id="UVJ-ue-hDy"/>
+                            <constraint firstItem="n7M-Ba-sIO" firstAttribute="top" secondItem="yCh-Rx-3Vy" secondAttribute="bottom" constant="25.5" id="Uhg-H1-JdZ"/>
+                            <constraint firstItem="yCh-Rx-3Vy" firstAttribute="centerX" secondItem="C5b-cs-II5" secondAttribute="centerX" id="tcU-jj-HOW"/>
+                            <constraint firstItem="yCh-Rx-3Vy" firstAttribute="centerY" secondItem="C5b-cs-II5" secondAttribute="centerY" id="w9o-ui-Qxm"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="aDb-h4-THY"/>
                     </view>
+                    <connections>
+                        <outlet property="label" destination="ZJJ-d5-AV4" id="s8Z-dC-wo0"/>
+                        <outlet property="playButton" destination="n7M-Ba-sIO" id="PF0-OU-9u7"/>
+                        <outlet property="recodeButton" destination="yCh-Rx-3Vy" id="iQf-U6-HvJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jaW-2t-FOX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1990" y="104"/>
+            <point key="canvasLocation" x="1989.5999999999999" y="103.89805097451276"/>
         </scene>
         <!--Editing View Controller-->
         <scene sceneID="hgy-W5-Qbg">
@@ -131,4 +172,8 @@
             <point key="canvasLocation" x="133.59999999999999" y="783.95802098950526"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="play.png" width="256" height="256"/>
+        <image name="recoding.png" width="256" height="256"/>
+    </resources>
 </document>
