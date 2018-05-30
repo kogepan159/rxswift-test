@@ -21,6 +21,7 @@
 		09F1FD0E20BA371C00D58A60 /* recoding.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F1FD0D20BA371C00D58A60 /* recoding.png */; };
 		09F1FD1020BA498A00D58A60 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F1FD0F20BA498A00D58A60 /* play.png */; };
 		09F1FD1220BA4B5100D58A60 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F1FD1120BA4B5100D58A60 /* stop.png */; };
+		09F45F9620BE8C3800B3FFFB /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F45F9520BE8C3800B3FFFB /* icon.png */; };
 		21B2B287BFE446AB64EB89A8 /* Pods_kogepan_q.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 017EF77AC9F8CCB286027A63 /* Pods_kogepan_q.framework */; };
 		578E1B5443EABC05912C1967 /* Pods_kogepan_qUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831B6E82D547B13A5833A8C0 /* Pods_kogepan_qUITests.framework */; };
 /* End PBXBuildFile section */
@@ -63,6 +64,7 @@
 		09F1FD0D20BA371C00D58A60 /* recoding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recoding.png; sourceTree = "<group>"; };
 		09F1FD0F20BA498A00D58A60 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		09F1FD1120BA4B5100D58A60 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
+		09F45F9520BE8C3800B3FFFB /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		324283A2D8DF857221400E57 /* Pods-kogepan-qUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kogepan-qUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-kogepan-qUITests/Pods-kogepan-qUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		44D61E78B1899A83558383A2 /* Pods_kogepan_qTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kogepan_qTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F052B7D24BF0AA143221638 /* Pods-kogepan-q.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kogepan-q.release.xcconfig"; path = "Pods/Target Support Files/Pods-kogepan-q/Pods-kogepan-q.release.xcconfig"; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 		09F1FD0C20BA371C00D58A60 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				09F45F9520BE8C3800B3FFFB /* icon.png */,
 				09F1FD1120BA4B5100D58A60 /* stop.png */,
 				09F1FD0F20BA498A00D58A60 /* play.png */,
 				09F1FD0D20BA371C00D58A60 /* recoding.png */,
@@ -330,6 +333,7 @@
 			files = (
 				09F1FD0E20BA371C00D58A60 /* recoding.png in Resources */,
 				093C1A0120B1413A000D125D /* LaunchScreen.storyboard in Resources */,
+				09F45F9620BE8C3800B3FFFB /* icon.png in Resources */,
 				090FDCB120B1518700B4B7F6 /* GoogleService-Info.plist in Resources */,
 				09F1FD1220BA4B5100D58A60 /* stop.png in Resources */,
 				093C19FE20B1413A000D125D /* Assets.xcassets in Resources */,
