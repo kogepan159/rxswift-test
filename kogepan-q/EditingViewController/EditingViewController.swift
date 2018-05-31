@@ -42,7 +42,27 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         return url
     }
     
+    func microPhoneCheck() -> Int {
+        let status = AVCaptureDevice.authorizationStatus(for: AVMediaType.audio)
+        
+        if status == AVAuthorizationStatus.authorized {
+            return 1
+            // アクセス許可あり
+        } else if status == AVAuthorizationStatus.restricted {
+            // ユーザー自身にカメラへのアクセスが許可されていない
+            return 2
+        } else if status == AVAuthorizationStatus.notDetermined {
+            // まだアクセス許可を聞いていない
+            return 0
+        } else if status == AVAuthorizationStatus.denied {
+            // アクセス許可されていない
+            return 2
+        }
+        return 0
+    }
+    
     func play(){
+        if self.microPhoneCheck() != 1{ return }
         if !isPlaying {
             audioPlayer = try! AVAudioPlayer(contentsOf: getURL())
             audioPlayer.delegate = self as AVAudioPlayerDelegate

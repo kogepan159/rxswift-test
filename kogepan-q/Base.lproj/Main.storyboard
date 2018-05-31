@@ -75,7 +75,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="HOME" id="5Cd-fu-Osm"/>
                     <connections>
-                        <outlet property="twitterButton" destination="07I-rb-gLY" id="XUY-4i-lVN"/>
+                        <outlet property="shareButton" destination="lhl-mZ-lz2" id="WMa-oi-b4M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

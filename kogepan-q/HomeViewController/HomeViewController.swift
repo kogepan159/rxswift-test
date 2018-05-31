@@ -14,13 +14,13 @@ import RxCocoa
 
 class HomeViewController: UIViewController {
 
-    @IBOutlet weak var twitterButton: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
     let dis = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        twitterButton.rx.tap.bind{
-                print("did tap")
+        shareButton.rx.tap.bind{
+                self.shareAction()
             }
     }
 
@@ -28,9 +28,31 @@ class HomeViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func shareAction() {
+        // Documentディレクトリ
+        let documentDir = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, .userDomainMask, true).last!
+        
+        // 送信するファイル名
+        let filename = "recording.m4a"
+        
+        // 送信ファイルのパス
+        let targetDirPath = "\(documentDir)/\(filename)"
+        
+        let documentInteraction = UIDocumentInteractionController(url: URL(fileURLWithPath: targetDirPath))
+        
+        if !documentInteraction.presentOpenInMenu(from: self.view.frame, in: self.view, animated: true) {
+            // 送信できるアプリが見つからなかった時の処理
+            let alert = UIAlertController(title: "送信失敗", message: "ファイルを送れるアプリが見つかりません", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
 
-    @IBAction func twitterLogin(_ sender: Any) {
-        print("Twitterログイン")
+        
+    }
+
+//    @IBAction func twitterLogin(_ sender: Any) {
+//        print("Twitterログイン")
 //        let logInButton = TWTRLogInButton(logInCompletion: { session, error in
 //            if (session != nil) {
 //                let authToken = session?.authToken
@@ -47,6 +69,6 @@ class HomeViewController: UIViewController {
 //            } else {
 //            }
 //        })
-    }
+//    }
 }
 
