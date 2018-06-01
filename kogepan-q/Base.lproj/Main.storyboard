@@ -91,18 +91,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCh-Rx-3Vy">
-                                <rect key="frame" x="137.5" y="283.5" width="100" height="100"/>
+                                <rect key="frame" x="156" y="283.5" width="63" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="2wm-bd-vgj"/>
-                                    <constraint firstAttribute="width" constant="100" id="k8Z-kE-Eec"/>
+                                    <constraint firstAttribute="width" constant="63" id="k8Z-kE-Eec"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="recoding.png"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n7M-Ba-sIO">
-                                <rect key="frame" x="137" y="409" width="100" height="100"/>
+                                <rect key="frame" x="127.5" y="409" width="119" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="0n7-zg-f5O"/>
-                                    <constraint firstAttribute="width" constant="100" id="8F9-BK-S9J"/>
+                                    <constraint firstAttribute="width" constant="119" id="8F9-BK-S9J"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="play.png"/>
                             </button>
@@ -147,9 +147,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdF-OQ-A9Q">
-                                <rect key="frame" x="137" y="283.5" width="100" height="100"/>
+                                <rect key="frame" x="127.5" y="283.5" width="119" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="HJf-T6-9Zl"/>
+                                    <constraint firstAttribute="width" constant="119" id="HJf-T6-9Zl"/>
                                     <constraint firstAttribute="height" constant="100" id="awS-Tr-hRe"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="play.png"/>
@@ -190,7 +190,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="play.png" width="256" height="256"/>
-        <image name="recoding.png" width="256" height="256"/>
+        <image name="play.png" width="535" height="449"/>
+        <image name="recoding.png" width="342" height="545"/>
     </resources>
 </document>
