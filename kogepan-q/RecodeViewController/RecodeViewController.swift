@@ -77,6 +77,8 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let docsDirect = paths[0]
         let url = docsDirect.appendingPathComponent("recording.m4a")
+        print("--------- getURL() ---------")
+        print(url)
         return url
     }
     
