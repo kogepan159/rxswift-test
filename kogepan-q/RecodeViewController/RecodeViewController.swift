@@ -25,6 +25,7 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
     var isPlaying = false
     let dis = DisposeBag()
     override func viewDidLoad() {
+        self.navigationController?.navigationBar.tintColor = UIColor.red
         self.title = "音声録音"
         super.viewDidLoad()
         recodeButton.rx.tap.bind{
@@ -42,6 +43,8 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
     
     func startRecode() {
         print("録音スタート")
+        print(self.microPhoneCheck())
+        if self.microPhoneCheck(){ return }
         if !isRecording {
             
             let session = AVAudioSession.sharedInstance()
@@ -82,7 +85,27 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         return url
     }
     
+    func microPhoneCheck() -> Bool {
+        let status = AVCaptureDevice.authorizationStatus(for: AVMediaType.audio)
+        
+        if status == AVAuthorizationStatus.authorized {
+            return false
+            // アクセス許可あり
+        } else if status == AVAuthorizationStatus.restricted {
+            // ユーザー自身にカメラへのアクセスが許可されていない
+            return true
+        } else if status == AVAuthorizationStatus.notDetermined {
+            // まだアクセス許可を聞いていない
+            return false
+        } else if status == AVAuthorizationStatus.denied {
+            // アクセス許可されていない
+            return true
+        }
+        return false
+    }
+    
     func play(){
+        
         if !isPlaying {
             audioPlayer = try! AVAudioPlayer(contentsOf: getURL())
             audioPlayer.delegate = self as AVAudioPlayerDelegate
