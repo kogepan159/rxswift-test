@@ -143,18 +143,24 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
             }
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateElapsedTime), userInfo: nil, repeats: true)
         }else{
-            
-            audioPlayer.stop()
-            isPlaying = false
-            label.text = "待機中"
-            
-            //タイマーを停止
-            timer.invalidate()
-            count = 0
-            playButton.setTitle("PLAY", for: .normal)
-            recodeButton.isEnabled = true
-            
+           audioStop()
         }
+    }
+    
+    func audioStop() {
+        audioPlayer.stop()
+        isPlaying = false
+        label.text = "待機中"
+        
+        //タイマーを停止
+        timer.invalidate()
+        count = 0
+        playButton.setTitle("PLAY", for: .normal)
+        recodeButton.isEnabled = true
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        if isPlaying { audioStop()}
     }
     
     func dialog() {
