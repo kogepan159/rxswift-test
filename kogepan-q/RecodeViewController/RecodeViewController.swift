@@ -19,11 +19,16 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var recodeButton: UIButton!
+    @IBOutlet weak var voiceFileName: UITextField!
+    
     var audioRecorder: AVAudioRecorder!
     var audioPlayer: AVAudioPlayer!
     var isRecording = false
     var isPlaying = false
     let dis = DisposeBag()
+    var timer: Timer = Timer()
+    var count: Int = 0
+    
     override func viewDidLoad() {
         self.navigationController?.navigationBar.tintColor = UIColor.red
         self.title = "音声録音"
@@ -35,6 +40,7 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
             self.play()
         }
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -44,8 +50,22 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
     func startRecode() {
         print("録音スタート")
         print(self.microPhoneCheck())
+        if voiceFileName.text != "" {
+            print(voiceFileName.text)
+        } else {
+            print("空文字")
+            dialog()
+            return
+        }
+        
+        
         if self.microPhoneCheck(){ return }
         if !isRecording {
+            //タイマーが動いている状態で押されたら処理しない
+            if timer.isValid == true {
+                return
+            }
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateElapsedTime), userInfo: nil, repeats: true)
             
             let session = AVAudioSession.sharedInstance()
             try! session.setCategory(AVAudioSessionCategoryPlayAndRecord)
@@ -71,6 +91,9 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
             audioRecorder.stop()
             isRecording = false
             label.text = "待機中"
+            //タイマーを停止
+            timer.invalidate()
+            count = 0
             playButton.isEnabled = true
             
         }
@@ -79,9 +102,7 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
     func getURL() -> URL{
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let docsDirect = paths[0]
-        let url = docsDirect.appendingPathComponent("recording.m4a")
-        print("--------- getURL() ---------")
-        print(url)
+        let url = docsDirect.appendingPathComponent(voiceFileName.text! + ".m4a")
         return url
     }
     
@@ -116,15 +137,44 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
             label.text = "再生中"
             playButton.setTitle("STOP", for: .normal)
             recodeButton.isEnabled = false
+            //タイマーが動いている状態で押されたら処理しない
+            if timer.isValid == true {
+                return
+            }
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateElapsedTime), userInfo: nil, repeats: true)
         }else{
             
             audioPlayer.stop()
             isPlaying = false
             label.text = "待機中"
+            
+            //タイマーを停止
+            timer.invalidate()
+            count = 0
             playButton.setTitle("PLAY", for: .normal)
             recodeButton.isEnabled = true
             
         }
+    }
+    
+    func dialog() {
+        let alertController = UIAlertController(title: "ファイル名を未入力です",message: "こちらのアプリは、ファイル名を入れていれることで録音が可能になります。", preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController,animated: true,completion: nil)
+    }
+    @IBAction func end(_ sender: Any) {
+    }
+    
+    //
+    //  一定間隔で実行される処理
+    //
+    @objc func updateElapsedTime() {
+        count += 1
+        let min: Int = count / 60
+        let sec: Int = count % 60
+        label.text = isRecording ? "録音中 : ": "再生中 : "
+        label.text = label.text! + String(format:"%02d:%02d",min, sec)
     }
 }
 

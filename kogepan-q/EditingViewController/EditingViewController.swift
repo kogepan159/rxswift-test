@@ -43,17 +43,13 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         return url
     }
     
-    
-    
     func play(){
        
         if !isPlaying {
             audioPlayer = try! AVAudioPlayer(contentsOf: getURL())
             audioPlayer.delegate = self as AVAudioPlayerDelegate
             audioPlayer.play()
-            
             isPlaying = true
-            
             playButton.setTitle("STOP", for: .normal)
         }else{
             
@@ -63,5 +59,6 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
             
         }
     }
+    
 }
 

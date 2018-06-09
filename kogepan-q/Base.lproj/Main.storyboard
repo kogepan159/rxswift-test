@@ -27,7 +27,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="音声録音">
-                                    <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -47,7 +47,8 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="音声編集">
-                                    <color key="titleShadowColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -136,7 +137,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCh-Rx-3Vy">
-                                <rect key="frame" x="156" y="283.5" width="63" height="100"/>
+                                <rect key="frame" x="156" y="284" width="63" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="2wm-bd-vgj"/>
                                     <constraint firstAttribute="width" constant="63" id="k8Z-kE-Eec"/>
@@ -144,7 +145,7 @@
                                 <state key="normal" title="Button" image="recoding.png"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n7M-Ba-sIO">
-                                <rect key="frame" x="127.5" y="409" width="119" height="100"/>
+                                <rect key="frame" x="128" y="409" width="119" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="0n7-zg-f5O"/>
                                     <constraint firstAttribute="width" constant="119" id="8F9-BK-S9J"/>
@@ -152,10 +153,32 @@
                                 <state key="normal" title="Button" image="play.png"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="待機中" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJJ-d5-AV4">
-                                <rect key="frame" x="137" y="223.5" width="100" height="20"/>
+                                <rect key="frame" x="87" y="184" width="200" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="Jj2-iY-3aa"/>
+                                    <constraint firstAttribute="width" constant="200" id="Jj2-iY-3aa"/>
                                     <constraint firstAttribute="height" constant="20" id="Swe-ED-2fl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="例)test,koetoru" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fvV-RG-3Gf">
+                                <rect key="frame" x="128" y="228" width="120" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="BxW-c6-f4k"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="end:" destination="liu-q7-SQj" eventType="editingDidEndOnExit" id="Kca-pS-OLd"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="保存名:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tOG-wa-p7Z">
+                                <rect key="frame" x="60" y="232" width="57" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="CWw-Ta-fK6"/>
+                                    <constraint firstAttribute="width" constant="57" id="IA1-dE-Bev"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -164,10 +187,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="yCh-Rx-3Vy" firstAttribute="top" secondItem="fvV-RG-3Gf" secondAttribute="bottom" constant="24" id="69d-YL-SKA"/>
+                            <constraint firstItem="tOG-wa-p7Z" firstAttribute="baseline" secondItem="fvV-RG-3Gf" secondAttribute="baseline" id="6jx-PF-fZ9"/>
                             <constraint firstItem="ZJJ-d5-AV4" firstAttribute="centerX" secondItem="C5b-cs-II5" secondAttribute="centerX" id="LJW-5S-gJp"/>
                             <constraint firstItem="n7M-Ba-sIO" firstAttribute="centerX" secondItem="C5b-cs-II5" secondAttribute="centerX" id="QQf-qv-fo6"/>
-                            <constraint firstItem="yCh-Rx-3Vy" firstAttribute="top" secondItem="ZJJ-d5-AV4" secondAttribute="bottom" constant="40" id="UVJ-ue-hDy"/>
+                            <constraint firstItem="yCh-Rx-3Vy" firstAttribute="top" secondItem="ZJJ-d5-AV4" secondAttribute="bottom" constant="80" id="UVJ-ue-hDy"/>
                             <constraint firstItem="n7M-Ba-sIO" firstAttribute="top" secondItem="yCh-Rx-3Vy" secondAttribute="bottom" constant="25.5" id="Uhg-H1-JdZ"/>
+                            <constraint firstItem="fvV-RG-3Gf" firstAttribute="leading" secondItem="tOG-wa-p7Z" secondAttribute="trailing" constant="11" id="i2D-S6-Vhy"/>
+                            <constraint firstItem="fvV-RG-3Gf" firstAttribute="centerX" secondItem="C5b-cs-II5" secondAttribute="centerX" id="kkK-bc-baR"/>
+                            <constraint firstItem="fvV-RG-3Gf" firstAttribute="top" secondItem="ZJJ-d5-AV4" secondAttribute="bottom" constant="24" id="mme-ji-wsW"/>
                             <constraint firstItem="yCh-Rx-3Vy" firstAttribute="centerX" secondItem="C5b-cs-II5" secondAttribute="centerX" id="tcU-jj-HOW"/>
                             <constraint firstItem="yCh-Rx-3Vy" firstAttribute="centerY" secondItem="C5b-cs-II5" secondAttribute="centerY" id="w9o-ui-Qxm"/>
                         </constraints>
@@ -177,6 +205,7 @@
                         <outlet property="label" destination="ZJJ-d5-AV4" id="s8Z-dC-wo0"/>
                         <outlet property="playButton" destination="n7M-Ba-sIO" id="PF0-OU-9u7"/>
                         <outlet property="recodeButton" destination="yCh-Rx-3Vy" id="iQf-U6-HvJ"/>
+                        <outlet property="voiceFileName" destination="fvV-RG-3Gf" id="cub-jd-ZhF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jaW-2t-FOX" userLabel="First Responder" sceneMemberID="firstResponder"/>
