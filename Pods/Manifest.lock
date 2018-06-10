@@ -1,4 +1,10 @@
 PODS:
+  - EZAudio (1.1.5):
+    - EZAudio/Full (= 1.1.5)
+  - EZAudio/Core (1.1.5)
+  - EZAudio/Full (1.1.5):
+    - EZAudio/Core
+    - TPCircularBuffer (= 1.1)
   - Firebase/Core (5.0.1):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.0.0)
@@ -54,11 +60,13 @@ PODS:
   - RxSwift (4.1.2)
   - RxTest (4.1.2):
     - RxSwift (~> 4.0)
+  - TPCircularBuffer (1.1)
   - TwitterCore (3.1.0)
   - TwitterKit (3.3.0):
     - TwitterCore (>= 3.1.0)
 
 DEPENDENCIES:
+  - EZAudio (~> 1.0)
   - Firebase/Core
   - Firebase/Database
   - GoogleSignIn
@@ -70,6 +78,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - EZAudio
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -85,10 +94,12 @@ SPEC REPOS:
     - RxCocoa
     - RxSwift
     - RxTest
+    - TPCircularBuffer
     - TwitterCore
     - TwitterKit
 
 SPEC CHECKSUMS:
+  EZAudio: 3b1cb4b6d7ebca68f0c2478576d75940aad4aa99
   Firebase: d6861c2059d8c32d1e6dd8932e22ada346d90a3a
   FirebaseAnalytics: 19812b49fa5f283dd6b23edf8a14b5d477029ab8
   FirebaseCore: cafc814b2d84fc8733f09e653041cc2165332ad7
@@ -104,9 +115,10 @@ SPEC CHECKSUMS:
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxSwift: e49536837d9901277638493ea537394d4b55f570
   RxTest: e634f15fd2c2cd0e0120132ef7a4f7be69ad0393
+  TPCircularBuffer: 4960a919e667280f7f38963d771f45871b64fe62
   TwitterCore: 644d59e75abccb26cf0a9050d2c4dea0e5412241
   TwitterKit: a2e60ddcedbf54091eac6f27685ca7a87681e1d7
 
-PODFILE CHECKSUM: a26e612272001c76143c30a168866a3ff1f473a8
+PODFILE CHECKSUM: e783df4e07e32fcd0947d5ebfbd2a25fcb2cdcf1
 
 COCOAPODS: 1.5.2

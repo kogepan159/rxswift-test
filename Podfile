@@ -11,6 +11,7 @@ target 'kogepan-q' do
   pod 'Firebase/Database'
   pod 'TwitterKit'
   pod 'GoogleSignIn'
+  pod 'EZAudio', '~> 1.0'
 
   # Pods for kogepan-q
 

@@ -14,7 +14,8 @@ import RxCocoa
 import AVFoundation
 
 
-class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
+
+class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate, EZAudioFileDelegate {
 
     @IBOutlet weak var fileSelectButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
@@ -26,6 +27,11 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
     var audioPlayer: AVAudioPlayer!
     var isPlaying = false
     var fileName:String = ""
+    
+    var audioFile:EZAudioFile!
+    var audioPlot:EZAudioPlot!
+    var audioPlayerEZ:EZAudioPlayer!
+    var audioCoreGrph:EZAudioPlotGL!
     
     let dis = DisposeBag()
     override func viewDidLoad() {
@@ -39,6 +45,43 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         fileSelectButton.rx.tap.bind(){
             self.fileSelect()
         }
+        
+        //波形
+        self.audioPlot = EZAudioPlot(frame: self.view.frame)
+        self.audioPlot.backgroundColor = UIColor.cyan
+        self.audioPlot.color = UIColor.purple
+        self.audioPlot.plotType = EZPlotType.buffer
+        self.audioPlot.shouldFill = true
+        self.audioPlot.shouldMirror = true
+        self.audioPlot.shouldOptimizeForRealtimePlot = true
+        
+        //ファイルのパスを指定して読み込み
+        self.openFileWithFilePathURL(filePathURL: NSURL(fileURLWithPath: Bundle.main.path(forResource: "ororon_koge", ofType: "m4a")!))
+//        self.openFileWithFilePathURL(filePathURL: NSURL(fileURLWithPath: Bundle.main.path(forResource: "kaze", ofType: "mp3")!))
+        self.view.addSubview(self.audioPlot)
+        
+        //再生
+        self.audioPlayerEZ.pan = 0
+        self.audioPlayerEZ.volume = 50.0
+        self.audioPlayerEZ.play()
+    }
+    
+    //ファイルの読み込みと波形の読み込み
+    func openFileWithFilePathURL(filePathURL:NSURL){
+        print("openFileWithFilePathURL")
+        print(filePathURL)
+        print("---------------------")
+        print(getURL())
+        self.audioFile = EZAudioFile(url: filePathURL as URL!)
+        self.audioFile.delegate = self
+        
+        let buffer = self.audioFile.getWaveformData().buffer(forChannel: 0)
+        let bufferSize = self.audioFile.getWaveformData().bufferSize
+        self.audioPlot.updateBuffer(buffer, withBufferSize: bufferSize)
+        
+        //読み込んだオーディオファイルをプレイヤーに設定して初期化
+        self.audioPlayerEZ = EZAudioPlayer(audioFile: self.audioFile)
+        
     }
 
     override func didReceiveMemoryWarning() {

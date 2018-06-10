@@ -17,6 +17,8 @@
 		093C1A1720B1413A000D125D /* kogepan_qUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093C1A1620B1413A000D125D /* kogepan_qUITests.swift */; };
 		0988F15120C1FEA300D859FB /* icon-l.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0988F15020C1FEA300D859FB /* icon-l.jpg */; };
 		0988F15320C429F200D859FB /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 0988F15220C429F200D859FB /* share.png */; };
+		099BA8AF20CD2E49006111A3 /* kaze.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 099BA8AD20CD2E48006111A3 /* kaze.mp3 */; };
+		099BA8B020CD2E49006111A3 /* ororon_koge.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 099BA8AE20CD2E48006111A3 /* ororon_koge.m4a */; };
 		09F1FD0720B8CF3300D58A60 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F1FD0420B8CF3300D58A60 /* HomeViewController.swift */; };
 		09F1FD0920B8D47300D58A60 /* RecodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F1FD0820B8D47300D58A60 /* RecodeViewController.swift */; };
 		09F1FD0B20B8D4B700D58A60 /* EditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F1FD0A20B8D4B700D58A60 /* EditingViewController.swift */; };
@@ -62,6 +64,9 @@
 		093C1A1820B1413A000D125D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0988F15020C1FEA300D859FB /* icon-l.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "icon-l.jpg"; sourceTree = "<group>"; };
 		0988F15220C429F200D859FB /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
+		099BA8AC20CD208D006111A3 /* EZAudio-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EZAudio-Header.h"; sourceTree = "<group>"; };
+		099BA8AD20CD2E48006111A3 /* kaze.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = kaze.mp3; sourceTree = "<group>"; };
+		099BA8AE20CD2E48006111A3 /* ororon_koge.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = ororon_koge.m4a; sourceTree = "<group>"; };
 		09F1FD0420B8CF3300D58A60 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		09F1FD0820B8D47300D58A60 /* RecodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecodeViewController.swift; sourceTree = "<group>"; };
 		09F1FD0A20B8D4B700D58A60 /* EditingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditingViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +137,8 @@
 		093C19F520B1413A000D125D /* kogepan-q */ = {
 			isa = PBXGroup;
 			children = (
+				099BA8AE20CD2E48006111A3 /* ororon_koge.m4a */,
+				099BA8AD20CD2E48006111A3 /* kaze.mp3 */,
 				09F1FD0C20BA371C00D58A60 /* Image */,
 				09F1FD0520B8CF3300D58A60 /* EditingViewController */,
 				09F1FD0320B8CF3300D58A60 /* HomeViewController */,
@@ -142,6 +149,7 @@
 				093C19FD20B1413A000D125D /* Assets.xcassets */,
 				093C19FF20B1413A000D125D /* LaunchScreen.storyboard */,
 				093C1A0220B1413A000D125D /* Info.plist */,
+				099BA8AC20CD208D006111A3 /* EZAudio-Header.h */,
 			);
 			path = "kogepan-q";
 			sourceTree = "<group>";
@@ -347,6 +355,8 @@
 				0988F15320C429F200D859FB /* share.png in Resources */,
 				09F1FD1020BA498A00D58A60 /* play.png in Resources */,
 				0988F15120C1FEA300D859FB /* icon-l.jpg in Resources */,
+				099BA8AF20CD2E49006111A3 /* kaze.mp3 in Resources */,
+				099BA8B020CD2E49006111A3 /* ororon_koge.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,11 +384,13 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-kogepan-q/Pods-kogepan-q-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/EZAudio/EZAudio.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/TPCircularBuffer/TPCircularBuffer.framework",
 				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -386,11 +398,13 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EZAudio.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPCircularBuffer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -682,8 +696,11 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.junyakengo.kogepan-q";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT)/EZAudio-Header.h";
 				SWIFT_VERSION = 4.0;
+				SYSTEM_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pods/**";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pods/**";
 			};
 			name = Debug;
 		};
@@ -698,8 +715,11 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.junyakengo.kogepan-q";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT)/EZAudio-Header.h";
 				SWIFT_VERSION = 4.0;
+				SYSTEM_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pods/**";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pods/**";
 			};
 			name = Release;
 		};
