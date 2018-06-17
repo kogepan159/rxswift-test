@@ -582,6 +582,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -639,6 +640,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -690,17 +692,19 @@
 			baseConfigurationReference = DE4B9EF9FAB11690D710305B /* Pods-kogepan-q.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V2QA7J53GT;
 				INFOPLIST_FILE = "kogepan-q/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.junyakengo.kogepan-q";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT)/EZAudio-Header.h";
 				SWIFT_VERSION = 4.0;
-				SYSTEM_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pods/**";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pods/EZAudio/**";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pods/**";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pods/EZAudio/**";
 			};
 			name = Debug;
 		};
@@ -709,17 +713,19 @@
 			baseConfigurationReference = 4F052B7D24BF0AA143221638 /* Pods-kogepan-q.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V2QA7J53GT;
 				INFOPLIST_FILE = "kogepan-q/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.junyakengo.kogepan-q";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT)/EZAudio-Header.h";
 				SWIFT_VERSION = 4.0;
-				SYSTEM_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pods/**";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pods/EZAudio/**";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pods/**";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pods/EZAudio/**";
 			};
 			name = Release;
 		};

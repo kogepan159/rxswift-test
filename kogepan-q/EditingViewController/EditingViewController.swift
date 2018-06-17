@@ -17,6 +17,7 @@ import AVFoundation
 
 class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate, EZAudioFileDelegate {
 
+    @IBOutlet weak var viewhakei: UIView!
     @IBOutlet weak var fileSelectButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var label: UILabel!
@@ -46,8 +47,12 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
             self.fileSelect()
         }
         
+        
+    }
+    
+    func setWaveform() {
         //波形
-        self.audioPlot = EZAudioPlot(frame: self.view.frame)
+        self.audioPlot = EZAudioPlot(frame: self.viewhakei.frame)
         self.audioPlot.backgroundColor = UIColor.cyan
         self.audioPlot.color = UIColor.purple
         self.audioPlot.plotType = EZPlotType.buffer
@@ -56,23 +61,24 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         self.audioPlot.shouldOptimizeForRealtimePlot = true
         
         //ファイルのパスを指定して読み込み
-        self.openFileWithFilePathURL(filePathURL: NSURL(fileURLWithPath: Bundle.main.path(forResource: "ororon_koge", ofType: "m4a")!))
-//        self.openFileWithFilePathURL(filePathURL: NSURL(fileURLWithPath: Bundle.main.path(forResource: "kaze", ofType: "mp3")!))
-        self.view.addSubview(self.audioPlot)
+        self.openFileWithFilePathURL(filePathURL: getURL())
+        //        self.openFileWithFilePathURL(filePathURL: NSURL(fileURLWithPath: Bundle.main.path(forResource: "kaze", ofType: "mp3")!))
+        self.viewhakei.addSubview(self.audioPlot)
         
         //再生
-        self.audioPlayerEZ.pan = 0
-        self.audioPlayerEZ.volume = 50.0
-        self.audioPlayerEZ.play()
+//        self.audioPlayerEZ.pan = 0
+//        self.audioPlayerEZ.volume = 50.0
+//        self.audioPlayerEZ.play()
+        
     }
     
     //ファイルの読み込みと波形の読み込み
-    func openFileWithFilePathURL(filePathURL:NSURL){
+    func openFileWithFilePathURL(filePathURL:URL){
         print("openFileWithFilePathURL")
         print(filePathURL)
         print("---------------------")
         print(getURL())
-        self.audioFile = EZAudioFile(url: filePathURL as URL!)
+        self.audioFile = EZAudioFile(url: filePathURL)
         self.audioFile.delegate = self
         
         let buffer = self.audioFile.getWaveformData().buffer(forChannel: 0)
@@ -140,6 +146,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         audioStop()
     }
     
+    //ダイアログを押下すること
     func dialog(title: String, message:String, isFileSelect:Bool) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         if isFileSelect {
@@ -152,6 +159,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
                         let okAction = UIAlertAction(title: item, style: UIAlertActionStyle.default){ (action: UIAlertAction) in
                             self.fileName = item
                             self.fileNamelabel.text = "ファイル名: " + item
+                            self.setWaveform()
                         }
                         alertController.addAction(okAction)
                         
