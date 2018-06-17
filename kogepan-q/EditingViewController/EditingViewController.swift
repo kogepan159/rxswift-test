@@ -59,16 +59,19 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         self.audioPlot.shouldFill = true
         self.audioPlot.shouldMirror = true
         self.audioPlot.shouldOptimizeForRealtimePlot = true
+        self.audioPlot.tag = 1
         
         //ファイルのパスを指定して読み込み
         self.openFileWithFilePathURL(filePathURL: getURL())
         //        self.openFileWithFilePathURL(filePathURL: NSURL(fileURLWithPath: Bundle.main.path(forResource: "kaze", ofType: "mp3")!))
-        self.viewhakei.addSubview(self.audioPlot)
+        let subviews = self.view.subviews
+        for subview in subviews {
+            if subview.tag == 1 {
+                subview.removeFromSuperview()
+            }
+        }
         
-        //再生
-//        self.audioPlayerEZ.pan = 0
-//        self.audioPlayerEZ.volume = 50.0
-//        self.audioPlayerEZ.play()
+        self.view.addSubview(self.audioPlot)
         
     }
     
