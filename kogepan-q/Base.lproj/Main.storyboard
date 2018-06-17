@@ -154,9 +154,9 @@
                                 <state key="normal" title="Button" image="play.png"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="待機中" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJJ-d5-AV4">
-                                <rect key="frame" x="87" y="184" width="200" height="20"/>
+                                <rect key="frame" x="37" y="184" width="300" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="Jj2-iY-3aa"/>
+                                    <constraint firstAttribute="width" constant="300" id="Jj2-iY-3aa"/>
                                     <constraint firstAttribute="height" constant="20" id="Swe-ED-2fl"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -272,6 +272,22 @@
                                     <constraint firstAttribute="height" constant="60" id="0rN-9Q-kVg"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhE-9c-fN6">
+                                <rect key="frame" x="58" y="484" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="8Z9-QM-IDQ"/>
+                                    <constraint firstAttribute="width" constant="100" id="Qrf-9d-9jq"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="music_cut.png"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MLs-do-AWf">
+                                <rect key="frame" x="218" y="484" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="9Xj-hR-Q7i"/>
+                                    <constraint firstAttribute="width" constant="100" id="spP-xO-4EN"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="music_concat.png"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -281,15 +297,21 @@
                             <constraint firstItem="cdF-OQ-A9Q" firstAttribute="top" secondItem="EWp-w0-odx" secondAttribute="bottom" constant="10" id="Ijj-cy-Hob"/>
                             <constraint firstItem="EWp-w0-odx" firstAttribute="centerX" secondItem="7Pu-It-PAG" secondAttribute="centerX" id="N78-WJ-Q1s"/>
                             <constraint firstItem="lAm-Ni-uFj" firstAttribute="centerX" secondItem="7Pu-It-PAG" secondAttribute="centerX" id="OnR-v3-fZE"/>
+                            <constraint firstItem="nhE-9c-fN6" firstAttribute="leading" secondItem="lAm-Ni-uFj" secondAttribute="leading" id="QU2-5h-lXg"/>
                             <constraint firstItem="zfJ-jN-n8B" firstAttribute="leading" secondItem="xPp-Ah-SId" secondAttribute="leading" constant="31" id="RCg-KB-ECp"/>
                             <constraint firstItem="EWp-w0-odx" firstAttribute="top" secondItem="fjV-8x-ryS" secondAttribute="bottom" constant="20" id="XIs-hA-Uw2"/>
+                            <constraint firstItem="MLs-do-AWf" firstAttribute="top" secondItem="lAm-Ni-uFj" secondAttribute="bottom" constant="30" id="Z5c-mo-Xts"/>
                             <constraint firstItem="fjV-8x-ryS" firstAttribute="top" secondItem="zfJ-jN-n8B" secondAttribute="bottom" constant="18" id="a5g-FR-8RE"/>
                             <constraint firstItem="fjV-8x-ryS" firstAttribute="centerX" secondItem="7Pu-It-PAG" secondAttribute="centerX" id="bU2-PD-CC4"/>
+                            <constraint firstItem="nhE-9c-fN6" firstAttribute="top" secondItem="lAm-Ni-uFj" secondAttribute="bottom" constant="30" id="h7v-AF-eKS"/>
+                            <constraint firstItem="MLs-do-AWf" firstAttribute="leading" secondItem="nhE-9c-fN6" secondAttribute="trailing" constant="60" id="lna-7G-dkN"/>
                             <constraint firstItem="xPp-Ah-SId" firstAttribute="trailing" secondItem="zfJ-jN-n8B" secondAttribute="trailing" constant="31" id="yDO-hC-HTe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xPp-Ah-SId"/>
                     </view>
                     <connections>
+                        <outlet property="concatButton" destination="MLs-do-AWf" id="ZLl-2P-I9V"/>
+                        <outlet property="cutButton" destination="nhE-9c-fN6" id="SPI-J2-mh8"/>
                         <outlet property="fileNamelabel" destination="EWp-w0-odx" id="sKP-iP-5tY"/>
                         <outlet property="fileSelectButton" destination="lAm-Ni-uFj" id="ARH-9K-KBF"/>
                         <outlet property="label" destination="fjV-8x-ryS" id="UPl-Xa-eR5"/>
@@ -325,6 +347,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="music_concat.png" width="256" height="256"/>
+        <image name="music_cut.png" width="256" height="256"/>
         <image name="play.png" width="535" height="449"/>
         <image name="recoding.png" width="342" height="545"/>
         <image name="share.png" width="256" height="256"/>

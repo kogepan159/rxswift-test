@@ -17,6 +17,8 @@ import AVFoundation
 
 class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate, EZAudioFileDelegate {
 
+    @IBOutlet weak var concatButton: UIButton!
+    @IBOutlet weak var cutButton: UIButton!
     @IBOutlet weak var viewhakei: UIView!
     @IBOutlet weak var fileSelectButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
@@ -47,14 +49,23 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
             self.fileSelect()
         }
         
+        concatButton.rx.tap.bind(){
+            self.concatFileSelect()
+        }
+        
+        cutButton.rx.tap.bind(){
+            self.cut()
+        }
+        
         
     }
     
+    //波形生成
     func setWaveform() {
         //波形
         self.audioPlot = EZAudioPlot(frame: self.viewhakei.frame)
-        self.audioPlot.backgroundColor = UIColor.cyan
-        self.audioPlot.color = UIColor.purple
+        self.audioPlot.backgroundColor = UIColor.blue
+        self.audioPlot.color = UIColor.white
         self.audioPlot.plotType = EZPlotType.buffer
         self.audioPlot.shouldFill = true
         self.audioPlot.shouldMirror = true
@@ -110,6 +121,48 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         dialog(title: "再生するファイルを選択してください", message:"", isFileSelect:true)
     }
     
+    func concatFileSelect(){
+        dialog(title: "結合するファイルを選択してください", message:"", isFileSelect:true)
+    }
+    
+    func cut(){
+        let cropTime:TimeInterval = 10 // 10秒分切り出す
+        let recordedTime: Double = audioPlayer.duration
+        if recordedTime > cropTime {
+            
+            let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+            let docsDirect = paths[0]
+            let croppedFileSaveURL = docsDirect.appendingPathComponent("fileName.m4a")
+            let trimStartTime = recordedTime - cropTime
+            // arg1 / arg2 = CMTimeらしいので、とりあえず1で除算
+            // 本当はもっと厳密にやったほうが良いかも
+            let startTime = CMTimeMake(Int64(trimStartTime), 1)
+            let endTime = CMTimeMake(Int64(recordedTime), 1)
+            // 開始時間、終了時間からCropするTimeRangeを作成
+            let exportTimeRange = CMTimeRangeFromTimeToTime(startTime, endTime)
+            
+            // AssetにInputとなるファイルのUrlをセット
+            let asset = AVAsset(url: getURL())
+            // cafファイルとしてExportする
+            let exporter = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetPassthrough)
+            exporter?.outputFileType = AVFileType.m4a
+            exporter?.timeRange = exportTimeRange
+            exporter?.outputURL = croppedFileSaveURL as URL
+            
+            // Export
+            exporter!.exportAsynchronously(completionHandler: {
+                switch exporter!.status {
+                case .completed:
+                    print("Crop Success! Url -> \(croppedFileSaveURL)")
+                case .failed, .cancelled:
+                    print("error = \(exporter?.error)")
+                default:
+                    print("error = \(exporter?.error)")
+                }
+            })
+        }
+    }
+    
     func play(){
         if fileName.isEmpty {
             dialog(title: "fileを選択してください", message:"file選択は、下のファイル選択ボタンを押下してください。", isFileSelect:false)
@@ -131,6 +184,57 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         }else{
             audioStop()
         }
+    }
+    
+    func concat(filename: String) {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let docsDirect = paths[0]
+        let concatUrl = docsDirect.appendingPathComponent(fileName)
+        let audioFileURLs = [getURL(), concatUrl]
+        var nextStartTime = kCMTimeZero
+        let composition = AVMutableComposition()
+        let track = composition.addMutableTrack(withMediaType: AVMediaType.audio, preferredTrackID: kCMPersistentTrackID_Invalid)
+        
+        // 結合するファイル毎に、timerangeを作りtrackにinsertする
+        for url in audioFileURLs {
+            let asset = AVURLAsset(url: url as URL)
+            if let assetTrack = asset.tracks(withMediaType: AVMediaType.audio).first {
+                let timeRange = CMTimeRange(start: kCMTimeZero, duration: asset.duration)
+                do {
+                    try track?.insertTimeRange(timeRange, of: assetTrack, at: nextStartTime)
+                    nextStartTime = CMTimeAdd(nextStartTime, timeRange.duration)
+                    print(nextStartTime)
+                } catch {
+                    print("concatenateError : \(error)")
+                }
+            }
+        }
+        
+        if let exportSession = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetPassthrough) {
+            
+            let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+            let docsDirect = paths[0]
+            let saveUrl = docsDirect.appendingPathComponent("fileName.m4a")
+            
+            exportSession.outputFileType = AVFileType.m4a //AVFileTypeCoreAudioFormat
+            exportSession.outputURL = saveUrl
+            
+            exportSession.exportAsynchronously(completionHandler: {
+                switch exportSession.status {
+                case .completed:
+                    print("Concat Success! Url -> \(saveUrl)")
+                case .failed, .cancelled:
+                    print("error  : " )
+                    print(exportSession.error)
+                default:
+                    print("error")
+                    break
+                    
+                }
+            })
+        }
+        
+        
     }
     
     // MARK: - Other
@@ -160,9 +264,14 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
                     print(items)
                     for item in items {
                         let okAction = UIAlertAction(title: item, style: UIAlertActionStyle.default){ (action: UIAlertAction) in
-                            self.fileName = item
-                            self.fileNamelabel.text = "ファイル名: " + item
-                            self.setWaveform()
+                            
+                            if title == "再生するファイルを選択してください" {
+                                self.fileName = item
+                                self.fileNamelabel.text = "ファイル名: " + item
+                                self.setWaveform()
+                            } else {
+                                self.concat(filename: item)
+                            }
                         }
                         alertController.addAction(okAction)
                         
@@ -187,7 +296,10 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         count += 1
         let min: Int = count / 60
         let sec: Int = count % 60
-        label.text = "再生中 : " + String(format:"%02d:%02d",min, sec)
+        
+        let playerMin: Int = Int(audioPlayer.duration / 60)
+        let playerSec: Int = Int(audioPlayer.duration) % 60
+        label.text = "再生中 : " + String(format:"%02d:%02d/",min, sec) +  String(format:"%02d:%02d",playerMin, playerSec)
     }
     
 }

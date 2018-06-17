@@ -51,9 +51,7 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         print("録音スタート")
         print(self.microPhoneCheck())
         if voiceFileName.text != "" {
-            print(voiceFileName.text)
         } else {
-            print("空文字")
             dialog()
             return
         }
@@ -127,6 +125,12 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
     
     func play(){
         
+        if voiceFileName.text != "" {
+        } else {
+            dialog()
+            return
+        }
+        
         if !isPlaying {
             audioPlayer = try! AVAudioPlayer(contentsOf: getURL())
             audioPlayer.delegate = self as AVAudioPlayerDelegate
@@ -179,8 +183,14 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         count += 1
         let min: Int = count / 60
         let sec: Int = count % 60
-        label.text = isRecording ? "録音中 : ": "再生中 : "
-        label.text = label.text! + String(format:"%02d:%02d",min, sec)
+        
+        if isRecording {
+            label.text = "録音中 : " + String(format:"%02d:%02d",min, sec)
+        } else {
+            let playerMin: Int = Int(audioPlayer.duration / 60)
+            let playerSec: Int = Int(audioPlayer.duration) % 60
+            label.text = "再生中 : " + String(format:"%02d:%02d/",min, sec) +  String(format:"%02d:%02d",playerMin, playerSec)
+        }
     }
 }
 
