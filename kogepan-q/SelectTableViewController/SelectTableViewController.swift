@@ -14,9 +14,12 @@ class SelectTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.fileArraySet()
+        
         self.tableView.tableFooterView = UIView()
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.fileArraySet()
     }
     
     override func didReceiveMemoryWarning() {
@@ -39,7 +42,7 @@ class SelectTableViewController: UITableViewController {
             print("削除処理")
             self.deleteMusic(deleteFilename:  self.fileNameArray[indexPath.row])
             self.fileArraySet()
-            tableView.reloadData()
+            
         }
     }
     
@@ -53,6 +56,7 @@ class SelectTableViewController: UITableViewController {
                 print(error)
             }
         }
+        tableView.reloadData()
     }
     
     func deleteMusic(deleteFilename: String) {

@@ -60,7 +60,9 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.audioStop()
+        if isPlaying {
+            self.audioStop()
+        }
     }
     
     //波形生成
