@@ -17,6 +17,7 @@
 		093C1A1720B1413A000D125D /* kogepan_qUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093C1A1620B1413A000D125D /* kogepan_qUITests.swift */; };
 		09637A1D20D67296002AE7B9 /* music_concat.png in Resources */ = {isa = PBXBuildFile; fileRef = 09637A1C20D67296002AE7B9 /* music_concat.png */; };
 		09637A1F20D672E8002AE7B9 /* music_cut.png in Resources */ = {isa = PBXBuildFile; fileRef = 09637A1E20D672E8002AE7B9 /* music_cut.png */; };
+		09637A2220D71C65002AE7B9 /* SelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09637A2120D71C64002AE7B9 /* SelectTableViewController.swift */; };
 		0988F15120C1FEA300D859FB /* icon-l.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0988F15020C1FEA300D859FB /* icon-l.jpg */; };
 		0988F15320C429F200D859FB /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 0988F15220C429F200D859FB /* share.png */; };
 		099BA8AF20CD2E49006111A3 /* kaze.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 099BA8AD20CD2E48006111A3 /* kaze.mp3 */; };
@@ -66,6 +67,7 @@
 		093C1A1820B1413A000D125D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09637A1C20D67296002AE7B9 /* music_concat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = music_concat.png; sourceTree = "<group>"; };
 		09637A1E20D672E8002AE7B9 /* music_cut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = music_cut.png; sourceTree = "<group>"; };
+		09637A2120D71C64002AE7B9 /* SelectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectTableViewController.swift; sourceTree = "<group>"; };
 		0988F15020C1FEA300D859FB /* icon-l.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "icon-l.jpg"; sourceTree = "<group>"; };
 		0988F15220C429F200D859FB /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		099BA8AC20CD208D006111A3 /* EZAudio-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EZAudio-Header.h"; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				099BA8AE20CD2E48006111A3 /* ororon_koge.m4a */,
 				099BA8AD20CD2E48006111A3 /* kaze.mp3 */,
 				09F1FD0C20BA371C00D58A60 /* Image */,
+				09637A2020D71C64002AE7B9 /* SelectTableViewController */,
 				09F1FD0520B8CF3300D58A60 /* EditingViewController */,
 				09F1FD0320B8CF3300D58A60 /* HomeViewController */,
 				09F1FD0620B8CF3300D58A60 /* RecodeViewController */,
@@ -174,6 +177,14 @@
 				093C1A1820B1413A000D125D /* Info.plist */,
 			);
 			path = "kogepan-qUITests";
+			sourceTree = "<group>";
+		};
+		09637A2020D71C64002AE7B9 /* SelectTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				09637A2120D71C64002AE7B9 /* SelectTableViewController.swift */,
+			);
+			path = SelectTableViewController;
 			sourceTree = "<group>";
 		};
 		09F1FD0320B8CF3300D58A60 /* HomeViewController */ = {
@@ -531,6 +542,7 @@
 				093C19F720B1413A000D125D /* AppDelegate.swift in Sources */,
 				09F1FD0B20B8D4B700D58A60 /* EditingViewController.swift in Sources */,
 				09F1FD0720B8CF3300D58A60 /* HomeViewController.swift in Sources */,
+				09637A2220D71C65002AE7B9 /* SelectTableViewController.swift in Sources */,
 				09F1FD0920B8D47300D58A60 /* RecodeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
