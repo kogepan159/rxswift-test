@@ -58,6 +58,11 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         self.setWaveform()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.audioStop()
+    }
+    
     //波形生成
     func setWaveform() {
         self.fileNamelabel.text = "ファイル名: " + self.fileName
@@ -154,9 +159,9 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
                 case .completed:
                     print("Crop Success! Url -> \(croppedFileSaveURL)")
                 case .failed, .cancelled:
-                    print("error = \(exporter?.error)")
+                    print("error = \(String(describing: exporter?.error))")
                 default:
-                    print("error = \(exporter?.error)")
+                    print("error = \(String(describing: exporter?.error))")
                 }
             })
         }
@@ -269,13 +274,8 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
                     for item in items {
                         let okAction = UIAlertAction(title: item, style: UIAlertActionStyle.default){ (action: UIAlertAction) in
                             
-                            if title == "再生するファイルを選択してください" {
-                                self.fileName = item
-                                self.fileNamelabel.text = "ファイル名: " + item
-                                self.setWaveform()
-                            } else {
-                                self.concat(concatFilename: item)
-                            }
+                            self.concat(concatFilename: item)
+                        
                         }
                         alertController.addAction(okAction)
                         

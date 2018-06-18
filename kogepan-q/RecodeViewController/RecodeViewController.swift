@@ -41,6 +41,10 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.audioStop()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

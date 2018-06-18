@@ -60,7 +60,7 @@
                                     <segue destination="Kzn-JK-aO8" kind="show" id="uL5-jY-CHM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lhl-mZ-lz2">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lhl-mZ-lz2">
                                 <rect key="frame" x="83" y="414" width="210" height="80"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
@@ -92,7 +92,7 @@
                                     <constraint firstAttribute="width" constant="61" id="gfY-rJ-KYD"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="share.png" translatesAutoresizingMaskIntoConstraints="NO" id="nl0-HN-2Ua">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="share.png" translatesAutoresizingMaskIntoConstraints="NO" id="nl0-HN-2Ua">
                                 <rect key="frame" x="302" y="425" width="58" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58" id="ETV-39-kLr"/>

@@ -56,7 +56,6 @@ class SelectTableViewController: UITableViewController {
     }
     
     func deleteMusic(deleteFilename: String) {
-        let manager = FileManager()
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let docsDirect = paths[0]
         let url = docsDirect.appendingPathComponent(deleteFilename)
@@ -67,15 +66,6 @@ class SelectTableViewController: UITableViewController {
             print("error")
 
         }
-//        do {
-//
-//            try FileManager.default.removeItem( atPath: deleteFilename)
-//
-//        } catch {
-//
-//
-//
-//        }
     
     }
     
@@ -87,7 +77,6 @@ class SelectTableViewController: UITableViewController {
     
     override func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
         // [indexPath.row] から画像名を探し、UImage を設定
-        print("画面繊維")
         self.sentLabel = self.fileNameArray[indexPath.row]
         if self.sentLabel !=  "" {
             // SubViewController へ遷移するために Segue を呼び出す
