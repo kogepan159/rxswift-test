@@ -25,6 +25,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
     var timer: Timer = Timer()
     var count: Int = 0
     @IBOutlet weak var fileNamelabel: UILabel!
+    @IBOutlet weak var cutTextField: UITextField!
     
     var audioPlayer: AVAudioPlayer!
     var isPlaying = false
@@ -132,18 +133,24 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
     }
     
     func cut(){
-        let cropTime:TimeInterval = 10 // 10秒分切り出す
+        if (self.cutTextField.text?.isEmpty)! {
+            dialog(title: "秒数を入力してください", message:"分割する秒に数字を入力してください", isFileSelect:false)
+            return
+        }
+        let startTime:TimeInterval = 0.0 // 最初の時間
+        let cropTime:TimeInterval = Double(self.cutTextField.text!)! // 10秒分切り出す
         let recordedTime: Double = self.audioFile.duration
-        if recordedTime > cropTime {
             
-            let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-            let docsDirect = paths[0]
-            let croppedFileSaveURL = docsDirect.appendingPathComponent("fileName111.m4a")
-            let trimStartTime = recordedTime - cropTime
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let docsDirect = paths[0]
+        
+        for halfName in ["_first", "_latter"] {
+            let isFirst: Bool = (halfName == "_first")
+            let croppedFileSaveURL = docsDirect.appendingPathComponent(self.fileName + halfName)
             // arg1 / arg2 = CMTimeらしいので、とりあえず1で除算
             // 本当はもっと厳密にやったほうが良いかも
-            let startTime = CMTimeMake(Int64(trimStartTime), 1)
-            let endTime = CMTimeMake(Int64(recordedTime), 1)
+            let startTime = CMTimeMake(Int64(isFirst ? startTime : cropTime), 1)
+            let endTime = CMTimeMake(Int64(isFirst ? cropTime : recordedTime), 1)
             // 開始時間、終了時間からCropするTimeRangeを作成
             let exportTimeRange = CMTimeRangeFromTimeToTime(startTime, endTime)
             
@@ -167,13 +174,10 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
                 }
             })
         }
+        
     }
     
     func play(){
-        if fileName.isEmpty {
-            dialog(title: "fileを選択してください", message:"file選択は、下のファイル選択ボタンを押下してください。", isFileSelect:false)
-            return
-        }
        
         if !isPlaying {
             audioPlayer = try! AVAudioPlayer(contentsOf: getURL())
