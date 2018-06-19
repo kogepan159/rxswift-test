@@ -144,7 +144,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let docsDirect = paths[0]
         
-        for halfName in ["_first", "_latter"] {
+        for halfName in ["_first.m4a", "_latter.m4a"] {
             let isFirst: Bool = (halfName == "_first")
             let croppedFileSaveURL = docsDirect.appendingPathComponent(self.fileName + halfName)
             // arg1 / arg2 = CMTimeらしいので、とりあえず1で除算
