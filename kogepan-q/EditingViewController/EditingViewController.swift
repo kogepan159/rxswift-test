@@ -145,9 +145,10 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         let docsDirect = paths[0]
         
         for halfName in ["_first.m4a", "_latter.m4a"] {
-            let isFirst: Bool = (halfName == "_first")
+            let isFirst: Bool = (halfName == "_first.m4a")
             let croppedFileSaveURL = docsDirect.appendingPathComponent(self.fileName + halfName)
             // arg1 / arg2 = CMTimeらしいので、とりあえず1で除算
+            
             // 本当はもっと厳密にやったほうが良いかも
             let startTime = CMTimeMake(Int64(isFirst ? startTime : cropTime), 1)
             let endTime = CMTimeMake(Int64(isFirst ? cropTime : recordedTime), 1)
@@ -166,7 +167,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
             exporter!.exportAsynchronously(completionHandler: {
                 switch exporter!.status {
                 case .completed:
-                    print("Crop Success! Url -> \(croppedFileSaveURL)")
+                    print("Crop Success! Url")
                 case .failed, .cancelled:
                     print("error = \(String(describing: exporter?.error))")
                 default:
@@ -215,6 +216,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
                 do {
                     try track?.insertTimeRange(timeRange, of: assetTrack, at: nextStartTime)
                     nextStartTime = CMTimeAdd(nextStartTime, timeRange.duration)
+                    print(nextStartTime.seconds)
                 } catch {
                     print("concatenateError : \(error)")
                 }
@@ -223,15 +225,15 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
             }
         }
         
-        if let exportSession = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetPassthrough) {
+        if let exportSession = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetAppleM4A) {
             
             let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
             let docsDirect = paths[0]
-            let saveUrl = docsDirect.appendingPathComponent("fileAAA.m4a")
+            let saveUrl = docsDirect.appendingPathComponent("test.m4a")
             
-            //let saveUrl = NSURL(fileURLWithPath: "fineName123.m4a")
             
             exportSession.outputFileType = AVFileType.m4a //AVFileTypeCoreAudioFormat
+            //exportSession.timeRange = CMTimeRangeMake(kCMTimeZero, (track?.timeRange.duration)!)
             exportSession.outputURL = saveUrl as URL
             
             exportSession.exportAsynchronously(completionHandler: {
