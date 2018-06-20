@@ -15,8 +15,9 @@ import AVFoundation
 
 
 
-class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate, EZAudioFileDelegate {
+class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate, EZAudioFileDelegate, UITextFieldDelegate {
 
+    @IBOutlet weak var concatFileNameTextField: UITextField!
     @IBOutlet weak var concatButton: UIButton!
     @IBOutlet weak var cutButton: UIButton!
     @IBOutlet weak var viewhakei: UIView!
@@ -40,6 +41,8 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = UIColor.red
+        concatFileNameTextField.delegate = self
+        cutTextField.delegate = self
         self.title = "音声編集"
         playButton.rx.tap.bind(){
             self.play()
@@ -129,6 +132,10 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
     }
     
     func concatFileSelect(){
+        if (self.concatFileNameTextField.text?.isEmpty)! {
+            dialog(title: "合成後の名前を入力してください", message:"合成後の名前に設定してから、合成ボタンを押下してください", isFileSelect:false)
+            return
+        }
         dialog(title: "結合するファイルを選択してください", message:"", isFileSelect:true)
     }
     
@@ -198,6 +205,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
     }
     
     func concat(concatFilename: String) {
+        
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let docsDirect = paths[0]
         let concatUrl = docsDirect.appendingPathComponent(concatFilename)
@@ -227,13 +235,15 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         
         if let exportSession = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetAppleM4A) {
             
+            
+            
             let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
             let docsDirect = paths[0]
-            let saveUrl = docsDirect.appendingPathComponent("test.m4a")
+            let saveUrl = docsDirect.appendingPathComponent( concatFileNameTextField.text! + ".m4a")
             
             
             exportSession.outputFileType = AVFileType.m4a //AVFileTypeCoreAudioFormat
-            //exportSession.timeRange = CMTimeRangeMake(kCMTimeZero, (track?.timeRange.duration)!)
+            exportSession.timeRange = CMTimeRangeMake(kCMTimeZero, (track?.timeRange.duration)!)
             exportSession.outputURL = saveUrl as URL
             
             exportSession.exportAsynchronously(completionHandler: {
@@ -299,6 +309,11 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
             alertController.addAction(okAction)
         }
         present(alertController,animated: true,completion: nil)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     //
