@@ -13,7 +13,6 @@
         <!--Setting Table View Controller-->
         <scene sceneID="i44-xR-n5f">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QYX-Dl-6jT" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController restorationIdentifier="setting" storyboardIdentifier="setting" id="5zo-8t-7yh" customClass="SettingTableViewController" customModule="kogepan_q" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WS3-EP-HDs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -35,6 +34,7 @@
                         </connections>
                     </tableView>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QYX-Dl-6jT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1094" y="-546"/>
         </scene>
@@ -127,13 +127,29 @@
                                     <constraint firstAttribute="width" constant="58" id="Zdf-UN-Qkq"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXJ-YD-mBc">
+                                <rect key="frame" x="63" y="414" width="248" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="cT5-nI-Zmh"/>
+                                    <constraint firstAttribute="width" constant="248" id="lZ3-6B-bEp"/>
+                                </constraints>
+                                <string key="text">音源の取り出しについて
+
+パソコンに設置しているiTunesから、こちらのアプリを選択して、他のアプリに移行することができます</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="miX-DJ-emr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6IX-v0-XyS"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2Fv-Hl-d4H" secondAttribute="trailing" constant="25" id="752-hK-fYb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nl0-HN-2Ua" secondAttribute="trailing" constant="15" id="Flg-XF-Crf"/>
+                            <constraint firstItem="jXJ-YD-mBc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Gqc-BZ-fAb"/>
                             <constraint firstItem="lhl-mZ-lz2" firstAttribute="top" secondItem="miX-DJ-emr" secondAttribute="bottom" constant="40" id="J02-nY-YZe"/>
                             <constraint firstItem="miX-DJ-emr" firstAttribute="top" secondItem="07I-rb-gLY" secondAttribute="bottom" constant="40" id="LzC-Pe-Zum"/>
+                            <constraint firstItem="jXJ-YD-mBc" firstAttribute="top" secondItem="miX-DJ-emr" secondAttribute="bottom" constant="40" id="O9J-mg-j4A"/>
                             <constraint firstItem="2Fv-Hl-d4H" firstAttribute="centerY" secondItem="07I-rb-gLY" secondAttribute="centerY" id="TnP-v1-O7d"/>
                             <constraint firstItem="l5t-Sw-mDS" firstAttribute="leading" secondItem="miX-DJ-emr" secondAttribute="trailing" constant="8" id="YTW-EL-ngH"/>
                             <constraint firstItem="l5t-Sw-mDS" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ZKd-ps-TWK"/>
