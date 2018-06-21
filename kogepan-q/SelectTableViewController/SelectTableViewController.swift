@@ -14,8 +14,9 @@ class SelectTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.navigationBar.tintColor = UIColor.red
         self.tableView.tableFooterView = UIView()
+        self.title = "音源選択"
         
     }
     override func viewWillAppear(_ animated: Bool) {

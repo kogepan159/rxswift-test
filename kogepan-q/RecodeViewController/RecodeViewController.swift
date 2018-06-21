@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Firebase
-import TwitterKit
 import RxSwift
 import RxCocoa
 import AVFoundation
@@ -72,7 +70,7 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateElapsedTime), userInfo: nil, repeats: true)
             
             let session = AVAudioSession.sharedInstance()
-            try! session.setCategory(AVAudioSessionCategoryPlayAndRecord)
+            try! session.setCategory(AVAudioSessionCategoryRecord)
             try! session.setActive(true)
             
             let settings = [
@@ -99,6 +97,8 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
             timer.invalidate()
             count = 0
             playButton.isEnabled = true
+            let audioSession:AVAudioSession = AVAudioSession.sharedInstance()
+            try! audioSession.setCategory(AVAudioSessionCategoryPlayback)
             
         }
     }

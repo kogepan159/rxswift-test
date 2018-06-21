@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import Firebase
-import TwitterKit
-import GoogleSignIn
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,9 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        FirebaseApp.configure()
-        TWTRTwitter.sharedInstance().start(withConsumerKey:"VGhWRVhA3AWkUnUVrydfx39yJ", consumerSecret:"D1pkBLlsQRNTCLEc2EEdwWDjbLjRwKNP3vinp6qgUAaAbJmH0A")
-        //2669161377-33qcomh3llda83c6c7vh638rb9lruqe0.apps.googleusercontent.com
+//        FirebaseApp.configure()
+//        TWTRTwitter.sharedInstance().start(withConsumerKey:"VGhWRVhA3AWkUnUVrydfx39yJ", consumerSecret:"D1pkBLlsQRNTCLEc2EEdwWDjbLjRwKNP3vinp6qgUAaAbJmH0A")
+//        //2669161377-33qcomh3llda83c6c7vh638rb9lruqe0.apps.googleusercontent.com
 
         // Override point for customization after application launch.
         return true

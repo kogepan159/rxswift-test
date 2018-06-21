@@ -7,8 +7,6 @@
 // 緑: rgb(6, 169, 10)
 
 import UIKit
-import Firebase
-import TwitterKit
 import RxSwift
 import RxCocoa
 
@@ -18,10 +16,19 @@ class HomeViewController: UIViewController {
     let dis = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.tintColor = UIColor.red
         // Do any additional setup after loading the view, typically from a nib.
         shareButton.rx.tap.bind{
                 self.shareAction()
             }
+        let menu: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Image"), style:UIBarButtonItemStyle.done, target:self, action:#selector(self.TapMenu)) // アイコンを追加し、アイコンを押したときに"TapMenu()"が実行されるように指定
+        self.navigationItem.setLeftBarButton(menu, animated: true)//rigltBarButtonItem = Menu // ナビゲーションバーにアイコンを追加
+    }
+    
+    @objc func TapMenu() {
+        print("メニューがタップされました")
+        let next = self.storyboard?.instantiateViewController(withIdentifier:"setting") as? SettingTableViewController
+        self.navigationController?.pushViewController(next!, animated: true)
     }
 
     override func didReceiveMemoryWarning() {

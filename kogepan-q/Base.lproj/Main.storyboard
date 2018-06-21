@@ -10,6 +10,34 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Setting Table View Controller-->
+        <scene sceneID="i44-xR-n5f">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QYX-Dl-6jT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController restorationIdentifier="setting" storyboardIdentifier="setting" id="5zo-8t-7yh" customClass="SettingTableViewController" customModule="kogepan_q" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WS3-EP-HDs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="reuseIdentifier" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" id="JqO-RK-WpM">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JqO-RK-WpM" id="PQU-bp-mTd">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="5zo-8t-7yh" id="fBH-L6-0iN"/>
+                            <outlet property="delegate" destination="5zo-8t-7yh" id="YZ1-ak-MdN"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="1094" y="-546"/>
+        </scene>
         <!--HOME-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -213,10 +241,10 @@
             </objects>
             <point key="canvasLocation" x="1989.5999999999999" y="103.89805097451276"/>
         </scene>
-        <!--Select Table View Controller-->
+        <!--音源選択-->
         <scene sceneID="gZz-lz-arM">
             <objects>
-                <tableViewController id="Kzn-JK-aO8" customClass="SelectTableViewController" customModule="kogepan_q" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="音源選択" id="Kzn-JK-aO8" customClass="SelectTableViewController" customModule="kogepan_q" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BSJ-uD-okt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
