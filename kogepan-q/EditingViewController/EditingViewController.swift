@@ -184,7 +184,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
                 case .failed, .cancelled:
                     print("error = \(String(describing: exporter?.error))")
                     DispatchQueue.main.async {
-                        self.dialog(title: "分割失敗", message:"。同じファイルを分割していないかご確認ください。\nファイル削除方法は、音源選択画面で左スライドをお試しください", isFileSelect:false)
+                        self.dialog(title: "分割失敗", message:"同じファイルを分割していないかご確認ください。\nファイル削除方法は、音源選択画面で左スライドをお試しください", isFileSelect:false)
                     }
                 default:
                     print("error = \(String(describing: exporter?.error))")
