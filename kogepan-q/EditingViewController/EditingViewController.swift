@@ -261,7 +261,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
                 case .completed:
                     print("Concat Success! Url")
                     DispatchQueue.main.async {
-                        self.dialog(title: "合成成功", message:一度戻って、ファイルを選択してください", isFileSelect:false)
+                        self.dialog(title: "合成成功", message:"一度戻って、ファイルを選択してください", isFileSelect:false)
                     }
                 case .failed, .cancelled:
                     print("error  : " )
