@@ -11,6 +11,7 @@
 		090FDCB120B1518700B4B7F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 090FDCB020B1518700B4B7F6 /* GoogleService-Info.plist */; };
 		091E84C320DB7339005B59B3 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E84C220DB7339005B59B3 /* SettingTableViewController.swift */; };
 		091E84C520DB74F3005B59B3 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 091E84C420DB74F3005B59B3 /* setting.png */; };
+		0925F79D20DC6ACF0071B98C /* stop2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0925F79C20DC6ACE0071B98C /* stop2.png */; };
 		093C19F720B1413A000D125D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093C19F620B1413A000D125D /* AppDelegate.swift */; };
 		093C19FC20B1413A000D125D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 093C19FA20B1413A000D125D /* Main.storyboard */; };
 		093C19FE20B1413A000D125D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 093C19FD20B1413A000D125D /* Assets.xcassets */; };
@@ -57,6 +58,7 @@
 		090FDCB020B1518700B4B7F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		091E84C220DB7339005B59B3 /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		091E84C420DB74F3005B59B3 /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
+		0925F79C20DC6ACE0071B98C /* stop2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop2.png; sourceTree = "<group>"; };
 		093C19F320B1413A000D125D /* kogepan-q.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kogepan-q.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		093C19F620B1413A000D125D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		093C19FB20B1413A000D125D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 		09F1FD0C20BA371C00D58A60 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				0925F79C20DC6ACE0071B98C /* stop2.png */,
 				091E84C420DB74F3005B59B3 /* setting.png */,
 				09637A1E20D672E8002AE7B9 /* music_cut.png */,
 				09637A1C20D67296002AE7B9 /* music_concat.png */,
@@ -379,6 +382,7 @@
 				093C1A0120B1413A000D125D /* LaunchScreen.storyboard in Resources */,
 				09F45F9620BE8C3800B3FFFB /* icon.png in Resources */,
 				090FDCB120B1518700B4B7F6 /* GoogleService-Info.plist in Resources */,
+				0925F79D20DC6ACF0071B98C /* stop2.png in Resources */,
 				09F1FD1220BA4B5100D58A60 /* stop.png in Resources */,
 				09637A1D20D67296002AE7B9 /* music_concat.png in Resources */,
 				09637A1F20D672E8002AE7B9 /* music_cut.png in Resources */,

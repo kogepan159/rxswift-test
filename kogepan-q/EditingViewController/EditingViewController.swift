@@ -15,6 +15,7 @@ import AVFoundation
 
 class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate, EZAudioFileDelegate, UITextFieldDelegate {
 
+    @IBOutlet weak var stopPlayButton: UIButton!
     @IBOutlet weak var concatFileNameTextField: UITextField!
     @IBOutlet weak var concatButton: UIButton!
     @IBOutlet weak var cutButton: UIButton!
@@ -43,6 +44,10 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         cutTextField.delegate = self
         self.title = "音声編集"
         playButton.rx.tap.bind(){
+            self.play()
+        }
+        
+        stopPlayButton.rx.tap.bind(){
             self.play()
         }
         
@@ -172,9 +177,15 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
             exporter!.exportAsynchronously(completionHandler: {
                 switch exporter!.status {
                 case .completed:
+                    DispatchQueue.main.async {
+                        self.dialog(title: "分割成功", message:"一度戻って、ファイルを選択してください", isFileSelect:false)
+                    }
                     print("Crop Success! Url")
                 case .failed, .cancelled:
                     print("error = \(String(describing: exporter?.error))")
+                    DispatchQueue.main.async {
+                        self.dialog(title: "分割失敗", message:"。同じファイルを分割していないかご確認ください。\nファイル削除方法は、音源選択画面で左スライドをお試しください", isFileSelect:false)
+                    }
                 default:
                     print("error = \(String(describing: exporter?.error))")
                 }
@@ -192,6 +203,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
             isPlaying = true
             label.text = "再生中"
             playButton.setTitle("STOP", for: .normal)
+            playButtonHidden(hidden: true)
             //タイマーが動いている状態で押されたら処理しない
             if timer.isValid == true {
                 return
@@ -247,10 +259,16 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
             exportSession.exportAsynchronously(completionHandler: {
                 switch exportSession.status {
                 case .completed:
-                    print("Concat Success! Url -> \(saveUrl)")
+                    print("Concat Success! Url")
+                    DispatchQueue.main.async {
+                        self.dialog(title: "合成成功", message:一度戻って、ファイルを選択してください", isFileSelect:false)
+                    }
                 case .failed, .cancelled:
                     print("error  : " )
                     print(exportSession.error!)
+                    DispatchQueue.main.async {
+                        self.dialog(title: "合成失敗", message:"同じファイル名が存在しないかご確認ください。\nファイル削除方法は、音源選択画面で左スライドをお試しください", isFileSelect:false)
+                    }
                 default:
                     print("error")
                     break
@@ -258,8 +276,6 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
                 }
             })
         }
-        
-        
     }
     
     // MARK: - Other
@@ -268,10 +284,15 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         isPlaying = false
         playButton.setTitle("PLAY", for: .normal)
         label.text = "待機中"
-        
+        playButtonHidden(hidden: false)
         //タイマーを停止
         timer.invalidate()
         count = 0
+    }
+    
+    func playButtonHidden(hidden: Bool) {
+        playButton.isHidden = hidden
+        stopPlayButton.isHidden = !hidden
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {

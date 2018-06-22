@@ -18,6 +18,8 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var recodeButton: UIButton!
     @IBOutlet weak var voiceFileName: UITextField!
+    @IBOutlet weak var stopRecodeButton: UIButton!
+    @IBOutlet weak var stopPlayButton: UIButton!
     
     var audioRecorder: AVAudioRecorder!
     var audioPlayer: AVAudioPlayer!
@@ -37,6 +39,15 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         playButton.rx.tap.bind{
             self.play()
         }
+        
+        stopRecodeButton.rx.tap.bind{
+            self.startRecode()
+        }
+        
+        stopPlayButton.rx.tap.bind{
+            self.play()
+        }
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -87,7 +98,7 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
             isRecording = true
             label.text = "録音中"
             playButton.isEnabled = false
-            
+            recodeButtonHidden(hidden: true)
         }else{
             
             audioRecorder.stop()
@@ -99,6 +110,7 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
             playButton.isEnabled = true
             let audioSession:AVAudioSession = AVAudioSession.sharedInstance()
             try! audioSession.setCategory(AVAudioSessionCategoryPlayback)
+            recodeButtonHidden(hidden: false)
             
         }
     }
@@ -143,7 +155,7 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
             audioPlayer.play()
             
             isPlaying = true
-            
+            playButtonHidden(hidden:true)
             label.text = "再生中"
             playButton.setTitle("STOP", for: .normal)
             recodeButton.isEnabled = false
@@ -157,10 +169,22 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         }
     }
     
+    func playButtonHidden(hidden: Bool) {
+        playButton.isHidden = hidden
+        stopPlayButton.isHidden = !hidden
+    }
+    
+    func recodeButtonHidden(hidden: Bool) {
+        recodeButton.isHidden = hidden
+        stopRecodeButton.isHidden = !hidden
+        
+    }
+    
     func audioStop() {
         audioPlayer.stop()
         isPlaying = false
         label.text = "待機中"
+        playButtonHidden(hidden:false)
         
         //タイマーを停止
         timer.invalidate()
