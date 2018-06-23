@@ -36,17 +36,18 @@ class HomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func getURL() -> URL{
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let docsDirect = paths[0]
+        let url = docsDirect.appendingPathComponent( "テスト.m4a")
+        print("url")
+        print(url)
+        return url
+    }
+    
     func shareAction() {
-        // Documentディレクトリ
-        let documentDir = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, .userDomainMask, true).last!
         
-        // 送信するファイル名
-        let filename = "recording.m4a"
-        
-        // 送信ファイルのパス
-        let targetDirPath = "\(documentDir)/\(filename)"
-        
-        let documentInteraction = UIDocumentInteractionController(url: URL(fileURLWithPath: targetDirPath))
+        let documentInteraction = UIDocumentInteractionController(url: getURL())
         
         if !documentInteraction.presentOpenInMenu(from: self.view.frame, in: self.view, animated: true) {
             // 送信できるアプリが見つからなかった時の処理

@@ -58,6 +58,8 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         cutButton.rx.tap.bind(){
             self.cut()
         }
+        let audioSession:AVAudioSession = AVAudioSession.sharedInstance()
+        try! audioSession.setCategory(AVAudioSessionCategoryPlayback)
     }
     
     override func viewDidAppear(_ animated: Bool) {

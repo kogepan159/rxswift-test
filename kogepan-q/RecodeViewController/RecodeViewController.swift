@@ -61,6 +61,9 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         // 録音レベルの検知を開始する
         self.startUpdatingVolume()
         
+        let audioSession:AVAudioSession = AVAudioSession.sharedInstance()
+        try! audioSession.setCategory(AVAudioSessionCategoryPlayback)
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -231,7 +234,7 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         let sec: Int = count % 60
         
         if isRecording {
-            label.text = "録音中:" + String(format:"%02d:%02d",min, sec) + ", 音量(Max35):" + String(Int(levelMeter.mPeakPower) + 35)
+            label.text = "録音中:" + String(format:"%02d:%02d",min, sec) + ", 音量(Max50):" + String(Int(levelMeter.mPeakPower) + 50)
         } else {
             let playerMin: Int = Int(audioPlayer.duration / 60)
             let playerSec: Int = Int(audioPlayer.duration) % 60
