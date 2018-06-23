@@ -88,7 +88,7 @@
                                     <segue destination="Kzn-JK-aO8" kind="show" id="uL5-jY-CHM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lhl-mZ-lz2">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lhl-mZ-lz2">
                                 <rect key="frame" x="83" y="414" width="210" height="80"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
@@ -127,8 +127,8 @@
                                     <constraint firstAttribute="width" constant="58" id="Zdf-UN-Qkq"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXJ-YD-mBc">
-                                <rect key="frame" x="64" y="480" width="248" height="180"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXJ-YD-mBc">
+                                <rect key="frame" x="64" y="414" width="248" height="180"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="cT5-nI-Zmh"/>
                                     <constraint firstAttribute="width" constant="248" id="lZ3-6B-bEp"/>
