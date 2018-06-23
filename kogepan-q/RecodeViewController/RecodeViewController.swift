@@ -10,6 +10,17 @@ import UIKit
 import RxSwift
 import RxCocoa
 import AVFoundation
+import AudioToolbox
+
+// 録音の必要はないので AudioInputCallback は空にする
+private func AudioQueueInputCallback(
+    inUserData: UnsafeMutableRawPointer?,
+    inAQ: AudioQueueRef,
+    inBuffer: AudioQueueBufferRef,
+    inSrartTime: UnsafePointer<AudioTimeStamp>,
+    inNumberPacketDescriptions: UInt32,
+    inPacketDescs: UnsafePointer<AudioStreamPacketDescription>?) {
+}
 
 class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
 
@@ -47,6 +58,8 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         stopPlayButton.rx.tap.bind{
             self.play()
         }
+        // 録音レベルの検知を開始する
+        self.startUpdatingVolume()
         
     }
     
@@ -55,7 +68,10 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         if isPlaying {
             self.audioStop()
         }
+        // 録音レベルの検知を停止する
+        self.stopUpdatingVolume()
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -215,12 +231,95 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         let sec: Int = count % 60
         
         if isRecording {
-            label.text = "録音中 : " + String(format:"%02d:%02d",min, sec)
+            label.text = "録音中:" + String(format:"%02d:%02d",min, sec) + ", 音量(Max35):" + String(Int(levelMeter.mPeakPower) + 35)
         } else {
             let playerMin: Int = Int(audioPlayer.duration / 60)
             let playerSec: Int = Int(audioPlayer.duration) % 60
             label.text = "再生中 : " + String(format:"%02d:%02d/",min, sec) +  String(format:"%02d:%02d",playerMin, playerSec)
         }
     }
+    
+    // 音量表示
+    // 音声入力用のキューと監視用タイマーの準備
+    var queue: AudioQueueRef!
+    var recordingTimer: Timer!
+    
+   
+    // 以下の処理を実行したいタイミングでタイマーをスタートさせるだけで録音レベルが検知できる
+    
+    // MARK: - 録音レベルを取得する処理
+    func startUpdatingVolume() {
+        // 録音データを記録するフォーマットを決定
+        var dataFormat = AudioStreamBasicDescription(
+            mSampleRate: 44100.0,
+            mFormatID: kAudioFormatLinearPCM,
+            mFormatFlags: AudioFormatFlags(kLinearPCMFormatFlagIsBigEndian |
+                kLinearPCMFormatFlagIsSignedInteger |
+                kLinearPCMFormatFlagIsPacked),
+            mBytesPerPacket: 2,
+            mFramesPerPacket: 1,
+            mBytesPerFrame: 2,
+            mChannelsPerFrame: 1,
+            mBitsPerChannel: 16,
+            mReserved: 0
+        )
+        // オーディオキューのデータ型を定義
+        var audioQueue: AudioQueueRef? = nil
+        // エラーハンドリング
+        var error = noErr
+        // エラーハンドリング
+        error = AudioQueueNewInput(
+            &dataFormat,
+            AudioQueueInputCallback,
+            UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque()),
+            .none,
+            .none,
+            0,
+            &audioQueue
+        )
+        if error == noErr {
+            self.queue = audioQueue
+        }
+        AudioQueueStart(self.queue, nil)
+        
+        var enabledLevelMeter: UInt32 = 1
+        AudioQueueSetProperty(
+            self.queue,
+            kAudioQueueProperty_EnableLevelMetering,
+            &enabledLevelMeter,
+            UInt32(MemoryLayout<UInt32>.size)
+        )
+        
+        self.recordingTimer = Timer.scheduledTimer(
+            timeInterval: 1 / 30,
+            target: self,
+            selector: #selector(self.detectVolume(timer:)),
+            userInfo: nil,
+            repeats: true
+        )
+        self.recordingTimer?.fire()
+    }
+    
+    // 録音レベル検知処理を停止
+    func stopUpdatingVolume() {
+        // Finish observation
+        self.recordingTimer.invalidate()
+        self.recordingTimer = nil
+        AudioQueueFlush(self.queue)
+        AudioQueueStop(self.queue, false)
+        AudioQueueDispose(self.queue, true)
+    }
+    var levelMeter = AudioQueueLevelMeterState()
+    @objc func detectVolume(timer: Timer) {
+        var propertySize = UInt32(MemoryLayout<AudioQueueLevelMeterState>.size)
+        
+        AudioQueueGetProperty(
+            self.queue,
+            kAudioQueueProperty_CurrentLevelMeterDB,
+            &levelMeter,
+            &propertySize)
+        
+    }
+    
 }
 
