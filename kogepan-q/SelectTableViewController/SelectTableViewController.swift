@@ -48,14 +48,26 @@ class SelectTableViewController: UITableViewController {
     }
     
     func fileArraySet() {
+        self.fileNameArray = []
         if let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first {
-            
             do {
                 self.fileNameArray = try FileManager.default.contentsOfDirectory(atPath: documentDirectory)
-                
+                if fileNameArray.index(of: "Inbox") != nil {
+                    self.fileNameArray.remove(at: fileNameArray.index(of: "Inbox")!)//[fileNameArray.index(of: "Inbox")!]
+                }
+                do {
+                    let otherFileNameArray = try FileManager.default.contentsOfDirectory(atPath: documentDirectory + "/Inbox")
+                    for oFile in  otherFileNameArray {
+                        self.fileNameArray += ["Inbox/" + oFile]
+                    }
+                } catch let error {
+                    print(error)
+                }
             } catch let error {
                 print(error)
             }
+            
+            
         }
         tableView.reloadData()
     }

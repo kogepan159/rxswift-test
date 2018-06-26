@@ -156,9 +156,15 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let docsDirect = paths[0]
         
+        var saveFileName = self.fileName
+        if self.fileName.contains("Inbox") {
+            let array = self.fileName.components(separatedBy:"/")
+            saveFileName = array[1]
+        }
+        
         for halfName in ["_first.m4a", "_latter.m4a"] {
             let isFirst: Bool = (halfName == "_first.m4a")
-            let croppedFileSaveURL = docsDirect.appendingPathComponent(self.fileName + halfName)
+            let croppedFileSaveURL = docsDirect.appendingPathComponent(saveFileName + halfName)
             // arg1 / arg2 = CMTimeらしいので、とりあえず1で除算
             
             // 本当はもっと厳密にやったほうが良いかも
@@ -308,16 +314,24 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
             if let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first {
                 
                 do {
-                    let items = try FileManager.default.contentsOfDirectory(atPath: documentDirectory)
-                    print(items)
+                    var items = try FileManager.default.contentsOfDirectory(atPath: documentDirectory)
+                    if items.index(of: "Inbox") != nil {
+                        items.remove(at: items.index(of: "Inbox")!)//[fileNameArray.index(of: "Inbox")!]
+                    }
+                    do {
+                        let otherFileNameArray = try FileManager.default.contentsOfDirectory(atPath: documentDirectory + "/Inbox")
+                        for oFile in  otherFileNameArray {
+                            items += ["Inbox/" + oFile]
+                        }
+                    } catch let error {
+                        print(error)
+                    }
                     for item in items {
                         let okAction = UIAlertAction(title: item, style: UIAlertActionStyle.default){ (action: UIAlertAction) in
                             
                             self.concat(concatFilename: item)
-                        
                         }
                         alertController.addAction(okAction)
-                        
                     }
                 } catch let error {
                     print(error)
