@@ -88,7 +88,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         self.audioPlot.tag = 1
         
         //ファイルのパスを指定して読み込み
-        self.openFileWithFilePathURL(filePathURL: getURL(fileName: self.fileName))
+        self.openFileWithFilePathURL(filePathURL: getURL(fileName: self.fileName, m4aAddFlag: false))
         //        self.openFileWithFilePathURL(filePathURL: NSURL(fileURLWithPath: Bundle.main.path(forResource: "kaze", ofType: "mp3")!))
         let subviews = self.view.subviews
         for subview in subviews {
@@ -106,7 +106,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         print("openFileWithFilePathURL")
         print(filePathURL)
         print("---------------------")
-        print(getURL(fileName: self.fileName))
+        print(getURL(fileName: self.fileName, m4aAddFlag: false))
         self.audioFile = EZAudioFile(url: filePathURL)
         self.audioFile.delegate = self
         
@@ -167,7 +167,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
             let exportTimeRange = CMTimeRangeFromTimeToTime(startTime, endTime)
             
             // AssetにInputとなるファイルのUrlをセット
-            let asset = AVAsset(url: getURL(fileName: self.fileName))
+            let asset = AVAsset(url: getURL(fileName: self.fileName, m4aAddFlag: false))
             // cafファイルとしてExportする
             let exporter = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetPassthrough)
             exporter?.outputFileType = AVFileType.m4a
@@ -198,7 +198,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
     func play(){
        
         if !isPlaying {
-            audioPlayer = try! AVAudioPlayer(contentsOf: getURL(fileName: self.fileName))
+            audioPlayer = try! AVAudioPlayer(contentsOf: getURL(fileName: self.fileName, m4aAddFlag: false))
             audioPlayer.delegate = self as AVAudioPlayerDelegate
             audioPlayer.play()
             isPlaying = true
@@ -222,7 +222,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let docsDirect = paths[0]
         let concatUrl = docsDirect.appendingPathComponent(concatFilename)
-        let audioFileURLs = [getURL(fileName: self.fileName), concatUrl]
+        let audioFileURLs = [getURL(fileName: self.fileName, m4aAddFlag: false), concatUrl]
         var nextStartTime = kCMTimeZero
         let composition = AVMutableComposition()
         let track = composition.addMutableTrack(withMediaType: AVMediaType.audio, preferredTrackID: kCMPersistentTrackID_Invalid)

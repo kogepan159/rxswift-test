@@ -10,10 +10,10 @@ import UIKit
 
 
 extension UIViewController {
-    func getURL(fileName: String) -> URL{
+    func getURL(fileName: String, m4aAddFlag: Bool = true) -> URL{
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let docsDirect = paths[0]
-        let url = docsDirect.appendingPathComponent(fileName + ".m4a")
+        let url = docsDirect.appendingPathComponent((m4aAddFlag ? fileName + ".m4a" : fileName))
         return url
     }
     
