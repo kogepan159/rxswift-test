@@ -127,17 +127,21 @@
                                     <constraint firstAttribute="width" constant="58" id="Zdf-UN-Qkq"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXJ-YD-mBc">
-                                <rect key="frame" x="64" y="414" width="248" height="180"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXJ-YD-mBc">
+                                <rect key="frame" x="63.5" y="414" width="248" height="180"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="cT5-nI-Zmh"/>
                                     <constraint firstAttribute="width" constant="248" id="lZ3-6B-bEp"/>
                                 </constraints>
                                 <string key="text">このアプリでは、m4a拡張子のみ対応しております。
 
-・音源を取り出す方法
-パソコンに設置しているiTunesから、こちらのアプリを選択して、他のアプリに移行することができます</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+## 音源を取り出す方法
+1.PCとiPhone(iPad)を繋げる
+2.iTunesを開く
+3.PC画面内のスマホアイコンをタップする
+4.ファイル共通を押下する
+5.コエトルを選択する</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
