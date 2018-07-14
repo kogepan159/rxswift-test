@@ -86,9 +86,23 @@ class SelectTableViewController: UITableViewController {
     
     }
     
+    func returnfileSize(path: String) -> String {
+        do {
+            let manager = FileManager.default
+            let attributes = try manager.attributesOfItem(atPath: path) as NSDictionary
+            let fileSize: Double = Double(attributes.fileSize())
+            return String(format: "%.2f",(fileSize/1024.0/1024.0))
+        }
+        catch _ as NSError {
+            return ""
+        }
+        
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-        cell.textLabel?.text = self.fileNameArray[indexPath.row]
+        let file = getURL(fileName: self.fileNameArray[indexPath.row],m4aAddFlag: false)
+        cell.textLabel?.text = self.fileNameArray[indexPath.row] + " : " + returnfileSize(path: file.path) + "MB"
         return cell
     }
     
