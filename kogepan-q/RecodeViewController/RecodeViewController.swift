@@ -40,6 +40,13 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
     var timer: Timer = Timer()
     var count: Int = 0
     
+    // 音量表示
+    // 音声入力用のキューと監視用タイマーの準備
+    var queue: AudioQueueRef!
+    var recordingTimer: Timer!
+    var levelMeter = AudioQueueLevelMeterState()
+    
+    //MARK: - メイン処理
     override func viewDidLoad() {
         self.navigationController?.navigationBar.tintColor = UIColor.red
         self.title = "音声録音"
@@ -110,10 +117,11 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
                 AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
             ]
             
-            audioRecorder = try! AVAudioRecorder(url: getURL(), settings: settings)
+            audioRecorder = try! AVAudioRecorder(url: getURL(fileName: voiceFileName.text!), settings: settings)
             audioRecorder.delegate = self
             audioRecorder.record()
-            
+            //画面がlockしないように対応
+            UIApplication.shared.isIdleTimerDisabled = true
             isRecording = true
             label.text = "録音中"
             playButton.isEnabled = false
@@ -123,6 +131,7 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
             audioRecorder.stop()
             isRecording = false
             label.text = "待機中"
+            UIApplication.shared.isIdleTimerDisabled = false
             //タイマーを停止
             timer.invalidate()
             count = 0
@@ -134,12 +143,6 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         }
     }
     
-    func getURL() -> URL{
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let docsDirect = paths[0]
-        let url = docsDirect.appendingPathComponent(voiceFileName.text! + ".m4a")
-        return url
-    }
     
     func microPhoneCheck() -> Bool {
         let status = AVCaptureDevice.authorizationStatus(for: AVMediaType.audio)
@@ -169,10 +172,11 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         }
         
         if !isPlaying {
-            audioPlayer = try! AVAudioPlayer(contentsOf: getURL())
+            audioPlayer = try! AVAudioPlayer(contentsOf: getURL(fileName: voiceFileName.text!))
             audioPlayer.delegate = self as AVAudioPlayerDelegate
             audioPlayer.play()
-            
+            //画面がlockしないように対応
+            UIApplication.shared.isIdleTimerDisabled = true
             isPlaying = true
             playButtonHidden(hidden:true)
             label.text = "再生中"
@@ -188,6 +192,7 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         }
     }
     
+    // MARK: - 録音再生系Action
     func playButtonHidden(hidden: Bool) {
         playButton.isHidden = hidden
         stopPlayButton.isHidden = !hidden
@@ -204,7 +209,7 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         isPlaying = false
         label.text = "待機中"
         playButtonHidden(hidden:false)
-        
+        UIApplication.shared.isIdleTimerDisabled = false
         //タイマーを停止
         timer.invalidate()
         count = 0
@@ -242,16 +247,14 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         }
     }
     
-    // 音量表示
-    // 音声入力用のキューと監視用タイマーの準備
-    var queue: AudioQueueRef!
-    var recordingTimer: Timer!
+    
     
    
     // 以下の処理を実行したいタイミングでタイマーをスタートさせるだけで録音レベルが検知できる
     
     // MARK: - 録音レベルを取得する処理
     func startUpdatingVolume() {
+        levelMeter = AudioQueueLevelMeterState()
         // 録音データを記録するフォーマットを決定
         var dataFormat = AudioStreamBasicDescription(
             mSampleRate: 44100.0,
@@ -312,7 +315,8 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         AudioQueueStop(self.queue, false)
         AudioQueueDispose(self.queue, true)
     }
-    var levelMeter = AudioQueueLevelMeterState()
+    
+    
     @objc func detectVolume(timer: Timer) {
         var propertySize = UInt32(MemoryLayout<AudioQueueLevelMeterState>.size)
         

@@ -88,7 +88,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         self.audioPlot.tag = 1
         
         //ファイルのパスを指定して読み込み
-        self.openFileWithFilePathURL(filePathURL: getURL())
+        self.openFileWithFilePathURL(filePathURL: getURL(fileName: self.fileName))
         //        self.openFileWithFilePathURL(filePathURL: NSURL(fileURLWithPath: Bundle.main.path(forResource: "kaze", ofType: "mp3")!))
         let subviews = self.view.subviews
         for subview in subviews {
@@ -106,7 +106,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         print("openFileWithFilePathURL")
         print(filePathURL)
         print("---------------------")
-        print(getURL())
+        print(getURL(fileName: self.fileName))
         self.audioFile = EZAudioFile(url: filePathURL)
         self.audioFile.delegate = self
         
@@ -122,13 +122,6 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    func getURL() -> URL{
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let docsDirect = paths[0]
-        let url = docsDirect.appendingPathComponent(self.fileName)
-        return url
     }
     
     // MARK: - Action
@@ -174,7 +167,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
             let exportTimeRange = CMTimeRangeFromTimeToTime(startTime, endTime)
             
             // AssetにInputとなるファイルのUrlをセット
-            let asset = AVAsset(url: getURL())
+            let asset = AVAsset(url: getURL(fileName: self.fileName))
             // cafファイルとしてExportする
             let exporter = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetPassthrough)
             exporter?.outputFileType = AVFileType.m4a
@@ -205,13 +198,15 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
     func play(){
        
         if !isPlaying {
-            audioPlayer = try! AVAudioPlayer(contentsOf: getURL())
+            audioPlayer = try! AVAudioPlayer(contentsOf: getURL(fileName: self.fileName))
             audioPlayer.delegate = self as AVAudioPlayerDelegate
             audioPlayer.play()
             isPlaying = true
             label.text = "再生中"
             playButton.setTitle("STOP", for: .normal)
             playButtonHidden(hidden: true)
+            //画面がlockしないように対応
+            UIApplication.shared.isIdleTimerDisabled = true
             //タイマーが動いている状態で押されたら処理しない
             if timer.isValid == true {
                 return
@@ -227,7 +222,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let docsDirect = paths[0]
         let concatUrl = docsDirect.appendingPathComponent(concatFilename)
-        let audioFileURLs = [getURL(), concatUrl]
+        let audioFileURLs = [getURL(fileName: self.fileName), concatUrl]
         var nextStartTime = kCMTimeZero
         let composition = AVMutableComposition()
         let track = composition.addMutableTrack(withMediaType: AVMediaType.audio, preferredTrackID: kCMPersistentTrackID_Invalid)
@@ -293,6 +288,8 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         playButton.setTitle("PLAY", for: .normal)
         label.text = "待機中"
         playButtonHidden(hidden: false)
+        //画面がlockするに対応
+        UIApplication.shared.isIdleTimerDisabled = false
         //タイマーを停止
         timer.invalidate()
         count = 0
