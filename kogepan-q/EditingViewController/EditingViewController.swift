@@ -23,9 +23,9 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var label: UILabel!
     var timer: Timer = Timer()
-    var count: Int = 0
     @IBOutlet weak var fileNamelabel: UILabel!
     @IBOutlet weak var cutTextField: UITextField!
+    @IBOutlet weak var playSlider: UISlider!
     
     var audioPlayer: AVAudioPlayer!
     var isPlaying = false
@@ -198,11 +198,15 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
     func play(){
        
         if !isPlaying {
+            if self.playSlider.value == 1.0 {
+                self.playSlider.value = 0.0
+            }
             audioPlayer = try! AVAudioPlayer(contentsOf: getURL(fileName: self.fileName, m4aAddFlag: false))
             audioPlayer.delegate = self as AVAudioPlayerDelegate
             audioPlayer.play()
+            audioPlayer.currentTime = TimeInterval(self.playSlider.value * Float(audioPlayer.duration))
             isPlaying = true
-            label.text = "再生中"
+            label.text = "再生準備"
             playButton.setTitle("STOP", for: .normal)
             playButtonHidden(hidden: true)
             //画面がlockしないように対応
@@ -248,8 +252,6 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         
         if let exportSession = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetAppleM4A) {
             
-            
-            
             let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
             let docsDirect = paths[0]
             let saveUrl = docsDirect.appendingPathComponent( concatFileNameTextField.text! + ".m4a")
@@ -286,13 +288,11 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         audioPlayer.stop()
         isPlaying = false
         playButton.setTitle("PLAY", for: .normal)
-        label.text = "待機中"
         playButtonHidden(hidden: false)
         //画面がlockするに対応
         UIApplication.shared.isIdleTimerDisabled = false
         //タイマーを停止
         timer.invalidate()
-        count = 0
     }
     
     func playButtonHidden(hidden: Bool) {
@@ -301,8 +301,29 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        self.playSlider.value = 1.0
+        label.text = "待機中"
         audioStop()
     }
+    
+    // MARK: - Silder fuction
+    @IBAction func changePlaySilder(_ sender: UISlider) {
+        audioStop()
+        self.playStatusLabel()
+        
+    }
+    
+    func playStatusLabel() {
+        let min: Int = Int(self.playSlider.value * Float(audioPlayer.duration)) / 60
+        let sec: Int = Int(self.playSlider.value * Float(audioPlayer.duration)) % 60
+        
+        let playerMin: Int = Int(audioPlayer.duration / 60)
+        let playerSec: Int = Int(audioPlayer.duration) % 60
+        label.text = isPlaying ? "再生中 : " : "停止中 : "
+        label.text = label.text! + String(format:"%02d:%02d/",min, sec) +  String(format:"%02d:%02d",playerMin, playerSec)
+    }
+    
+    
     
     //ダイアログを押下すること
     func dialog(title: String, message:String, isFileSelect:Bool) {
@@ -352,13 +373,8 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
     //  一定間隔で実行される処理
     //
     @objc func updateElapsedTime() {
-        count += 1
-        let min: Int = count / 60
-        let sec: Int = count % 60
-        
-        let playerMin: Int = Int(audioPlayer.duration / 60)
-        let playerSec: Int = Int(audioPlayer.duration) % 60
-        label.text = "再生中 : " + String(format:"%02d:%02d/",min, sec) +  String(format:"%02d:%02d",playerMin, playerSec)
+        self.playStatusLabel()
+        self.playSlider.value += 1/Float(self.audioPlayer.duration)
     }
     
 }
