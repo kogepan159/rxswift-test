@@ -22,7 +22,9 @@ class AudioEngineManager: NSObject {
         AVEncoderAudioQualityKey : AVAudioQuality.high.rawValue,
         AVNumberOfChannelsKey: 2,
         AVSampleRateKey : 44100,
-        AVLinearPCMBitDepthKey : 16
+        AVLinearPCMIsFloatKey : 1,
+        AVLinearPCMIsNonInterleaved : 1,
+        AVLinearPCMBitDepthKey: 32
         ] as [String : Any]
     
     var status: State = .Default
@@ -76,10 +78,12 @@ class AudioEngineManager: NSObject {
         distortion.loadFactoryPreset(.drumsLoFi)
         audioEngine.attach(distortion)
         
+        
         // connect one effectNode
         audioEngine.connect(input, to: distortion, format: input.inputFormat(forBus: 0))
         audioEngine.connect(distortion, to: mixer, format: input.inputFormat(forBus: 0))
-        audioEngine.connect(mixer, to: output, format: input.inputFormat(forBus: 0))
+//        audioEngine.connect(mixer, to: output, format: input.inputFormat(forBus: 0))
+        assert(audioEngine.inputNode != nil)
 
     }
     
@@ -104,31 +108,34 @@ class AudioEngineManager: NSObject {
     // recording start
     func record(fileName: String) {
         status = .isRecording
-        
         removeRecFile()
         
+        let input = audioEngine.inputNode
         print("--- file名------")
-        print(recFileURL(fileName: fileName))
+        print(input.outputFormat(forBus: 0).settings)
+        print(recSettings)
         print("--- file名End------")
+        
         // set outputFile
         outputFile = try! AVAudioFile(forWriting: recFileURL(fileName: fileName), settings: recSettings)
         
-        // writing recordingData
-        let input = audioEngine.inputNode
+        
         
         print("\(input.inputFormat(forBus: 0))")
         // if you want to output sound in recording, set "input?.volume = 1"
         input.volume = 0
         
-        input.installTap(onBus: 0, bufferSize: 4096, format: input.inputFormat(forBus: 0)) { (buffer, when) in
-            print(buffer)
-            do {
-                // audioFileにバッファを書き込む
-                try self.outputFile.write(from: buffer)
-            } catch let error {
-                print("audioFile.writeFromBuffer error:", error)
-            }
-        }
+        input.installTap(onBus: 0, bufferSize: 1024, format: input.inputFormat(forBus: 0), block:
+            { (buffer: AVAudioPCMBuffer!, time: AVAudioTime!) -> Void in
+                
+                print(NSString(string: "writing"))
+                do {
+                    try self.outputFile.write(from: buffer)
+                }
+                catch {
+                    print(NSString(string: "Write failed"));
+                }
+        })
         
         // AVAudioEngine start
         if !audioEngine.isRunning {

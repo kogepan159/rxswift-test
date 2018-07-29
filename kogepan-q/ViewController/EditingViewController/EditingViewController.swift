@@ -201,6 +201,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
             if self.playSlider.value == 1.0 {
                 self.playSlider.value = 0.0
             }
+            print(getURL(fileName: self.fileName, m4aAddFlag: false))
             audioPlayer = try! AVAudioPlayer(contentsOf: getURL(fileName: self.fileName, m4aAddFlag: false))
             audioPlayer.delegate = self as AVAudioPlayerDelegate
             audioPlayer.play()
