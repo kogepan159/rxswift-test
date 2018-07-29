@@ -24,8 +24,8 @@ class HomeViewController: UIViewController {
         let menu: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Image"), style:UIBarButtonItemStyle.done, target:self, action:#selector(self.TapMenu)) // アイコンを追加し、アイコンを押したときに"TapMenu()"が実行されるように指定
         self.navigationItem.setLeftBarButton(menu, animated: true)//rigltBarButtonItem = Menu // ナビゲーションバーにアイコンを追加
         
-        let share: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.action, target: self, action:#selector(self.shareAction)) // アイコンを追加し、アイコンを押したときに"TapMenu()"が実行されるように指定
-        self.navigationItem.setRightBarButton(share, animated: true)//rigltBarButtonItem = Menu // ナビゲーションバーにアイコンを追加
+//        let share: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.action, target: self, action:#selector(self.shareAction)) // アイコンを追加し、アイコンを押したときに"TapMenu()"が実行されるように指定
+//        self.navigationItem.setRightBarButton(share, animated: true)//rigltBarButtonItem = Menu // ナビゲーションバーにアイコンを追加
     }
     
     @objc func TapMenu() {
