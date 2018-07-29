@@ -17,13 +17,13 @@ class AudioEngineManager: NSObject {
     }
     
     // rec format
-    let recSettings:[String : AnyObject] = [
-        AVFormatIDKey: NSNumber(value: kAudioFormatLinearPCM),
-        AVEncoderAudioQualityKey : AVAudioQuality.high.rawValue as AnyObject,
-        AVNumberOfChannelsKey: 1 as AnyObject,
-        AVSampleRateKey : 44100 as AnyObject,
-        AVLinearPCMBitDepthKey : 16 as AnyObject
-    ]
+    let recSettings = [
+        AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+        AVEncoderAudioQualityKey : AVAudioQuality.high.rawValue,
+        AVNumberOfChannelsKey: 2,
+        AVSampleRateKey : 44100,
+        AVLinearPCMBitDepthKey : 16
+        ] as [String : Any]
     
     var status: State = .Default
     var audioPlayer: AVAudioPlayer?
@@ -49,6 +49,7 @@ class AudioEngineManager: NSObject {
         // Mic -> Effect -> BusMixer
         let input = audioEngine.inputNode
         let mixer = audioEngine.mainMixerNode
+        let output = audioEngine.outputNode
         
 //        // Reverb
 //        let reverb = AVAudioUnitReverb()
@@ -78,14 +79,16 @@ class AudioEngineManager: NSObject {
         // connect one effectNode
         audioEngine.connect(input, to: distortion, format: input.inputFormat(forBus: 0))
         audioEngine.connect(distortion, to: mixer, format: input.inputFormat(forBus: 0))
+        audioEngine.connect(mixer, to: output, format: input.inputFormat(forBus: 0))
+
     }
     
     // URL for saved RecData
-    func recFileURL() -> NSURL {
-        let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as String
-        let pathArray = [dirPath, "rec.caf"]
-        let filePath = NSURL.fileURL(withPathComponents: pathArray)
-        return filePath! as NSURL
+    func recFileURL(fileName: String) -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let docsDirect = paths[0]
+        let url = docsDirect.appendingPathComponent(fileName + ".m4a")
+        return url
     }
     
     // remove file
@@ -99,22 +102,32 @@ class AudioEngineManager: NSObject {
     }
     
     // recording start
-    func record() {
+    func record(fileName: String) {
         status = .isRecording
         
         removeRecFile()
         
+        print("--- file名------")
+        print(recFileURL(fileName: fileName))
+        print("--- file名End------")
         // set outputFile
-        outputFile = try! AVAudioFile(forWriting: recFileURL() as URL, settings: recSettings)
+        outputFile = try! AVAudioFile(forWriting: recFileURL(fileName: fileName), settings: recSettings)
         
         // writing recordingData
         let input = audioEngine.inputNode
         
+        print("\(input.inputFormat(forBus: 0))")
         // if you want to output sound in recording, set "input?.volume = 1"
         input.volume = 0
         
         input.installTap(onBus: 0, bufferSize: 4096, format: input.inputFormat(forBus: 0)) { (buffer, when) in
-            try! self.outputFile.write(from: buffer)
+            print(buffer)
+            do {
+                // audioFileにバッファを書き込む
+                try self.outputFile.write(from: buffer)
+            } catch let error {
+                print("audioFile.writeFromBuffer error:", error)
+            }
         }
         
         // AVAudioEngine start
@@ -137,12 +150,12 @@ class AudioEngineManager: NSObject {
     }
     
     // play sound
-    func playRecData() {
+    func playRecData(fileName: String) {
         
         if outputFile.length == 0 { return }
         
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: recFileURL() as URL)
+            audioPlayer = try AVAudioPlayer(contentsOf: recFileURL(fileName: fileName) as URL)
             audioPlayer!.volume = 1.0
             audioPlayer!.prepareToPlay()
             audioPlayer!.play()

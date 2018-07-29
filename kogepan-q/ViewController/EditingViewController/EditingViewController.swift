@@ -77,27 +77,27 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
     //波形生成
     func setWaveform() {
         self.fileNamelabel.text = "ファイル名: " + self.fileName
-        //波形
-        self.audioPlot = EZAudioPlot(frame: self.viewhakei.frame)
-        self.audioPlot.backgroundColor = UIColor.blue
-        self.audioPlot.color = UIColor.white
-        self.audioPlot.plotType = EZPlotType.buffer
-        self.audioPlot.shouldFill = true
-        self.audioPlot.shouldMirror = true
-        self.audioPlot.shouldOptimizeForRealtimePlot = true
-        self.audioPlot.tag = 1
-        
-        //ファイルのパスを指定して読み込み
-        self.openFileWithFilePathURL(filePathURL: getURL(fileName: self.fileName, m4aAddFlag: false))
-        //        self.openFileWithFilePathURL(filePathURL: NSURL(fileURLWithPath: Bundle.main.path(forResource: "kaze", ofType: "mp3")!))
-        let subviews = self.view.subviews
-        for subview in subviews {
-            if subview.tag == 1 {
-                subview.removeFromSuperview()
-            }
-        }
-        
-        self.view.addSubview(self.audioPlot)
+//        //波形
+//        self.audioPlot = EZAudioPlot(frame: self.viewhakei.frame)
+//        self.audioPlot.backgroundColor = UIColor.blue
+//        self.audioPlot.color = UIColor.white
+//        self.audioPlot.plotType = EZPlotType.buffer
+//        self.audioPlot.shouldFill = true
+//        self.audioPlot.shouldMirror = true
+//        self.audioPlot.shouldOptimizeForRealtimePlot = true
+//        self.audioPlot.tag = 1
+//
+//        //ファイルのパスを指定して読み込み
+//        self.openFileWithFilePathURL(filePathURL: getURL(fileName: self.fileName, m4aAddFlag: false))
+//        //        self.openFileWithFilePathURL(filePathURL: NSURL(fileURLWithPath: Bundle.main.path(forResource: "kaze", ofType: "mp3")!))
+//        let subviews = self.view.subviews
+//        for subview in subviews {
+//            if subview.tag == 1 {
+//                subview.removeFromSuperview()
+//            }
+//        }
+//
+//        self.view.addSubview(self.audioPlot)
         
     }
     
