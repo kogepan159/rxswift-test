@@ -43,7 +43,6 @@ class SelectTableViewController: UITableViewController {
             print("削除処理")
             self.deleteMusic(deleteFilename:  self.fileNameArray[indexPath.row])
             self.fileArraySet()
-            
         }
     }
     

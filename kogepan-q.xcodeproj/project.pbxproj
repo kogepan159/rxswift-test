@@ -9,9 +9,14 @@
 /* Begin PBXBuildFile section */
 		03CE50AEC78CB7C2B04D8FBA /* Pods_kogepan_qTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44D61E78B1899A83558383A2 /* Pods_kogepan_qTests.framework */; };
 		090FDCB120B1518700B4B7F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 090FDCB020B1518700B4B7F6 /* GoogleService-Info.plist */; };
-		091E84C320DB7339005B59B3 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E84C220DB7339005B59B3 /* SettingTableViewController.swift */; };
 		091E84C520DB74F3005B59B3 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 091E84C420DB74F3005B59B3 /* setting.png */; };
 		0925F79D20DC6ACF0071B98C /* stop2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0925F79C20DC6ACE0071B98C /* stop2.png */; };
+		092F3435210D4E020032736C /* AudioEngineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092F3434210D4E010032736C /* AudioEngineManager.swift */; };
+		092F3441210D56040032736C /* SelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092F3438210D56040032736C /* SelectTableViewController.swift */; };
+		092F3442210D56040032736C /* EditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092F343A210D56040032736C /* EditingViewController.swift */; };
+		092F3443210D56040032736C /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092F343C210D56040032736C /* SettingTableViewController.swift */; };
+		092F3444210D56040032736C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092F343E210D56040032736C /* HomeViewController.swift */; };
+		092F3445210D56040032736C /* RecodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092F3440210D56040032736C /* RecodeViewController.swift */; };
 		093C19F720B1413A000D125D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093C19F620B1413A000D125D /* AppDelegate.swift */; };
 		093C19FC20B1413A000D125D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 093C19FA20B1413A000D125D /* Main.storyboard */; };
 		093C19FE20B1413A000D125D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 093C19FD20B1413A000D125D /* Assets.xcassets */; };
@@ -20,13 +25,9 @@
 		093C1A1720B1413A000D125D /* kogepan_qUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093C1A1620B1413A000D125D /* kogepan_qUITests.swift */; };
 		09637A1D20D67296002AE7B9 /* music_concat.png in Resources */ = {isa = PBXBuildFile; fileRef = 09637A1C20D67296002AE7B9 /* music_concat.png */; };
 		09637A1F20D672E8002AE7B9 /* music_cut.png in Resources */ = {isa = PBXBuildFile; fileRef = 09637A1E20D672E8002AE7B9 /* music_cut.png */; };
-		09637A2220D71C65002AE7B9 /* SelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09637A2120D71C64002AE7B9 /* SelectTableViewController.swift */; };
 		096BF42D20F972470091DD2F /* ViewControllerEXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096BF42C20F972470091DD2F /* ViewControllerEXT.swift */; };
 		0988F15120C1FEA300D859FB /* icon-l.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0988F15020C1FEA300D859FB /* icon-l.jpg */; };
 		0988F15320C429F200D859FB /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 0988F15220C429F200D859FB /* share.png */; };
-		09F1FD0720B8CF3300D58A60 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F1FD0420B8CF3300D58A60 /* HomeViewController.swift */; };
-		09F1FD0920B8D47300D58A60 /* RecodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F1FD0820B8D47300D58A60 /* RecodeViewController.swift */; };
-		09F1FD0B20B8D4B700D58A60 /* EditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F1FD0A20B8D4B700D58A60 /* EditingViewController.swift */; };
 		09F1FD0E20BA371C00D58A60 /* recoding.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F1FD0D20BA371C00D58A60 /* recoding.png */; };
 		09F1FD1020BA498A00D58A60 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F1FD0F20BA498A00D58A60 /* play.png */; };
 		09F1FD1220BA4B5100D58A60 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F1FD1120BA4B5100D58A60 /* stop.png */; };
@@ -55,9 +56,14 @@
 /* Begin PBXFileReference section */
 		017EF77AC9F8CCB286027A63 /* Pods_kogepan_q.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kogepan_q.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		090FDCB020B1518700B4B7F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		091E84C220DB7339005B59B3 /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		091E84C420DB74F3005B59B3 /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
 		0925F79C20DC6ACE0071B98C /* stop2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop2.png; sourceTree = "<group>"; };
+		092F3434210D4E010032736C /* AudioEngineManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioEngineManager.swift; sourceTree = "<group>"; };
+		092F3438210D56040032736C /* SelectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectTableViewController.swift; sourceTree = "<group>"; };
+		092F343A210D56040032736C /* EditingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditingViewController.swift; sourceTree = "<group>"; };
+		092F343C210D56040032736C /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
+		092F343E210D56040032736C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		092F3440210D56040032736C /* RecodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecodeViewController.swift; sourceTree = "<group>"; };
 		093C19F320B1413A000D125D /* kogepan-q.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kogepan-q.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		093C19F620B1413A000D125D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		093C19FB20B1413A000D125D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -72,14 +78,10 @@
 		093C1A1820B1413A000D125D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09637A1C20D67296002AE7B9 /* music_concat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = music_concat.png; sourceTree = "<group>"; };
 		09637A1E20D672E8002AE7B9 /* music_cut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = music_cut.png; sourceTree = "<group>"; };
-		09637A2120D71C64002AE7B9 /* SelectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectTableViewController.swift; sourceTree = "<group>"; };
 		096BF42C20F972470091DD2F /* ViewControllerEXT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerEXT.swift; sourceTree = "<group>"; };
 		0988F15020C1FEA300D859FB /* icon-l.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "icon-l.jpg"; sourceTree = "<group>"; };
 		0988F15220C429F200D859FB /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		099BA8AC20CD208D006111A3 /* EZAudio-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EZAudio-Header.h"; sourceTree = "<group>"; };
-		09F1FD0420B8CF3300D58A60 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		09F1FD0820B8D47300D58A60 /* RecodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecodeViewController.swift; sourceTree = "<group>"; };
-		09F1FD0A20B8D4B700D58A60 /* EditingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditingViewController.swift; sourceTree = "<group>"; };
 		09F1FD0D20BA371C00D58A60 /* recoding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recoding.png; sourceTree = "<group>"; };
 		09F1FD0F20BA498A00D58A60 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		09F1FD1120BA4B5100D58A60 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
@@ -122,12 +124,64 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		091E84C120DB7339005B59B3 /* SettingTableViewController */ = {
+		092F3433210D4E010032736C /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				091E84C220DB7339005B59B3 /* SettingTableViewController.swift */,
+				092F3434210D4E010032736C /* AudioEngineManager.swift */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		092F3436210D56040032736C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				092F3437210D56040032736C /* SelectTableViewController */,
+				092F3439210D56040032736C /* EditingViewController */,
+				092F343B210D56040032736C /* SettingTableViewController */,
+				092F343D210D56040032736C /* HomeViewController */,
+				092F343F210D56040032736C /* RecodeViewController */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		092F3437210D56040032736C /* SelectTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				092F3438210D56040032736C /* SelectTableViewController.swift */,
+			);
+			path = SelectTableViewController;
+			sourceTree = "<group>";
+		};
+		092F3439210D56040032736C /* EditingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				092F343A210D56040032736C /* EditingViewController.swift */,
+			);
+			path = EditingViewController;
+			sourceTree = "<group>";
+		};
+		092F343B210D56040032736C /* SettingTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				092F343C210D56040032736C /* SettingTableViewController.swift */,
 			);
 			path = SettingTableViewController;
+			sourceTree = "<group>";
+		};
+		092F343D210D56040032736C /* HomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				092F343E210D56040032736C /* HomeViewController.swift */,
+			);
+			path = HomeViewController;
+			sourceTree = "<group>";
+		};
+		092F343F210D56040032736C /* RecodeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				092F3440210D56040032736C /* RecodeViewController.swift */,
+			);
+			path = RecodeViewController;
 			sourceTree = "<group>";
 		};
 		093C19EA20B1413A000D125D = {
@@ -155,13 +209,10 @@
 		093C19F520B1413A000D125D /* kogepan-q */ = {
 			isa = PBXGroup;
 			children = (
+				092F3436210D56040032736C /* ViewController */,
+				092F3433210D4E010032736C /* Class */,
 				096BF42B20F972470091DD2F /* Extension */,
 				09F1FD0C20BA371C00D58A60 /* Image */,
-				091E84C120DB7339005B59B3 /* SettingTableViewController */,
-				09637A2020D71C64002AE7B9 /* SelectTableViewController */,
-				09F1FD0520B8CF3300D58A60 /* EditingViewController */,
-				09F1FD0320B8CF3300D58A60 /* HomeViewController */,
-				09F1FD0620B8CF3300D58A60 /* RecodeViewController */,
 				090FDCB020B1518700B4B7F6 /* GoogleService-Info.plist */,
 				093C19F620B1413A000D125D /* AppDelegate.swift */,
 				093C19FA20B1413A000D125D /* Main.storyboard */,
@@ -191,44 +242,12 @@
 			path = "kogepan-qUITests";
 			sourceTree = "<group>";
 		};
-		09637A2020D71C64002AE7B9 /* SelectTableViewController */ = {
-			isa = PBXGroup;
-			children = (
-				09637A2120D71C64002AE7B9 /* SelectTableViewController.swift */,
-			);
-			path = SelectTableViewController;
-			sourceTree = "<group>";
-		};
 		096BF42B20F972470091DD2F /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				096BF42C20F972470091DD2F /* ViewControllerEXT.swift */,
 			);
 			path = Extension;
-			sourceTree = "<group>";
-		};
-		09F1FD0320B8CF3300D58A60 /* HomeViewController */ = {
-			isa = PBXGroup;
-			children = (
-				09F1FD0420B8CF3300D58A60 /* HomeViewController.swift */,
-			);
-			path = HomeViewController;
-			sourceTree = "<group>";
-		};
-		09F1FD0520B8CF3300D58A60 /* EditingViewController */ = {
-			isa = PBXGroup;
-			children = (
-				09F1FD0A20B8D4B700D58A60 /* EditingViewController.swift */,
-			);
-			path = EditingViewController;
-			sourceTree = "<group>";
-		};
-		09F1FD0620B8CF3300D58A60 /* RecodeViewController */ = {
-			isa = PBXGroup;
-			children = (
-				09F1FD0820B8D47300D58A60 /* RecodeViewController.swift */,
-			);
-			path = RecodeViewController;
 			sourceTree = "<group>";
 		};
 		09F1FD0C20BA371C00D58A60 /* Image */ = {
@@ -524,13 +543,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				092F3443210D56040032736C /* SettingTableViewController.swift in Sources */,
 				096BF42D20F972470091DD2F /* ViewControllerEXT.swift in Sources */,
-				091E84C320DB7339005B59B3 /* SettingTableViewController.swift in Sources */,
+				092F3441210D56040032736C /* SelectTableViewController.swift in Sources */,
 				093C19F720B1413A000D125D /* AppDelegate.swift in Sources */,
-				09F1FD0B20B8D4B700D58A60 /* EditingViewController.swift in Sources */,
-				09F1FD0720B8CF3300D58A60 /* HomeViewController.swift in Sources */,
-				09637A2220D71C65002AE7B9 /* SelectTableViewController.swift in Sources */,
-				09F1FD0920B8D47300D58A60 /* RecodeViewController.swift in Sources */,
+				092F3442210D56040032736C /* EditingViewController.swift in Sources */,
+				092F3444210D56040032736C /* HomeViewController.swift in Sources */,
+				092F3445210D56040032736C /* RecodeViewController.swift in Sources */,
+				092F3435210D4E020032736C /* AudioEngineManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
