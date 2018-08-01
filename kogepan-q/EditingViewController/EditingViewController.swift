@@ -60,6 +60,8 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         }
         let audioSession:AVAudioSession = AVAudioSession.sharedInstance()
         try! audioSession.setCategory(AVAudioSessionCategoryPlayback)
+        audioPlayer = try! AVAudioPlayer(contentsOf: getURL(fileName: self.fileName, m4aAddFlag: false))
+        audioPlayer.delegate = self as AVAudioPlayerDelegate
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -201,8 +203,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
             if self.playSlider.value == 1.0 {
                 self.playSlider.value = 0.0
             }
-            audioPlayer = try! AVAudioPlayer(contentsOf: getURL(fileName: self.fileName, m4aAddFlag: false))
-            audioPlayer.delegate = self as AVAudioPlayerDelegate
+            
             audioPlayer.play()
             audioPlayer.currentTime = TimeInterval(self.playSlider.value * Float(audioPlayer.duration))
             isPlaying = true
@@ -308,7 +309,9 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
     
     // MARK: - Silder fuction
     @IBAction func changePlaySilder(_ sender: UISlider) {
-        audioStop()
+        if isPlaying {
+            audioStop()
+        }
         self.playStatusLabel()
         
     }
