@@ -18,20 +18,22 @@ class AudioEngineManager: NSObject {
     
     // rec format
     let recSettings = [
-        AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-        AVEncoderAudioQualityKey : AVAudioQuality.high.rawValue,
+        AVFormatIDKey: Int(kAudioFormatLinearPCM),
         AVNumberOfChannelsKey: 2,
         AVSampleRateKey : 44100,
         AVLinearPCMIsFloatKey : 1,
         AVLinearPCMIsNonInterleaved : 1,
-        AVLinearPCMBitDepthKey: 32
+        AVLinearPCMBitDepthKey: 32,
+        AVLinearPCMIsBigEndianKey: 0
         ] as [String : Any]
+    
     
     var status: State = .Default
     var audioPlayer: AVAudioPlayer?
     
     private var audioEngine = AVAudioEngine()
     private var outputFile = AVAudioFile()
+    private var fileName:String = ""
     
     override init() {
         super.init()
@@ -42,6 +44,14 @@ class AudioEngineManager: NSObject {
         
         // AudioSession init
         let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+        } catch{
+            print("could not set session category")
+            print("error \(error.localizedDescription)")
+            
+        }
+        
         do {
             try audioSession.setActive(true)
         } catch let error as NSError  {
@@ -57,16 +67,16 @@ class AudioEngineManager: NSObject {
 //        let reverb = AVAudioUnitReverb()
 //        reverb.loadFactoryPreset(.largeRoom)
 //        audioEngine.attach(reverb)
-//        
+//
 //        // Delay
 //        let delay = AVAudioUnitDelay()
-//        delay.delayTime = 1
+//        delay.delayTime = 0.2
 //        audioEngine.attach(delay)
 //        
 //        // EQs
 //        let eq = AVAudioUnitEQ()
 //        audioEngine.attach(eq)
-//        
+//
 //        // connect!
 //        audioEngine.connect(input, to: reverb, format: input.inputFormat(forBus: 0))
 //        audioEngine.connect(reverb, to: delay, format: input.inputFormat(forBus: 0))
@@ -77,13 +87,12 @@ class AudioEngineManager: NSObject {
         let distortion = AVAudioUnitDistortion()
         distortion.loadFactoryPreset(.drumsLoFi)
         audioEngine.attach(distortion)
-        
-        
+
         // connect one effectNode
         audioEngine.connect(input, to: distortion, format: input.inputFormat(forBus: 0))
         audioEngine.connect(distortion, to: mixer, format: input.inputFormat(forBus: 0))
-//        audioEngine.connect(mixer, to: output, format: input.inputFormat(forBus: 0))
-        assert(audioEngine.inputNode != nil)
+        //audioEngine.connect(mixer, to: output, format: input.inputFormat(forBus: 0))
+        
 
     }
     
@@ -91,15 +100,15 @@ class AudioEngineManager: NSObject {
     func recFileURL(fileName: String) -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let docsDirect = paths[0]
-        let url = docsDirect.appendingPathComponent(fileName + ".m4a")
+        let url = docsDirect.appendingPathComponent(fileName + ".caf")
         return url
     }
     
     // remove file
-    func removeRecFile() {
+    func removeRecFile(fileName: String) {
         let manager = FileManager.default
         let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first! as NSURL
-        let path = url.appendingPathComponent("rec.caf")?.path
+        let path = url.appendingPathComponent(fileName + ".caf")?.path
         if manager.fileExists(atPath: path!) {
             try! manager.removeItem(atPath: path!)
         }
@@ -108,29 +117,35 @@ class AudioEngineManager: NSObject {
     // recording start
     func record(fileName: String) {
         status = .isRecording
-        removeRecFile()
+        self.fileName = fileName
+        removeRecFile(fileName: fileName)
         
-        let input = audioEngine.inputNode
+        let input = audioEngine.mainMixerNode
         print("--- file名------")
         print(input.outputFormat(forBus: 0).settings)
         print(recSettings)
         print("--- file名End------")
         
         // set outputFile
-        outputFile = try! AVAudioFile(forWriting: recFileURL(fileName: fileName), settings: recSettings)
+        do {
+            outputFile = try AVAudioFile(forWriting: recFileURL(fileName: fileName), settings: recSettings)
+        } catch {
+            print("error \(error.localizedDescription)")
+        }
         
         
         
         print("\(input.inputFormat(forBus: 0))")
         // if you want to output sound in recording, set "input?.volume = 1"
-        input.volume = 0
+        //input.outputVolume = 0
         
         input.installTap(onBus: 0, bufferSize: 1024, format: input.inputFormat(forBus: 0), block:
             { (buffer: AVAudioPCMBuffer!, time: AVAudioTime!) -> Void in
                 
-                print(NSString(string: "writing"))
+                print(buffer)
                 do {
                     try self.outputFile.write(from: buffer)
+                    
                 }
                 catch {
                     print(NSString(string: "Write failed"));
@@ -152,8 +167,15 @@ class AudioEngineManager: NSObject {
         status = .Default
         
         // audioEngine stop
+        audioEngine.mainMixerNode.removeTap(onBus: 0)
         audioEngine.inputNode.removeTap(onBus: 0)
         audioEngine.stop()
+        
+        changeAcc()
+
+
+        
+        
     }
     
     // play sound
@@ -179,5 +201,53 @@ class AudioEngineManager: NSObject {
         player.stop()
         
         status = .Default
+    }
+    
+    func changeAcc() {
+        let audioURL = recFileURL(fileName: fileName)
+        
+        let fileMgr = FileManager.default
+        
+        let dirPaths = fileMgr.urls(for: .documentDirectory,
+                                    in: .userDomainMask)
+        
+        let outputUrl = dirPaths[0].appendingPathComponent("audiosound.m4a")
+        
+        let asset = AVAsset.init(url: audioURL)
+        
+        let exportSession = AVAssetExportSession.init(asset: asset, presetName: AVAssetExportPresetHighestQuality)
+        
+        // remove file if already exits
+        let fileManager = FileManager.default
+        do{
+            try? fileManager.removeItem(at: outputUrl)
+            
+        }catch{
+            print("can't")
+        }
+        
+        
+        exportSession?.outputFileType = AVFileType.mp4
+        exportSession?.outputURL = outputUrl
+        exportSession?.metadata = asset.metadata
+        
+        exportSession?.exportAsynchronously(completionHandler: {
+            if (exportSession?.status == .completed)
+            {
+                print("AV export succeeded.")
+                
+                // outputUrl to post Audio on server
+                
+            }
+            else if (exportSession?.status == .cancelled)
+            {
+                print("AV export cancelled.")
+            }
+            else
+            {
+                print ("Error is \(String(describing: exportSession?.error))")
+                
+            }
+        })
     }
 }
