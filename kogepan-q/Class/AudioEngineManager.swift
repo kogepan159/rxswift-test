@@ -118,7 +118,6 @@ class AudioEngineManager: NSObject {
     func record(fileName: String) {
         status = .isRecording
         self.fileName = fileName
-        removeRecFile(fileName: fileName)
         
         let input = audioEngine.mainMixerNode
         print("--- file名------")
@@ -170,11 +169,8 @@ class AudioEngineManager: NSObject {
         audioEngine.mainMixerNode.removeTap(onBus: 0)
         audioEngine.inputNode.removeTap(onBus: 0)
         audioEngine.stop()
-        
         changeAcc()
-
-
-        
+        removeRecFile(fileName: fileName)
         
     }
     
@@ -211,7 +207,7 @@ class AudioEngineManager: NSObject {
         let dirPaths = fileMgr.urls(for: .documentDirectory,
                                     in: .userDomainMask)
         
-        let outputUrl = dirPaths[0].appendingPathComponent("audiosound.m4a")
+        let outputUrl = dirPaths[0].appendingPathComponent(fileName + ".m4a")
         
         let asset = AVAsset.init(url: audioURL)
         
