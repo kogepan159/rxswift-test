@@ -199,6 +199,8 @@ class AudioEngineManager: NSObject {
         status = .Default
     }
     
+    
+    //MARK: - cafからm4a変換
     func changeAcc() {
         let audioURL = recFileURL(fileName: fileName)
         
@@ -227,22 +229,15 @@ class AudioEngineManager: NSObject {
         exportSession?.outputURL = outputUrl
         exportSession?.metadata = asset.metadata
         
+        //出力処理
         exportSession?.exportAsynchronously(completionHandler: {
-            if (exportSession?.status == .completed)
-            {
+            if (exportSession?.status == .completed) {
                 print("AV export succeeded.")
                 
-                // outputUrl to post Audio on server
-                
-            }
-            else if (exportSession?.status == .cancelled)
-            {
+            } else if (exportSession?.status == .cancelled) {
                 print("AV export cancelled.")
-            }
-            else
-            {
+            } else {
                 print ("Error is \(String(describing: exportSession?.error))")
-                
             }
         })
     }
