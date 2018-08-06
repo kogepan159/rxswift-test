@@ -61,27 +61,26 @@ class AudioEngineManager: NSObject {
         // Mic -> Effect -> BusMixer
         let input = audioEngine.inputNode
         let mixer = audioEngine.mainMixerNode
-        let output = audioEngine.outputNode
         
-//        // Reverb
-//        let reverb = AVAudioUnitReverb()
-//        reverb.loadFactoryPreset(.largeRoom)
-//        audioEngine.attach(reverb)
-//
-//        // Delay
-//        let delay = AVAudioUnitDelay()
-//        delay.delayTime = 0.2
-//        audioEngine.attach(delay)
-//        
-//        // EQs
-//        let eq = AVAudioUnitEQ()
-//        audioEngine.attach(eq)
-//
-//        // connect!
-//        audioEngine.connect(input, to: reverb, format: input.inputFormat(forBus: 0))
-//        audioEngine.connect(reverb, to: delay, format: input.inputFormat(forBus: 0))
-//        audioEngine.connect(delay, to: eq, format: input.inputFormat(forBus: 0))
-//        audioEngine.connect(eq, to: mixer, format: input.inputFormat(forBus: 0))
+        // Reverb
+        let reverb = AVAudioUnitReverb()
+        reverb.loadFactoryPreset(.largeRoom)
+        audioEngine.attach(reverb)
+
+        // Delay
+        let delay = AVAudioUnitDelay()
+        delay.delayTime = 0.2
+        audioEngine.attach(delay)
+        
+        // EQs
+        let eq = AVAudioUnitEQ()
+        audioEngine.attach(eq)
+
+        // connect!
+        audioEngine.connect(input, to: reverb, format: input.inputFormat(forBus: 0))
+        audioEngine.connect(reverb, to: delay, format: input.inputFormat(forBus: 0))
+        audioEngine.connect(delay, to: eq, format: input.inputFormat(forBus: 0))
+        audioEngine.connect(eq, to: mixer, format: input.inputFormat(forBus: 0))
         
         // Distortion
         let distortion = AVAudioUnitDistortion()
@@ -91,7 +90,6 @@ class AudioEngineManager: NSObject {
         // connect one effectNode
         audioEngine.connect(input, to: distortion, format: input.inputFormat(forBus: 0))
         audioEngine.connect(distortion, to: mixer, format: input.inputFormat(forBus: 0))
-        //audioEngine.connect(mixer, to: output, format: input.inputFormat(forBus: 0))
         
 
     }
@@ -115,7 +113,7 @@ class AudioEngineManager: NSObject {
     }
     
     // recording start
-    func record(fileName: String) {
+    func record(fileName: String, isOutputVolume: Bool) {
         status = .isRecording
         self.fileName = fileName
         
@@ -132,16 +130,10 @@ class AudioEngineManager: NSObject {
             print("error \(error.localizedDescription)")
         }
         
-        
-        
-        print("\(input.inputFormat(forBus: 0))")
-        // if you want to output sound in recording, set "input?.volume = 1"
-        //input.outputVolume = 0
+        input.outputVolume =  isOutputVolume ? 1 : 0
         
         input.installTap(onBus: 0, bufferSize: 1024, format: input.inputFormat(forBus: 0), block:
             { (buffer: AVAudioPCMBuffer!, time: AVAudioTime!) -> Void in
-                
-                print(buffer)
                 do {
                     try self.outputFile.write(from: buffer)
                     

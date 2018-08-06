@@ -30,9 +30,9 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
     
     
     @IBOutlet weak var delaySilder: UISlider!
-    @IBOutlet weak var distortionSilder: UISlider!
-    @IBOutlet weak var eqSilder: UISlider!
-    @IBOutlet weak var reverbSilder: UISlider!
+    @IBOutlet weak var distortionButton: UIButton!
+    @IBOutlet weak var eqSilder: UIButton!
+    @IBOutlet weak var reverbSilder: UIButton!
     
     @IBOutlet weak var bothPlaySwitch: UISwitch!
     var audioRecorder: AVAudioRecorder!
@@ -94,23 +94,18 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
             delayLabel.text = String(format:"%.02f",value)
         }
         
-        if userDefault.object(forKey: "distortionValue") != nil {
-            let value = userDefault.float(forKey: "distortionValue")
-            distortionSilder.value = value
-            distortionLabel.text = String(format:"%.02f",value)
+        if userDefault.object(forKey: "distortionLabel") != nil {
+            distortionLabel.text = userDefault.string(forKey: "distortionLabel")
         }
         
-        if userDefault.object(forKey: "eqValue") != nil {
-            let value = userDefault.float(forKey: "eqValue")
-            eqSilder.value = value
-            eqLabel.text = String(format:"%.02f",value)
+        if userDefault.object(forKey: "eqLabel") != nil {
+            eqLabel.text = userDefault.string(forKey: "eqLabel")
         }
         
-        if userDefault.object(forKey: "reverbValue") != nil {
-            let value = userDefault.float(forKey: "reverbValue")
-            reverbSilder.value = value
-            reverbLabel.text = String(format:"%.02f",value)
+        if userDefault.object(forKey: "reverbLabel") != nil {
+            reverbLabel.text = userDefault.string(forKey: "reverbLabel")
         }
+        
         bothPlaySwitch.isOn = userDefault.object(forKey: "bothPlaySwitch") != nil  ?  userDefault.bool(forKey: "bothPlaySwitch"): false
     }
     
@@ -128,7 +123,7 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         
         switch audioEngineMnager.status {
         case .Default:
-            audioEngineMnager.record(fileName: voiceFileName.text!)
+            audioEngineMnager.record(fileName: voiceFileName.text!,isOutputVolume: bothPlaySwitch.isOn)
             
             //タイマーが動いている状態で押されたら処理しない
             if timer.isValid == true {
@@ -269,35 +264,68 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
     }
     
     // MARK: - StoryBorad Action系
-    
     @IBAction func valueChanged(_ sender: UISlider) {
-        
         let userDefault = UserDefaults.standard
         let setValueString: String = String(format:"%.02f",sender.value)
-        switch sender.tag {
-        case 1:
-            delayLabel.text = setValueString
-            userDefault.setValue(sender.value, forKeyPath: "delayValue")
-            break
-        case 2:
-            distortionLabel.text = String(format:"%.02f",sender.value)
-            userDefault.setValue(sender.value, forKeyPath: "distortionValue")
-            break
-        case 3:
-            eqLabel.text = String(format:"%.02f",sender.value)
-            userDefault.setValue(setValueString, forKeyPath: "eqValue")
-            break
-        default:
-            reverbLabel.text = String(format:"%.02f",sender.value)
-            userDefault.setValue(sender.value, forKeyPath: "reverbValue")
-            break
-        }
+        delayLabel.text = setValueString
+        userDefault.setValue(sender.value, forKeyPath: "delayValue")
     }
     
     @IBAction func switchChanged(_ sender: UISwitch) {
         let userDefault = UserDefaults.standard
         userDefault.setValue(sender.isOn, forKeyPath: "bothPlaySwitch")
         
+    }
+    
+    @IBAction func touchUpButton(_ sender: UIButton) {
+        switch sender.tag {
+        case 1:
+            dialog(title: "distortionのタイプを選択してください", message:"", tag: 1, array: ["利用しない","drumsBitBrush","drumsBufferBeats","drumsLoFi","multiBrokenSpeaker","multiCellphoneConcert","multiDecimated1","multiDecimated2","multiDecimated3","multiDecimated4","multiDistortedFunk","multiDistortedCubed","multiDistortedSquared","multiEcho1","multiEcho2","multiEchoTight1","multiEchoTight2","multiEverythingIsBroken","speechAlienChatter","speechCosmicInterference","speechGoldenPi","speechRadioTower","speechWaves"], before: distortionLabel.text!)
+            break
+        case 2:
+            dialog(title: "EQのタイプを選択してください", message:"", tag: 2, array: ["利用しない","parametric","lowPass","highPass","resonantLowPass","resonantHighPass","bandPass","bandStop","lowShelf","highShelf","resonantLowShelf","resonantHighShelf"], before: eqLabel.text!)
+            break
+        default:
+            dialog(title: "Reverbのタイプを選択してください", message:"", tag: 3, array: ["利用しない","smallRoom","mediumRoom","largeRoom","mediumHall","largeHall","plate","mediumChamber","largeChamber","cathedral","largeRoom2","mediumHall2","mediumHall3","largeHall2"], before: reverbLabel.text!)
+            break
+        }
+
+    }
+    
+    //ダイアログを押下すること
+    func dialog(title: String, message:String, tag: Int, array: [String], before: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+
+        for item in array {
+            let okAction = UIAlertAction(title: item, style: UIAlertActionStyle.default){ (action: UIAlertAction) in
+                self.setTypeLabel(tag: tag, item:item)
+            }
+            alertController.addAction(okAction)
+        }
+
+        let cancelButton = UIAlertAction(title: "CANCEL", style: UIAlertActionStyle.cancel){ (action: UIAlertAction) in
+            self.setTypeLabel(tag: tag, item:before)
+        }
+        alertController.addAction(cancelButton)
+        present(alertController,animated: true,completion: nil)
+    }
+    
+    func setTypeLabel(tag: Int, item:String) {
+         let userDefault = UserDefaults.standard
+        switch tag {
+        case 1:
+            self.distortionLabel.text = item
+            userDefault.setValue(item, forKeyPath: "distortionLabel")
+            break
+        case 2:
+            self.eqLabel.text = item
+            userDefault.setValue(item, forKeyPath: "eqLabel")
+            break
+        default:
+            self.reverbLabel.text = item
+            userDefault.setValue(item, forKeyPath: "reverbLabel")
+            break
+        }
     }
     
     
