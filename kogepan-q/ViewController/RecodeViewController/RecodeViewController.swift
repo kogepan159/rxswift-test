@@ -23,6 +23,18 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
     @IBOutlet weak var stopRecodeButton: UIButton!
     @IBOutlet weak var stopPlayButton: UIButton!
     
+    @IBOutlet weak var delayLabel: UILabel!
+    @IBOutlet weak var distortionLabel: UILabel!
+    @IBOutlet weak var eqLabel: UILabel!
+    @IBOutlet weak var reverbLabel: UILabel!
+    
+    
+    @IBOutlet weak var delaySilder: UISlider!
+    @IBOutlet weak var distortionSilder: UISlider!
+    @IBOutlet weak var eqSilder: UISlider!
+    @IBOutlet weak var reverbSilder: UISlider!
+    
+    @IBOutlet weak var bothPlaySwitch: UISwitch!
     var audioRecorder: AVAudioRecorder!
     var audioPlayer: AVAudioPlayer!
     var isRecording = false
@@ -34,6 +46,7 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
     //MARK: - メイン処理
     override func viewDidLoad() {
         self.navigationController?.navigationBar.tintColor = UIColor.red
+        self.setUserDefalts()
         self.title = "音声録音"
         super.viewDidLoad()
         recodeButton.rx.tap.bind{
@@ -70,6 +83,35 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setUserDefalts() {
+        let userDefault = UserDefaults.standard
+        
+        if userDefault.object(forKey: "delayValue") != nil {
+            let value = userDefault.float(forKey: "delayValue")
+            delaySilder.value = value
+            delayLabel.text = String(format:"%.02f",value)
+        }
+        
+        if userDefault.object(forKey: "distortionValue") != nil {
+            let value = userDefault.float(forKey: "distortionValue")
+            distortionSilder.value = value
+            distortionLabel.text = String(format:"%.02f",value)
+        }
+        
+        if userDefault.object(forKey: "eqValue") != nil {
+            let value = userDefault.float(forKey: "eqValue")
+            eqSilder.value = value
+            eqLabel.text = String(format:"%.02f",value)
+        }
+        
+        if userDefault.object(forKey: "reverbValue") != nil {
+            let value = userDefault.float(forKey: "reverbValue")
+            reverbSilder.value = value
+            reverbLabel.text = String(format:"%.02f",value)
+        }
+        bothPlaySwitch.isOn = userDefault.object(forKey: "bothPlaySwitch") != nil  ?  userDefault.bool(forKey: "bothPlaySwitch"): false
     }
     
     func startRecode() {
@@ -224,6 +266,38 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
             let playerSec: Int = Int(audioPlayer.duration) % 60
             label.text = "再生中 : " + String(format:"%02d:%02d/",min, sec) +  String(format:"%02d:%02d",playerMin, playerSec)
         }
+    }
+    
+    // MARK: - StoryBorad Action系
+    
+    @IBAction func valueChanged(_ sender: UISlider) {
+        
+        let userDefault = UserDefaults.standard
+        let setValueString: String = String(format:"%.02f",sender.value)
+        switch sender.tag {
+        case 1:
+            delayLabel.text = setValueString
+            userDefault.setValue(sender.value, forKeyPath: "delayValue")
+            break
+        case 2:
+            distortionLabel.text = String(format:"%.02f",sender.value)
+            userDefault.setValue(sender.value, forKeyPath: "distortionValue")
+            break
+        case 3:
+            eqLabel.text = String(format:"%.02f",sender.value)
+            userDefault.setValue(setValueString, forKeyPath: "eqValue")
+            break
+        default:
+            reverbLabel.text = String(format:"%.02f",sender.value)
+            userDefault.setValue(sender.value, forKeyPath: "reverbValue")
+            break
+        }
+    }
+    
+    @IBAction func switchChanged(_ sender: UISwitch) {
+        let userDefault = UserDefaults.standard
+        userDefault.setValue(sender.isOn, forKeyPath: "bothPlaySwitch")
+        
     }
     
     
