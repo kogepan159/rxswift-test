@@ -28,6 +28,7 @@
 		096BF42D20F972470091DD2F /* ViewControllerEXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096BF42C20F972470091DD2F /* ViewControllerEXT.swift */; };
 		0988F15120C1FEA300D859FB /* icon-l.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0988F15020C1FEA300D859FB /* icon-l.jpg */; };
 		0988F15320C429F200D859FB /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 0988F15220C429F200D859FB /* share.png */; };
+		09BA49AE21192D2600AB8E27 /* AudioEngineType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BA49AD21192D2600AB8E27 /* AudioEngineType.swift */; };
 		09F1FD0E20BA371C00D58A60 /* recoding.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F1FD0D20BA371C00D58A60 /* recoding.png */; };
 		09F1FD1020BA498A00D58A60 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F1FD0F20BA498A00D58A60 /* play.png */; };
 		09F1FD1220BA4B5100D58A60 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F1FD1120BA4B5100D58A60 /* stop.png */; };
@@ -82,6 +83,7 @@
 		0988F15020C1FEA300D859FB /* icon-l.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "icon-l.jpg"; sourceTree = "<group>"; };
 		0988F15220C429F200D859FB /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		099BA8AC20CD208D006111A3 /* EZAudio-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EZAudio-Header.h"; sourceTree = "<group>"; };
+		09BA49AD21192D2600AB8E27 /* AudioEngineType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngineType.swift; sourceTree = "<group>"; };
 		09F1FD0D20BA371C00D58A60 /* recoding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recoding.png; sourceTree = "<group>"; };
 		09F1FD0F20BA498A00D58A60 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		09F1FD1120BA4B5100D58A60 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				092F3434210D4E010032736C /* AudioEngineManager.swift */,
+				09BA49AD21192D2600AB8E27 /* AudioEngineType.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -543,6 +546,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09BA49AE21192D2600AB8E27 /* AudioEngineType.swift in Sources */,
 				092F3443210D56040032736C /* SettingTableViewController.swift in Sources */,
 				096BF42D20F972470091DD2F /* ViewControllerEXT.swift in Sources */,
 				092F3441210D56040032736C /* SelectTableViewController.swift in Sources */,

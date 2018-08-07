@@ -37,11 +37,11 @@ class AudioEngineManager: NSObject {
     
     override init() {
         super.init()
-        setup()
     }
     
-    func setup() {
+    func setup(delayFloat: Float, distortionString: String, eqString: String, reverbString: String) {
         
+        var isEffect: [Bool] = [false,false,false,false]
         // AudioSession init
         let audioSession = AVAudioSession.sharedInstance()
         do {
@@ -64,33 +64,75 @@ class AudioEngineManager: NSObject {
         
         // Reverb
         let reverb = AVAudioUnitReverb()
-        reverb.loadFactoryPreset(.largeRoom)
-        audioEngine.attach(reverb)
+        if reverbString != "利用しない" {
+            isEffect[0] = true
+            let typeInt: Int = AudioEngineType().returntReverbType(setType: reverbString)
+            reverb.loadFactoryPreset(AVAudioUnitReverbPreset(rawValue: typeInt)!)
+            audioEngine.attach(reverb)
+            audioEngine.connect(input, to: reverb, format: input.inputFormat(forBus: 0))
+        }
 
         // Delay
         let delay = AVAudioUnitDelay()
-        delay.delayTime = 0.2
-        audioEngine.attach(delay)
+        if delayFloat > 0.005 {
+            isEffect[1] = true
+            delay.delayTime = TimeInterval(delayFloat)
+            audioEngine.attach(delay)
+            if isEffect[0] {
+                audioEngine.connect(reverb, to: delay, format: input.inputFormat(forBus: 0))
+            } else {
+                audioEngine.connect(input, to: delay, format: input.inputFormat(forBus: 0))
+            }
+        }
         
         // EQs
-        let eq = AVAudioUnitEQ()
-        audioEngine.attach(eq)
-
-        // connect!
-        audioEngine.connect(input, to: reverb, format: input.inputFormat(forBus: 0))
-        audioEngine.connect(reverb, to: delay, format: input.inputFormat(forBus: 0))
-        audioEngine.connect(delay, to: eq, format: input.inputFormat(forBus: 0))
-        audioEngine.connect(eq, to: mixer, format: input.inputFormat(forBus: 0))
+        let eq = AVAudioUnitEQ(numberOfBands: 10)
+        if eqString != "利用しない" {
+            isEffect[2] = true
+            let typeInt: Int = AudioEngineType().returntEqType(setType: eqString)
+            eq.bands[0].filterType =  AVAudioUnitEQFilterType(rawValue: typeInt)!
+            eq.bypass = true
+            audioEngine.attach(eq)
+            if isEffect[1] {
+                audioEngine.connect(delay, to: eq, format: input.inputFormat(forBus: 0))
+            } else if isEffect[0] {
+                audioEngine.connect(reverb, to: eq, format: input.inputFormat(forBus: 0))
+            } else {
+                audioEngine.connect(input, to: eq, format: input.inputFormat(forBus: 0))
+            }
+        }
+        
         
         // Distortion
         let distortion = AVAudioUnitDistortion()
-        distortion.loadFactoryPreset(.drumsLoFi)
-        audioEngine.attach(distortion)
-
-        // connect one effectNode
-        audioEngine.connect(input, to: distortion, format: input.inputFormat(forBus: 0))
-        audioEngine.connect(distortion, to: mixer, format: input.inputFormat(forBus: 0))
+        if distortionString != "利用しない" {
+            isEffect[3] = true
+            let typeInt: Int = AudioEngineType().returntDistortionType(setType: distortionString)
+            distortion.loadFactoryPreset(AVAudioUnitDistortionPreset(rawValue: typeInt)!)
+            audioEngine.attach(distortion)
+            if isEffect[2] {
+                audioEngine.connect(eq, to: distortion, format: input.inputFormat(forBus: 0))
+            } else if isEffect[1] {
+                audioEngine.connect(delay, to: distortion, format: input.inputFormat(forBus: 0))
+            } else if isEffect[0] {
+                audioEngine.connect(reverb, to: distortion, format: input.inputFormat(forBus: 0))
+            } else {
+                audioEngine.connect(input, to: distortion, format: input.inputFormat(forBus: 0))
+            }
+        }
         
+        // mixへの結合処理
+        if isEffect[3] {
+            audioEngine.connect(distortion, to: mixer, format: input.inputFormat(forBus: 0))
+        } else if isEffect[2] {
+            audioEngine.connect(eq, to: mixer, format: input.inputFormat(forBus: 0))
+        } else if isEffect[1] {
+            audioEngine.connect(delay, to: mixer, format: input.inputFormat(forBus: 0))
+        } else if isEffect[0] {
+            audioEngine.connect(reverb, to: mixer, format: input.inputFormat(forBus: 0))
+        } else {
+            audioEngine.connect(input, to: mixer, format: input.inputFormat(forBus: 0))
+        }
 
     }
     
@@ -113,16 +155,12 @@ class AudioEngineManager: NSObject {
     }
     
     // recording start
-    func record(fileName: String, isOutputVolume: Bool) {
+    func record(fileName: String, isOutputVolume: Bool, delay: Float, distortion: String, eq: String, reverb: String) {
+        self.setup(delayFloat: delay, distortionString: distortion, eqString: eq, reverbString: reverb)
         status = .isRecording
         self.fileName = fileName
         
-        let input = audioEngine.mainMixerNode
-        print("--- file名------")
-        print(input.outputFormat(forBus: 0).settings)
-        print(recSettings)
-        print("--- file名End------")
-        
+        let input = audioEngine.inputNode
         // set outputFile
         do {
             outputFile = try AVAudioFile(forWriting: recFileURL(fileName: fileName), settings: recSettings)
@@ -130,9 +168,9 @@ class AudioEngineManager: NSObject {
             print("error \(error.localizedDescription)")
         }
         
-        input.outputVolume =  isOutputVolume ? 1 : 0
+        input.volume =  isOutputVolume ? 1 : 0
         
-        input.installTap(onBus: 0, bufferSize: 1024, format: input.inputFormat(forBus: 0), block:
+        audioEngine.mainMixerNode.installTap(onBus: 0, bufferSize: 1024, format: input.inputFormat(forBus: 0), block:
             { (buffer: AVAudioPCMBuffer!, time: AVAudioTime!) -> Void in
                 do {
                     try self.outputFile.write(from: buffer)
@@ -233,4 +271,5 @@ class AudioEngineManager: NSObject {
             }
         })
     }
+    
 }

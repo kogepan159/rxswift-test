@@ -67,9 +67,6 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         let audioSession:AVAudioSession = AVAudioSession.sharedInstance()
         try! audioSession.setCategory(AVAudioSessionCategoryPlayback)
         
-        // setUp audioEngine.
-        audioEngineMnager.setup()
-        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -123,8 +120,12 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         
         switch audioEngineMnager.status {
         case .Default:
-            audioEngineMnager.record(fileName: voiceFileName.text!,isOutputVolume: bothPlaySwitch.isOn)
-            
+            audioEngineMnager.record(fileName: voiceFileName.text!,
+                                     isOutputVolume: bothPlaySwitch.isOn,
+                                     delay: delaySilder.value,
+                                     distortion: distortionLabel.text!,
+                                     eq: eqLabel.text!,
+                                     reverb: reverbLabel.text!)
             //タイマーが動いている状態で押されたら処理しない
             if timer.isValid == true {
                 return
