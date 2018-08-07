@@ -133,7 +133,7 @@ class AudioEngineManager: NSObject {
         } else {
             audioEngine.connect(input, to: mixer, format: input.inputFormat(forBus: 0))
         }
-
+        
     }
     
     // URL for saved RecData
@@ -160,7 +160,7 @@ class AudioEngineManager: NSObject {
         status = .isRecording
         self.fileName = fileName
         
-        let input = audioEngine.inputNode
+        
         // set outputFile
         do {
             outputFile = try AVAudioFile(forWriting: recFileURL(fileName: fileName), settings: recSettings)
@@ -168,23 +168,43 @@ class AudioEngineManager: NSObject {
             print("error \(error.localizedDescription)")
         }
         
-        input.volume =  isOutputVolume ? 1 : 0
         
-        audioEngine.mainMixerNode.installTap(onBus: 0, bufferSize: 1024, format: input.inputFormat(forBus: 0), block:
-            { (buffer: AVAudioPCMBuffer!, time: AVAudioTime!) -> Void in
-                do {
-                    try self.outputFile.write(from: buffer)
-                    
-                }
-                catch {
-                    print(NSString(string: "Write failed"));
-                }
-        })
+        if isOutputVolume {
+            let input = audioEngine.mainMixerNode
+            audioEngine.inputNode.volume = 1
+            input.installTap(onBus: 0, bufferSize: 1024, format: input.inputFormat(forBus: 0), block:
+                { (buffer: AVAudioPCMBuffer!, time: AVAudioTime!) -> Void in
+                    do {
+                        try self.outputFile.write(from: buffer)
+                    } catch {
+                        print(NSString(string: "Write failed"));
+                    }
+            })
+            
+        } else {
+            let input = audioEngine.inputNode
+            input.volume = 0
+            input.installTap(onBus: 0, bufferSize: 1024, format: input.inputFormat(forBus: 0), block:
+                { (buffer: AVAudioPCMBuffer!, time: AVAudioTime!) -> Void in
+                    do {
+                        try self.outputFile.write(from: buffer)
+                    } catch {
+                        print(NSString(string: "Write failed"));
+                    }
+            })
+            
+        }
+        
+        
+        
+        
         
         // AVAudioEngine start
         if !audioEngine.isRunning {
             do {
                 try audioEngine.start()
+                
+                
             } catch let error as NSError {
                 print("Couldn't start engine, \(error.localizedDescription)")
             }
