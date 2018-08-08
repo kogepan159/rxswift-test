@@ -263,7 +263,7 @@ class AudioEngineManager: NSObject {
         
         let asset = AVAsset.init(url: audioURL)
         
-        let exportSession = AVAssetExportSession.init(asset: asset, presetName: AVAssetExportPresetHighestQuality)
+        let exportSession = AVAssetExportSession.init(asset: asset, presetName: AVAssetExportPresetAppleM4A)
         
         // remove file if already exits
         let fileManager = FileManager.default
@@ -275,7 +275,7 @@ class AudioEngineManager: NSObject {
         }
         
         
-        exportSession?.outputFileType = AVFileType.mp4
+        exportSession?.outputFileType = AVFileType.m4a
         exportSession?.outputURL = outputUrl
         exportSession?.metadata = asset.metadata
         
