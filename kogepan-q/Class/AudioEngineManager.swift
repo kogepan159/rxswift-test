@@ -253,13 +253,9 @@ class AudioEngineManager: NSObject {
     //MARK: - cafからm4a変換
     func changeAcc() {
         let audioURL = recFileURL(fileName: fileName)
-        
-        let fileMgr = FileManager.default
-        
-        let dirPaths = fileMgr.urls(for: .documentDirectory,
-                                    in: .userDomainMask)
-        
-        let outputUrl = dirPaths[0].appendingPathComponent(fileName + ".m4a")
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let docsDirect = paths[0]
+        let outputUrl = docsDirect.appendingPathComponent(fileName + ".m4a")
         
         let asset = AVAsset.init(url: audioURL)
         
