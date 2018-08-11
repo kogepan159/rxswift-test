@@ -12,7 +12,9 @@ import RxCocoa
 import AVFoundation
 import AudioToolbox
 
-class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
+class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate, AudioEngineManagerDelegate {
+    
+    
 
     private var audioEngineMnager = AudioEngineManager()
     
@@ -63,7 +65,7 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         stopPlayButton.rx.tap.bind{
             self.play()
         }
-
+        audioEngineMnager.delegate = self
         let audioSession:AVAudioSession = AVAudioSession.sharedInstance()
         try! audioSession.setCategory(AVAudioSessionCategoryPlayback)
         
@@ -144,12 +146,13 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
             
             //audioRecorder.stop()
             isRecording = false
-            label.text = "待機中"
+            label.text = "変換中"
             UIApplication.shared.isIdleTimerDisabled = false
             //タイマーを停止
             timer.invalidate()
             count = 0
-            playButton.isEnabled = true
+            recodeButton.isEnabled = false
+            
             let audioSession:AVAudioSession = AVAudioSession.sharedInstance()
             try! audioSession.setCategory(AVAudioSessionCategoryPlayback)
             recodeButtonHidden(hidden: false)
@@ -158,6 +161,14 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         case .isPlaying: break
         }
         
+    }
+    
+    func changeCafToAccfinish() {
+        DispatchQueue.main.async {
+            self.label.text = "待機中"
+            self.recodeButton.isEnabled = true
+            self.playButton.isEnabled = true
+        }
     }
     
     

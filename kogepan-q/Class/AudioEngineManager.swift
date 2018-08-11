@@ -8,6 +8,11 @@
 import Foundation
 import AVFoundation
 
+protocol AudioEngineManagerDelegate {
+    func changeCafToAccfinish()
+    
+}
+
 class AudioEngineManager: NSObject {
     
     enum State {
@@ -34,12 +39,13 @@ class AudioEngineManager: NSObject {
     private var audioEngine = AVAudioEngine()
     private var outputFile = AVAudioFile()
     private var fileName:String = ""
+    var delegate:AudioEngineManagerDelegate? = nil
     
     override init() {
         super.init()
     }
     
-    func setup(delayFloat: Float, distortionString: String, eqString: String, reverbString: String) {
+    func setup(isOutputVolume: Bool, delayFloat: Float, distortionString: String, eqString: String, reverbString: String) {
         
         var isEffect: [Bool] = [false,false,false,false]
         // AudioSession init
@@ -122,7 +128,9 @@ class AudioEngineManager: NSObject {
         }
         
         // mixへの結合処理
-        if isEffect[3] {
+        if !isOutputVolume {
+            audioEngine.connect(input, to: mixer, format: input.inputFormat(forBus: 0))
+        } else if isEffect[3] {
             audioEngine.connect(distortion, to: mixer, format: input.inputFormat(forBus: 0))
         } else if isEffect[2] {
             audioEngine.connect(eq, to: mixer, format: input.inputFormat(forBus: 0))
@@ -156,7 +164,7 @@ class AudioEngineManager: NSObject {
     
     // recording start
     func record(fileName: String, isOutputVolume: Bool, delay: Float, distortion: String, eq: String, reverb: String) {
-        self.setup(delayFloat: delay, distortionString: distortion, eqString: eq, reverbString: reverb)
+        self.setup(isOutputVolume: isOutputVolume, delayFloat: delay, distortionString: distortion, eqString: eq, reverbString: reverb)
         status = .isRecording
         self.fileName = fileName
         
@@ -168,43 +176,23 @@ class AudioEngineManager: NSObject {
             print("error \(error.localizedDescription)")
         }
         
-        
-        if isOutputVolume {
-            let input = audioEngine.mainMixerNode
-            audioEngine.inputNode.volume = 1
-            input.installTap(onBus: 0, bufferSize: 1024, format: input.inputFormat(forBus: 0), block:
-                { (buffer: AVAudioPCMBuffer!, time: AVAudioTime!) -> Void in
-                    do {
-                        try self.outputFile.write(from: buffer)
-                    } catch {
-                        print(NSString(string: "Write failed"));
-                    }
-            })
-            
-        } else {
-            let input = audioEngine.inputNode
-            input.volume = 0
-            input.installTap(onBus: 0, bufferSize: 1024, format: input.inputFormat(forBus: 0), block:
-                { (buffer: AVAudioPCMBuffer!, time: AVAudioTime!) -> Void in
-                    do {
-                        try self.outputFile.write(from: buffer)
-                    } catch {
-                        print(NSString(string: "Write failed"));
-                    }
-            })
-            
-        }
-        
-        
-        
-        
+        print("isOutputVolume:", isOutputVolume)
+        let input = audioEngine.mainMixerNode
+        input.volume = isOutputVolume ? 1 : 0
+        //audioEngine.in.volume = isOutputVolume ? 1 : 0
+        input.installTap(onBus: 0, bufferSize: 1024, format: input.inputFormat(forBus: 0), block:
+            { (buffer: AVAudioPCMBuffer!, time: AVAudioTime!) -> Void in
+                do {
+                    try self.outputFile.write(from: buffer)
+                } catch {
+                    print(NSString(string: "Write failed"));
+                }
+        })
         
         // AVAudioEngine start
         if !audioEngine.isRunning {
             do {
                 try audioEngine.start()
-                
-                
             } catch let error as NSError {
                 print("Couldn't start engine, \(error.localizedDescription)")
             }
@@ -250,7 +238,7 @@ class AudioEngineManager: NSObject {
     }
     
     
-    //MARK: - cafからm4a変換
+//    //MARK: - cafからm4a変換
     func changeAcc() {
         let audioURL = recFileURL(fileName: fileName)
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -265,7 +253,6 @@ class AudioEngineManager: NSObject {
         let fileManager = FileManager.default
         do{
             try? fileManager.removeItem(at: outputUrl)
-            
         }catch{
             print("can't")
         }
@@ -278,11 +265,14 @@ class AudioEngineManager: NSObject {
         //出力処理
         exportSession?.exportAsynchronously(completionHandler: {
             if (exportSession?.status == .completed) {
+                self.delegate?.changeCafToAccfinish()
                 print("AV export succeeded.")
                 
             } else if (exportSession?.status == .cancelled) {
+                self.delegate?.changeCafToAccfinish()
                 print("AV export cancelled.")
             } else {
+                self.delegate?.changeCafToAccfinish()
                 print ("Error is \(String(describing: exportSession?.error))")
             }
         })
