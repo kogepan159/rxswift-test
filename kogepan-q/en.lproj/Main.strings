@@ -1,0 +1,108 @@
+
+/* Class = "UIButton"; normalTitle = "音声録音"; ObjectID = "07I-rb-gLY"; */
+"07I-rb-gLY.normalTitle" = "音声録音";
+
+/* Class = "UINavigationItem"; title = "HOME"; ObjectID = "5Cd-fu-Osm"; */
+"5Cd-fu-Osm.title" = "HOME";
+
+/* Class = "UIButton"; normalTitle = "Change"; ObjectID = "68x-jZ-TPe"; */
+"68x-jZ-TPe.normalTitle" = "Change";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "A3b-pB-IWr"; */
+"A3b-pB-IWr.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "ファイル名: 未設定"; ObjectID = "EWp-w0-odx"; */
+"EWp-w0-odx.text" = "ファイル名: 未設定";
+
+/* Class = "UILabel"; text = "EQ:"; ObjectID = "Go6-4a-xK0"; */
+"Go6-4a-xK0.text" = "EQ:";
+
+/* Class = "UITableViewController"; title = "音源選択"; ObjectID = "Kzn-JK-aO8"; */
+"Kzn-JK-aO8.title" = "音源選択";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "MLs-do-AWf"; */
+"MLs-do-AWf.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "0.00"; ObjectID = "OXv-N9-uHQ"; */
+"OXv-N9-uHQ.text" = "0.00";
+
+/* Class = "UILabel"; text = "利用しない"; ObjectID = "Qak-sB-5co"; */
+"Qak-sB-5co.text" = "利用しない";
+
+/* Class = "UILabel"; text = "Delay:"; ObjectID = "Uww-NR-I51"; */
+"Uww-NR-I51.text" = "Delay:";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Vbx-vX-ShM"; */
+"Vbx-vX-ShM.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "分割する秒:"; ObjectID = "W3U-3I-ae5"; */
+"W3U-3I-ae5.text" = "分割する秒:";
+
+/* Class = "UIButton"; normalTitle = "Change"; ObjectID = "YBK-rJ-14y"; */
+"YBK-rJ-14y.normalTitle" = "Change";
+
+/* Class = "UILabel"; text = "待機中"; ObjectID = "ZJJ-d5-AV4"; */
+"ZJJ-d5-AV4.text" = "待機中";
+
+/* Class = "UITextField"; placeholder = "例)10"; ObjectID = "bAO-hy-ojj"; */
+"bAO-hy-ojj.placeholder" = "例)10";
+
+/* Class = "UILabel"; text = "ONの場合イヤホン必須"; ObjectID = "bwp-pn-iLt"; */
+"bwp-pn-iLt.text" = "ONの場合イヤホン必須";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "cdF-OQ-A9Q"; */
+"cdF-OQ-A9Q.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Change"; ObjectID = "dJF-DE-V4d"; */
+"dJF-DE-V4d.normalTitle" = "Change";
+
+/* Class = "UILabel"; text = "Effect有無:"; ObjectID = "des-li-wFy"; */
+"des-li-wFy.text" = "Effect有無:";
+
+/* Class = "UILabel"; text = "Distortion:"; ObjectID = "eUc-xh-lLg"; */
+"eUc-xh-lLg.text" = "Distortion:";
+
+/* Class = "UILabel"; text = "待機中"; ObjectID = "fjV-8x-ryS"; */
+"fjV-8x-ryS.text" = "待機中";
+
+/* Class = "UITextField"; placeholder = "例)test,koetoru"; ObjectID = "fvV-RG-3Gf"; */
+"fvV-RG-3Gf.placeholder" = "例)test,koetoru";
+
+/* Class = "UILabel"; text = "このアプリでは、m4a拡張子のみ対応しております。\n\n## 音源を取り出す方法\n1.PCとiPhone(iPad)を繋げる\n2.iTunesを開く\n3.PC画面内のスマホアイコンをタップする\n4.ファイル共通を押下する\n5.コエトルを選択する"; ObjectID = "jXJ-YD-mBc"; */
+"jXJ-YD-mBc.text" = "このアプリでは、m4a拡張子のみ対応しております。\n\n## 音源を取り出す方法\n1.PCとiPhone(iPad)を繋げる\n2.iTunesを開く\n3.PC画面内のスマホアイコンをタップする\n4.ファイル共通を押下する\n5.コエトルを選択する";
+
+/* Class = "UITextField"; placeholder = "例)合成"; ObjectID = "kpY-rS-Vjc"; */
+"kpY-rS-Vjc.placeholder" = "例)合成";
+
+/* Class = "UILabel"; text = "結合後の名前:"; ObjectID = "lGx-d5-oTV"; */
+"lGx-d5-oTV.text" = "結合後の名前:";
+
+/* Class = "UIButton"; normalTitle = "シェア"; ObjectID = "lhl-mZ-lz2"; */
+"lhl-mZ-lz2.normalTitle" = "シェア";
+
+/* Class = "UIButton"; normalTitle = "音声編集"; ObjectID = "miX-DJ-emr"; */
+"miX-DJ-emr.normalTitle" = "音声編集";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "n7M-Ba-sIO"; */
+"n7M-Ba-sIO.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "nhE-9c-fN6"; */
+"nhE-9c-fN6.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Reverb:"; ObjectID = "qw3-fG-aJG"; */
+"qw3-fG-aJG.text" = "Reverb:";
+
+/* Class = "UILabel"; text = "保存名:"; ObjectID = "tOG-wa-p7Z"; */
+"tOG-wa-p7Z.text" = "保存名:";
+
+/* Class = "UILabel"; text = "利用しない"; ObjectID = "txR-td-ZPO"; */
+"txR-td-ZPO.text" = "利用しない";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "vi6-cz-R10"; */
+"vi6-cz-R10.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "利用しない"; ObjectID = "wyf-K1-WiB"; */
+"wyf-K1-WiB.text" = "利用しない";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "yCh-Rx-3Vy"; */
+"yCh-Rx-3Vy.normalTitle" = "Button";

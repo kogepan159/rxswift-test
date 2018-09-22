@@ -28,6 +28,7 @@
 		096BF42D20F972470091DD2F /* ViewControllerEXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096BF42C20F972470091DD2F /* ViewControllerEXT.swift */; };
 		0988F15120C1FEA300D859FB /* icon-l.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0988F15020C1FEA300D859FB /* icon-l.jpg */; };
 		0988F15320C429F200D859FB /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 0988F15220C429F200D859FB /* share.png */; };
+		09AF038D2155C14F00F7AE33 /* Localizable.string.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09AF038F2155C14F00F7AE33 /* Localizable.string.strings */; };
 		09BA49AE21192D2600AB8E27 /* AudioEngineType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BA49AD21192D2600AB8E27 /* AudioEngineType.swift */; };
 		09F1FD0E20BA371C00D58A60 /* recoding.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F1FD0D20BA371C00D58A60 /* recoding.png */; };
 		09F1FD1020BA498A00D58A60 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F1FD0F20BA498A00D58A60 /* play.png */; };
@@ -67,9 +68,7 @@
 		092F3440210D56040032736C /* RecodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecodeViewController.swift; sourceTree = "<group>"; };
 		093C19F320B1413A000D125D /* kogepan-q.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kogepan-q.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		093C19F620B1413A000D125D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		093C19FB20B1413A000D125D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		093C19FD20B1413A000D125D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		093C1A0020B1413A000D125D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		093C1A0220B1413A000D125D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		093C1A0720B1413A000D125D /* kogepan-qTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "kogepan-qTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		093C1A0B20B1413A000D125D /* kogepan_qTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kogepan_qTests.swift; sourceTree = "<group>"; };
@@ -83,6 +82,14 @@
 		0988F15020C1FEA300D859FB /* icon-l.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "icon-l.jpg"; sourceTree = "<group>"; };
 		0988F15220C429F200D859FB /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		099BA8AC20CD208D006111A3 /* EZAudio-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EZAudio-Header.h"; sourceTree = "<group>"; };
+		09AF03832155BF1E00F7AE33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		09AF03842155BF1E00F7AE33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		09AF03852155BF3000F7AE33 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		09AF03872155BF3800F7AE33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		09AF03892155BF3E00F7AE33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		09AF038A2155BF4200F7AE33 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		09AF038E2155C14F00F7AE33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.string.strings; sourceTree = "<group>"; };
+		09AF03902155C15400F7AE33 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.string.strings; sourceTree = "<group>"; };
 		09BA49AD21192D2600AB8E27 /* AudioEngineType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngineType.swift; sourceTree = "<group>"; };
 		09F1FD0D20BA371C00D58A60 /* recoding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recoding.png; sourceTree = "<group>"; };
 		09F1FD0F20BA498A00D58A60 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
@@ -222,6 +229,7 @@
 				093C19FD20B1413A000D125D /* Assets.xcassets */,
 				093C19FF20B1413A000D125D /* LaunchScreen.storyboard */,
 				093C1A0220B1413A000D125D /* Info.plist */,
+				09AF038F2155C14F00F7AE33 /* Localizable.string.strings */,
 				099BA8AC20CD208D006111A3 /* EZAudio-Header.h */,
 			);
 			path = "kogepan-q";
@@ -387,6 +395,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = 093C19EA20B1413A000D125D;
 			productRefGroup = 093C19F420B1413A000D125D /* Products */;
@@ -415,6 +424,7 @@
 				09637A1F20D672E8002AE7B9 /* music_cut.png in Resources */,
 				093C19FE20B1413A000D125D /* Assets.xcassets in Resources */,
 				091E84C520DB74F3005B59B3 /* setting.png in Resources */,
+				09AF038D2155C14F00F7AE33 /* Localizable.string.strings in Resources */,
 				093C19FC20B1413A000D125D /* Main.storyboard in Resources */,
 				0988F15320C429F200D859FB /* share.png in Resources */,
 				09F1FD1020BA498A00D58A60 /* play.png in Resources */,
@@ -593,7 +603,9 @@
 		093C19FA20B1413A000D125D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				093C19FB20B1413A000D125D /* Base */,
+				09AF03832155BF1E00F7AE33 /* Base */,
+				09AF03892155BF3E00F7AE33 /* en */,
+				09AF038A2155BF4200F7AE33 /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -601,9 +613,20 @@
 		093C19FF20B1413A000D125D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				093C1A0020B1413A000D125D /* Base */,
+				09AF03842155BF1E00F7AE33 /* Base */,
+				09AF03852155BF3000F7AE33 /* ja */,
+				09AF03872155BF3800F7AE33 /* en */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		09AF038F2155C14F00F7AE33 /* Localizable.string.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				09AF038E2155C14F00F7AE33 /* en */,
+				09AF03902155C15400F7AE33 /* ja */,
+			);
+			name = Localizable.string.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -614,6 +637,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -672,6 +696,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
