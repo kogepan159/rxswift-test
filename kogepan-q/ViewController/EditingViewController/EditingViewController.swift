@@ -42,7 +42,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         self.navigationController?.navigationBar.tintColor = UIColor.red
         concatFileNameTextField.delegate = self
         cutTextField.delegate = self
-        self.title = "音声編集"
+
         playButton.rx.tap.bind(){
             self.play()
         }

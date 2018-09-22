@@ -124,7 +124,6 @@
                                 <rect key="frame" x="301" y="425.5" width="58" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58" id="ETV-39-kLr"/>
-                                    <constraint firstAttribute="width" constant="58" id="Zdf-UN-Qkq"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXJ-YD-mBc">

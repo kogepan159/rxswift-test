@@ -9,7 +9,7 @@
 import UIKit
 
 class SettingTableViewController: UITableViewController {
-    var titleArray: [String] = ["アプリバージョン","ご意見"]
+    var titleArray: [String] = [NSLocalizedString("appVersion", comment: "appVersion"),NSLocalizedString("yourOpinion", comment: "yourOpinion")]
     var textArray: [String] = [ Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String, "Twitter(@spoon_kogepan)"]
     var sentLabel:String = ""
     

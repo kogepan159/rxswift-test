@@ -5,3 +5,60 @@
   Created by 堅固潤也 on 2018/09/22.
   Copyright © 2018年 堅固潤也. All rights reserved.
 */
+
+
+"DoNotUse"="Do Not Use";
+"appVersion"="App Version";
+"yourOpinion"="Opinion";
+
+## Reverb
+"smallRoom"="smallRoom";
+"mediumRoom"="mediumRoom";
+"largeRoom"="largeRoom";
+"mediumHall"="mediumHall";
+"largeHall"="largeHall";
+"plate"="plate";
+"mediumChamber"="mediumChamber";
+"largeChamber"="largeChamber";
+"cathedral"="cathedral";
+"largeRoom2"="largeRoom2";
+"mediumHall2"="mediumHall2";
+"mediumHall3"="mediumHall3";
+"largeHall2"="largeHall2";
+
+## DistortionType
+"drumsBitBrush"="drumsBitBrush";
+"drumsBufferBeats"="drumsBufferBeats";
+"drumsLoFi"="drumsLoFi";
+"multiBrokenSpeaker"="multiBrokenSpeaker";
+"multiCellphoneConcert"="multiCellphoneConcert";
+"multiDecimated1"="multiDecimated1";
+"multiDecimated2"="multiDecimated2";
+"multiDecimated3"="multiDecimated3";
+"multiDecimated4"="multiDecimated4";
+"multiDistortedFunk"="multiDistortedFunk";
+"multiDistortedCubed"="multiDistortedCubed";
+"multiDistortedSquared"="multiDistortedSquared";
+"multiEcho1"="multiEcho1";
+"multiEcho2"="multiEcho2";
+"multiEchoTight1"="multiEchoTight1";
+"multiEchoTight2"="multiEchoTight2";
+"multiEverythingIsBroken"="multiEverythingIsBroken";
+"speechAlienChatter"="speechAlienChatter";
+"speechCosmicInterference"="speechCosmicInterference";
+"speechGoldenPi"="speechGoldenPi";
+"speechRadioTower"="speechRadioTower";
+"speechWaves"="speechWaves";
+
+## EQ
+"parametric"="parametric";
+"lowPass"="lowPass";
+"highPass"="highPass";
+"resonantLowPass"="resonantLowPass";
+"resonantHighPass"="resonantHighPass";
+"bandPass"="bandPass";
+"bandStop"="bandStop";
+"lowShelf"="lowShelf";
+"highShelf"="highShelf";
+"resonantLowShelf"="resonantLowShelf";
+"resonantHighShelf"="resonantHighShelf";
