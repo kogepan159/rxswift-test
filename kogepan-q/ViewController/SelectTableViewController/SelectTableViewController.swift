@@ -16,7 +16,7 @@ class SelectTableViewController: UITableViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = UIColor.red
         self.tableView.tableFooterView = UIView()
-        self.title = "音源選択"
+        self.title = NSLocalizedString("audioSelection", comment: "audioSelection")
         
     }
     override func viewWillAppear(_ animated: Bool) {

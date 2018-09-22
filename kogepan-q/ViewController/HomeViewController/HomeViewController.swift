@@ -54,24 +54,5 @@ class HomeViewController: UIViewController {
         
     }
 
-//    @IBAction func twitterLogin(_ sender: Any) {
-//        print("Twitterログイン")
-//        let logInButton = TWTRLogInButton(logInCompletion: { session, error in
-//            if (session != nil) {
-//                let authToken = session?.authToken
-//                let authTokenSecret = session?.authTokenSecret
-//                let credential = TwitterAuthProvider.credential(withToken: authToken, secret: authTokenSecret)
-//                Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
-//                    if let error = error {
-//                        // ...
-//                        return
-//                    }
-//                    // User is signed in
-//                    // ...
-//                }
-//            } else {
-//            }
-//        })
-//    }
 }
 

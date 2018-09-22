@@ -18,7 +18,7 @@
 "Go6-4a-xK0.text" = "EQ:";
 
 /* Class = "UITableViewController"; title = "音源選択"; ObjectID = "Kzn-JK-aO8"; */
-"Kzn-JK-aO8.title" = "Sound Source Selection";
+"Kzn-JK-aO8.title" = "Sound Selection";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "MLs-do-AWf"; */
 "MLs-do-AWf.normalTitle" = "Button";
@@ -75,7 +75,7 @@
 "kpY-rS-Vjc.placeholder" = "ex)OK";
 
 /* Class = "UILabel"; text = "結合後の名前:"; ObjectID = "lGx-d5-oTV"; */
-"lGx-d5-oTV.text" = "AfterName after:";
+"lGx-d5-oTV.text" = "After Name:";
 
 /* Class = "UIButton"; normalTitle = "シェア"; ObjectID = "lhl-mZ-lz2"; */
 "lhl-mZ-lz2.normalTitle" = "share";

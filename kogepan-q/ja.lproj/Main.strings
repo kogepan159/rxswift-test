@@ -15,7 +15,7 @@
 "EWp-w0-odx.text" = "ファイル名: 未設定";
 
 /* Class = "UILabel"; text = "EQ:"; ObjectID = "Go6-4a-xK0"; */
-"Go6-4a-xK0.text" = "EQ:";
+"Go6-4a-xK0.text" = "エコライザー:";
 
 /* Class = "UITableViewController"; title = "音源選択"; ObjectID = "Kzn-JK-aO8"; */
 "Kzn-JK-aO8.title" = "音源選択";
@@ -30,7 +30,7 @@
 "Qak-sB-5co.text" = "利用しない";
 
 /* Class = "UILabel"; text = "Delay:"; ObjectID = "Uww-NR-I51"; */
-"Uww-NR-I51.text" = "Delay:";
+"Uww-NR-I51.text" = "遅延:";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Vbx-vX-ShM"; */
 "Vbx-vX-ShM.normalTitle" = "Button";
@@ -60,7 +60,7 @@
 "des-li-wFy.text" = "Effect有無:";
 
 /* Class = "UILabel"; text = "Distortion:"; ObjectID = "eUc-xh-lLg"; */
-"eUc-xh-lLg.text" = "Distortion:";
+"eUc-xh-lLg.text" = "捻れ:";
 
 /* Class = "UILabel"; text = "待機中"; ObjectID = "fjV-8x-ryS"; */
 "fjV-8x-ryS.text" = "待機中";
@@ -90,7 +90,7 @@
 "nhE-9c-fN6.normalTitle" = "Button";
 
 /* Class = "UILabel"; text = "Reverb:"; ObjectID = "qw3-fG-aJG"; */
-"qw3-fG-aJG.text" = "Reverb:";
+"qw3-fG-aJG.text" = "反射音:";
 
 /* Class = "UILabel"; text = "保存名:"; ObjectID = "tOG-wa-p7Z"; */
 "tOG-wa-p7Z.text" = "保存名:";

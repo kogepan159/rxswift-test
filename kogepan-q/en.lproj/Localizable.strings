@@ -1,5 +1,5 @@
 /* 
-  Localizable.string.strings
+  Localizable.strings
   kogepan-q
 
   Created by 堅固潤也 on 2018/09/22.
@@ -7,9 +7,33 @@
 */
 
 
-"DoNotUse"="Do Not Use";
+"doNotUse"="Do Not Use";
 "appVersion"="App Version";
 "yourOpinion"="Opinion";
+"audioSelection"="Audio Selection";
+"audioEditing"="Audio Editing";
+"voiceRecording"="Voice Recording";
+"recording"="Recording";
+"converting"="Converting";
+"waiting"="Waiting";
+"playing"="playing";
+"playPreparation"="play preparation";
+"noFileName"="File name is missing";
+"canRecordConditions" = "In this application, you can record by placing the file name.";
+"distortionType"="Please select the type of distortion";
+"eqType"="Please select the type of eq";
+"reverbType"="Please select the type of reverb";
+"fileName"="file name";
+"playfileSelect"="Please select a file to play";
+"nameAfterSynthesis"="Please enter the name after synthesis";
+"nameAfterSynthesisC"="Please set it to the name after synthesis, and then press the synthesis button";
+"joinFile"="Please select a file to join";
+"enterSeconds"="Please enter the number of seconds";
+"splitSeconds"="Please enter a number in seconds to split";
+"splitSuccessful"="Split Successful";
+"gobackFileList"="Please go back and select a file";
+"compositeFailure"="Composite Failure";
+"existsFile"="Please check whether the same file name exists. \ n Please try the left slide on the sound source selection screen for the file deletion method";
 
 ## Reverb
 "smallRoom"="smallRoom";

@@ -1,5 +1,5 @@
 /* 
-  Localizable.string.strings
+  Localizable.strings
   kogepan-q
 
   Created by 堅固潤也 on 2018/09/22.
@@ -8,9 +8,36 @@
 
 
 
-"DoNotUse"="利用しない";
+"doNotUse"="利用しない";
 "appVersion"="アプリバージョン";
 "yourOpinion"="ご意見";
+"audioSelection"="音源選択";
+"audioEditing"="音声編集";
+"voiceRecording"="音声録音";
+"recording"="録音中";
+"converting"="変換中";
+"waiting"="待機中";
+"playing"="再生中";
+"playPreparation"="再生準備";
+"noFileName"="ファイル名を未入力です";
+"canRecordConditions"="こちらのアプリは、ファイル名を入れていれることで録音が可能になります。";
+"distortionType"="捻れのタイプを選択してください";
+"eqType"="エコライザーのタイプを選択してください";
+"reverbType"="反射音のタイプを選択してください";
+"fileName"="ファイル名";
+"playfileSelect"="再生するファイルを選択してください";
+"nameAfterSynthesis"="合成後の名前を入力してください";
+"nameAfterSynthesisC"="合成後の名前に設定してから、合成ボタンを押下してください";
+"joinFile"="結合するファイルを選択してください";
+"enterSeconds"="秒数を入力してください";
+"splitSeconds"="分割する秒に数字を入力してください";
+"splitSuccessful"="分割成功";
+"gobackFileList"="一度戻って、ファイルを選択してください";
+"compositeFailure"="合成失敗";
+"existsFile"="同じファイル名が存在しないかご確認ください。\nファイル削除方法は、音源選択画面で左スライドをお試しください";
+
+
+
 
 ## Reverb
 "smallRoom"="smallRoom";
