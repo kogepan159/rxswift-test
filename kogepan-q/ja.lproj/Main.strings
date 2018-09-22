@@ -15,7 +15,7 @@
 "EWp-w0-odx.text" = "ファイル名: 未設定";
 
 /* Class = "UILabel"; text = "EQ:"; ObjectID = "Go6-4a-xK0"; */
-"Go6-4a-xK0.text" = "エコライザー:";
+"Go6-4a-xK0.text" = "帯域設定:";
 
 /* Class = "UITableViewController"; title = "音源選択"; ObjectID = "Kzn-JK-aO8"; */
 "Kzn-JK-aO8.title" = "音源選択";

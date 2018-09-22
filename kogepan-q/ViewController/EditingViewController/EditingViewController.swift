@@ -128,20 +128,20 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
     
     // MARK: - Action
     func fileSelect(){
-        dialog(title: "再生するファイルを選択してください", message:"", isFileSelect:true)
+        dialog(title: NSLocalizedString("playfileSelect", comment: "playfileSelect"), message:"", isFileSelect:true)
     }
     
     func concatFileSelect(){
         if (self.concatFileNameTextField.text?.isEmpty)! {
-            dialog(title: "合成後の名前を入力してください", message:"合成後の名前に設定してから、合成ボタンを押下してください", isFileSelect:false)
+            dialog(title: NSLocalizedString("nameAfterSynthesis", comment: "nameAfterSynthesis"), message:NSLocalizedString("nameAfterSynthesisC", comment: "nameAfterSynthesisC"), isFileSelect:false)
             return
         }
-        dialog(title: "結合するファイルを選択してください", message:"", isFileSelect:true)
+        dialog(title: NSLocalizedString("joinFile", comment: "joinFile"), message:"", isFileSelect:true)
     }
     
     func cut(){
         if (self.cutTextField.text?.isEmpty)! {
-            dialog(title: "秒数を入力してください", message:"分割する秒に数字を入力してください", isFileSelect:false)
+            dialog(title: NSLocalizedString("enterSeconds", comment: "enterSeconds"), message:NSLocalizedString("splitSeconds", comment: "splitSeconds"), isFileSelect:false)
             return
         }
         let startTime:TimeInterval = 0.0 // 最初の時間
@@ -181,13 +181,13 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
                 switch exporter!.status {
                 case .completed:
                     DispatchQueue.main.async {
-                        self.dialog(title: "分割成功", message:"一度戻って、ファイルを選択してください", isFileSelect:false)
+                        self.dialog(title: NSLocalizedString("splitSuccessful", comment: ""), message:NSLocalizedString("gobackFileList", comment: ""), isFileSelect:false)
                     }
                     print("Crop Success! Url")
                 case .failed, .cancelled:
                     print("error = \(String(describing: exporter?.error))")
                     DispatchQueue.main.async {
-                        self.dialog(title: "分割失敗", message:"同じファイルを分割していないかご確認ください。\nファイル削除方法は、音源選択画面で左スライドをお試しください", isFileSelect:false)
+                        self.dialog(title: NSLocalizedString("compositeFailure", comment: ""), message:NSLocalizedString("existsFile", comment: ""), isFileSelect:false)
                     }
                 default:
                     print("error = \(String(describing: exporter?.error))")
@@ -206,7 +206,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
             audioPlayer.play()
             audioPlayer.currentTime = TimeInterval(self.playSlider.value * Float(audioPlayer.duration))
             isPlaying = true
-            label.text = "再生準備"
+            label.text = NSLocalizedString("playPreparation", comment: "")//playPreparation
             playButton.setTitle("STOP", for: .normal)
             playButtonHidden(hidden: true)
             //画面がlockしないように対応
@@ -266,13 +266,13 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
                 case .completed:
                     print("Concat Success! Url")
                     DispatchQueue.main.async {
-                        self.dialog(title: "合成成功", message:"一度戻って、ファイルを選択してください", isFileSelect:false)
+                        self.dialog(title: NSLocalizedString("splitSuccessful", comment: ""), message:NSLocalizedString("gobackFileList", comment: ""), isFileSelect:false)
                     }
                 case .failed, .cancelled:
                     print("error  : " )
                     print(exportSession.error!)
                     DispatchQueue.main.async {
-                        self.dialog(title: "合成失敗", message:"同じファイル名が存在しないかご確認ください。\nファイル削除方法は、音源選択画面で左スライドをお試しください", isFileSelect:false)
+                        self.dialog(title: NSLocalizedString("compositeFailure", comment: ""), message:NSLocalizedString("existsFile", comment: ""), isFileSelect:false)
                     }
                 default:
                     print("error")
@@ -302,7 +302,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         self.playSlider.value = 1.0
-        label.text = "待機中"
+        label.text = NSLocalizedString("waiting", comment: "")
         audioStop()
     }
     
@@ -321,7 +321,7 @@ class EditingViewController: UIViewController, AVAudioRecorderDelegate, AVAudioP
         
         let playerMin: Int = Int(audioPlayer.duration / 60)
         let playerSec: Int = Int(audioPlayer.duration) % 60
-        label.text = isPlaying ? "再生中 : " : "停止中 : "
+        label.text = isPlaying ? NSLocalizedString("playing", comment: "") + " : " : NSLocalizedString("stoping", comment: "") + " : "
         label.text = label.text! + String(format:"%02d:%02d/",min, sec) +  String(format:"%02d:%02d",playerMin, playerSec)
     }
     
