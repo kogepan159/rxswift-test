@@ -70,7 +70,7 @@ class AudioEngineManager: NSObject {
         
         // Reverb
         let reverb = AVAudioUnitReverb()
-        if reverbString != "利用しない" {
+        if reverbString != "doNotUse" {
             isEffect[0] = true
             let typeInt: Int = AudioEngineType().returntReverbType(setType: reverbString)
             reverb.loadFactoryPreset(AVAudioUnitReverbPreset(rawValue: typeInt)!)
@@ -93,7 +93,7 @@ class AudioEngineManager: NSObject {
         
         // EQs
         let eq = AVAudioUnitEQ(numberOfBands: 10)
-        if eqString != "利用しない" {
+        if eqString != "doNotUse" {
             isEffect[2] = true
             let typeInt: Int = AudioEngineType().returntEqType(setType: eqString)
             eq.bands[0].filterType =  AVAudioUnitEQFilterType(rawValue: typeInt)!
@@ -111,7 +111,7 @@ class AudioEngineManager: NSObject {
         
         // Distortion
         let distortion = AVAudioUnitDistortion()
-        if distortionString != "利用しない" {
+        if distortionString != "doNotUse" {
             isEffect[3] = true
             let typeInt: Int = AudioEngineType().returntDistortionType(setType: distortionString)
             distortion.loadFactoryPreset(AVAudioUnitDistortionPreset(rawValue: typeInt)!)

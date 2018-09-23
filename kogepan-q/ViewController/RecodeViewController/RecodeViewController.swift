@@ -44,6 +44,9 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
     let dis = DisposeBag()
     var timer: Timer = Timer()
     var count: Int = 0
+    var distortionType: String = "doNotUse"
+    var eqType: String = "doNotUse"
+    var reverbType: String = "doNotUse"
     
     //MARK: - メイン処理
     override func viewDidLoad() {
@@ -93,16 +96,19 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
             delayLabel.text = String(format:"%.02f",value)
         }
         
-        if userDefault.object(forKey: "distortionLabel") != nil {
-            distortionLabel.text = NSLocalizedString(userDefault.string(forKey: "distortionLabel")!, comment: "")
+        if let type = userDefault.object(forKey: "distortionLabel") as? String {
+            distortionLabel.text = NSLocalizedString(type, comment: "")
+            distortionType = type
         }
         
-        if userDefault.object(forKey: "eqLabel") != nil {
-            eqLabel.text = NSLocalizedString(userDefault.string(forKey: "eqLabel")!, comment: "")
+        if let type = userDefault.object(forKey: "eqLabel") as? String{
+            eqLabel.text = NSLocalizedString(type, comment: "")
+            eqType = type
         }
         
-        if userDefault.object(forKey: "reverbLabel") != nil {
-            reverbLabel.text = NSLocalizedString(userDefault.string(forKey: "reverbLabel")!, comment: "")
+        if let type = userDefault.object(forKey: "reverbLabel") as? String {
+            reverbLabel.text = NSLocalizedString(type, comment: "")
+            reverbType = type
         }
         
         bothPlaySwitch.isOn = userDefault.object(forKey: "bothPlaySwitch") != nil  ?  userDefault.bool(forKey: "bothPlaySwitch"): false
@@ -125,9 +131,9 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
             audioEngineMnager.record(fileName: voiceFileName.text!,
                                      isOutputVolume: bothPlaySwitch.isOn,
                                      delay: delaySilder.value,
-                                     distortion: distortionLabel.text!,
-                                     eq: eqLabel.text!,
-                                     reverb: reverbLabel.text!)
+                                     distortion: distortionType,
+                                     eq: eqType,
+                                     reverb: reverbType)
             //タイマーが動いている状態で押されたら処理しない
             if timer.isValid == true {
                 return
@@ -327,14 +333,17 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         switch tag {
         case 1:
             self.distortionLabel.text = NSLocalizedString(item, comment: "")
+            self.distortionType = item
             userDefault.setValue(item, forKeyPath: "distortionLabel")
             break
         case 2:
             self.eqLabel.text = NSLocalizedString(item, comment: "")
+            self.eqType = item
             userDefault.setValue(item, forKeyPath: "eqLabel")
             break
         default:
             self.reverbLabel.text = NSLocalizedString(item, comment: "")
+            self.reverbType = item
             userDefault.setValue(item, forKeyPath: "reverbLabel")
             break
         }
