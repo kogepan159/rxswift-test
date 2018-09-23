@@ -49,7 +49,7 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
     override func viewDidLoad() {
         self.navigationController?.navigationBar.tintColor = UIColor.red
         self.setUserDefalts()
-        self.title = "音声録音"
+        self.title = NSLocalizedString("voiceRecording", comment: "")
         super.viewDidLoad()
         recodeButton.rx.tap.bind{
             self.startRecode()
@@ -94,15 +94,15 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         }
         
         if userDefault.object(forKey: "distortionLabel") != nil {
-            distortionLabel.text = userDefault.string(forKey: "distortionLabel")
+            distortionLabel.text = NSLocalizedString(userDefault.string(forKey: "distortionLabel")!, comment: "")
         }
         
         if userDefault.object(forKey: "eqLabel") != nil {
-            eqLabel.text = userDefault.string(forKey: "eqLabel")
+            eqLabel.text = NSLocalizedString(userDefault.string(forKey: "eqLabel")!, comment: "")
         }
         
         if userDefault.object(forKey: "reverbLabel") != nil {
-            reverbLabel.text = userDefault.string(forKey: "reverbLabel")
+            reverbLabel.text = NSLocalizedString(userDefault.string(forKey: "reverbLabel")!, comment: "")
         }
         
         bothPlaySwitch.isOn = userDefault.object(forKey: "bothPlaySwitch") != nil  ?  userDefault.bool(forKey: "bothPlaySwitch"): false
@@ -136,7 +136,7 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
             //画面がlockしないように対応
             UIApplication.shared.isIdleTimerDisabled = true
             isRecording = true
-            label.text = "録音中"
+            label.text = NSLocalizedString("recording", comment: "")
             playButton.isEnabled = false
             recodeButtonHidden(hidden: true)
             
@@ -146,7 +146,7 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
             
             //audioRecorder.stop()
             isRecording = false
-            label.text = "変換中"
+            label.text = NSLocalizedString("converting", comment: "")
             UIApplication.shared.isIdleTimerDisabled = false
             //タイマーを停止
             timer.invalidate()
@@ -165,7 +165,7 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
     
     func changeCafToAccfinish() {
         DispatchQueue.main.async {
-            self.label.text = "待機中"
+            self.label.text = NSLocalizedString("waiting", comment: "")
             self.recodeButton.isEnabled = true
             self.playButton.isEnabled = true
         }
@@ -207,7 +207,7 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
             UIApplication.shared.isIdleTimerDisabled = true
             isPlaying = true
             playButtonHidden(hidden:true)
-            label.text = "再生中"
+            label.text = NSLocalizedString("playing", comment: "")
             playButton.setTitle("STOP", for: .normal)
             recodeButton.isEnabled = false
             //タイマーが動いている状態で押されたら処理しない
@@ -235,7 +235,7 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
     func audioStop() {
         audioPlayer.stop()
         isPlaying = false
-        label.text = "待機中"
+        label.text = NSLocalizedString("waiting", comment: "")
         playButtonHidden(hidden:false)
         UIApplication.shared.isIdleTimerDisabled = false
         //タイマーを停止
@@ -250,7 +250,7 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
     }
     
     func dialog() {
-        let alertController = UIAlertController(title: "ファイル名を未入力です",message: "こちらのアプリは、ファイル名を入れていれることで録音が可能になります。", preferredStyle: UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: NSLocalizedString("noFileName", comment: ""),message: NSLocalizedString("canRecordConditions", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
         alertController.addAction(okAction)
         present(alertController,animated: true,completion: nil)
@@ -267,11 +267,11 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         let sec: Int = count % 60
         
         if isRecording {
-            label.text = "録音中:" + String(format:"%02d:%02d",min, sec)
+            label.text = NSLocalizedString("recording", comment: "") + ":" + String(format:"%02d:%02d",min, sec)
         } else {
             let playerMin: Int = Int(audioPlayer.duration / 60)
             let playerSec: Int = Int(audioPlayer.duration) % 60
-            label.text = "再生中 : " + String(format:"%02d:%02d/",min, sec) +  String(format:"%02d:%02d",playerMin, playerSec)
+            label.text = NSLocalizedString("playing", comment: "")  + " : " + String(format:"%02d:%02d/",min, sec) +  String(format:"%02d:%02d",playerMin, playerSec)
         }
     }
     
@@ -292,13 +292,13 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
     @IBAction func touchUpButton(_ sender: UIButton) {
         switch sender.tag {
         case 1:
-            dialog(title: "distortionのタイプを選択してください", message:"", tag: 1, array: ["利用しない","drumsBitBrush","drumsBufferBeats","drumsLoFi","multiBrokenSpeaker","multiCellphoneConcert","multiDecimated1","multiDecimated2","multiDecimated3","multiDecimated4","multiDistortedFunk","multiDistortedCubed","multiDistortedSquared","multiEcho1","multiEcho2","multiEchoTight1","multiEchoTight2","multiEverythingIsBroken","speechAlienChatter","speechCosmicInterference","speechGoldenPi","speechRadioTower","speechWaves"], before: distortionLabel.text!)
+            dialog(title: NSLocalizedString("distortionType", comment: ""), message:"", tag: 1, array: ["doNotUse","drumsBitBrush","drumsBufferBeats","drumsLoFi","multiBrokenSpeaker","multiCellphoneConcert","multiDecimated1","multiDecimated2","multiDecimated3","multiDecimated4","multiDistortedFunk","multiDistortedCubed","multiDistortedSquared","multiEcho1","multiEcho2","multiEchoTight1","multiEchoTight2","multiEverythingIsBroken","speechAlienChatter","speechCosmicInterference","speechGoldenPi","speechRadioTower","speechWaves"], before: distortionLabel.text!)
             break
         case 2:
-            dialog(title: "EQのタイプを選択してください", message:"", tag: 2, array: ["利用しない","parametric","lowPass","highPass","resonantLowPass","resonantHighPass","bandPass","bandStop","lowShelf","highShelf","resonantLowShelf","resonantHighShelf"], before: eqLabel.text!)
+            dialog(title: NSLocalizedString("eqType", comment: ""), message:"", tag: 2, array: ["doNotUse","parametric","lowPass","highPass","resonantLowPass","resonantHighPass","bandPass","bandStop","lowShelf","highShelf","resonantLowShelf","resonantHighShelf"], before: eqLabel.text!)
             break
         default:
-            dialog(title: "Reverbのタイプを選択してください", message:"", tag: 3, array: ["利用しない","smallRoom","mediumRoom","largeRoom","mediumHall","largeHall","plate","mediumChamber","largeChamber","cathedral","largeRoom2","mediumHall2","mediumHall3","largeHall2"], before: reverbLabel.text!)
+            dialog(title: NSLocalizedString("reverbType", comment: ""), message:"", tag: 3, array: ["doNotUse","smallRoom","mediumRoom","largeRoom","mediumHall","largeHall","plate","mediumChamber","largeChamber","cathedral","largeRoom2","mediumHall2","mediumHall3","largeHall2"], before: reverbLabel.text!)
             break
         }
 
@@ -309,8 +309,8 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
 
         for item in array {
-            let okAction = UIAlertAction(title: item, style: UIAlertActionStyle.default){ (action: UIAlertAction) in
-                self.setTypeLabel(tag: tag, item:item)
+            let okAction = UIAlertAction(title: NSLocalizedString(item, comment: ""), style: UIAlertActionStyle.default){ (action: UIAlertAction) in
+                self.setTypeLabel(tag: tag, item: item)
             }
             alertController.addAction(okAction)
         }
@@ -326,15 +326,15 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
          let userDefault = UserDefaults.standard
         switch tag {
         case 1:
-            self.distortionLabel.text = item
+            self.distortionLabel.text = NSLocalizedString(item, comment: "")
             userDefault.setValue(item, forKeyPath: "distortionLabel")
             break
         case 2:
-            self.eqLabel.text = item
+            self.eqLabel.text = NSLocalizedString(item, comment: "")
             userDefault.setValue(item, forKeyPath: "eqLabel")
             break
         default:
-            self.reverbLabel.text = item
+            self.reverbLabel.text = NSLocalizedString(item, comment: "")
             userDefault.setValue(item, forKeyPath: "reverbLabel")
             break
         }

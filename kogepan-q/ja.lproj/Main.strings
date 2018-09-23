@@ -5,8 +5,8 @@
 /* Class = "UINavigationItem"; title = "HOME"; ObjectID = "5Cd-fu-Osm"; */
 "5Cd-fu-Osm.title" = "HOME";
 
-/* Class = "UIButton"; normalTitle = "Change"; ObjectID = "68x-jZ-TPe"; */
-"68x-jZ-TPe.normalTitle" = "Change";
+/* Class = "UIButton"; normalTitle = "変更"; ObjectID = "68x-jZ-TPe"; */
+"68x-jZ-TPe.normalTitle" = "変更";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "A3b-pB-IWr"; */
 "A3b-pB-IWr.normalTitle" = "Button";
@@ -38,8 +38,8 @@
 /* Class = "UILabel"; text = "分割する秒:"; ObjectID = "W3U-3I-ae5"; */
 "W3U-3I-ae5.text" = "分割する秒:";
 
-/* Class = "UIButton"; normalTitle = "Change"; ObjectID = "YBK-rJ-14y"; */
-"YBK-rJ-14y.normalTitle" = "Change";
+/* Class = "UIButton"; normalTitle = "変更"; ObjectID = "YBK-rJ-14y"; */
+"YBK-rJ-14y.normalTitle" = "変更";
 
 /* Class = "UILabel"; text = "待機中"; ObjectID = "ZJJ-d5-AV4"; */
 "ZJJ-d5-AV4.text" = "待機中";
@@ -53,8 +53,8 @@
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "cdF-OQ-A9Q"; */
 "cdF-OQ-A9Q.normalTitle" = "Button";
 
-/* Class = "UIButton"; normalTitle = "Change"; ObjectID = "dJF-DE-V4d"; */
-"dJF-DE-V4d.normalTitle" = "Change";
+/* Class = "UIButton"; normalTitle = "変更"; ObjectID = "dJF-DE-V4d"; */
+"dJF-DE-V4d.normalTitle" = "変更";
 
 /* Class = "UILabel"; text = "Effect有無:"; ObjectID = "des-li-wFy"; */
 "des-li-wFy.text" = "Effect有無:";
@@ -90,7 +90,7 @@
 "nhE-9c-fN6.normalTitle" = "Button";
 
 /* Class = "UILabel"; text = "Reverb:"; ObjectID = "qw3-fG-aJG"; */
-"qw3-fG-aJG.text" = "反射音:";
+"qw3-fG-aJG.text" = "反響音:";
 
 /* Class = "UILabel"; text = "保存名:"; ObjectID = "tOG-wa-p7Z"; */
 "tOG-wa-p7Z.text" = "保存名:";

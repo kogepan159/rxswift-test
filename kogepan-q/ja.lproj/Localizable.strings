@@ -7,7 +7,7 @@
 */
 
 
-
+"CFBundleDisplayName" = "コエトル";
 "doNotUse"="利用しない";
 "appVersion"="アプリバージョン";
 "yourOpinion"="ご意見";
@@ -23,8 +23,8 @@
 "noFileName"="ファイル名を未入力です";
 "canRecordConditions"="こちらのアプリは、ファイル名を入れていれることで録音が可能になります。";
 "distortionType"="捻れのタイプを選択してください";
-"eqType"="エコライザーのタイプを選択してください";
-"reverbType"="反射音のタイプを選択してください";
+"eqType"="帯域設定を選択してください";
+"reverbType"="反響音のタイプを選択してください";
 "fileName"="ファイル名";
 "playfileSelect"="再生するファイルを選択してください";
 "nameAfterSynthesis"="合成後の名前を入力してください";
@@ -37,13 +37,9 @@
 "compositeFailure"="合成失敗";
 "existsFile"="同じファイル名が存在しないかご確認ください。\nファイル削除方法は、音源選択画面で左スライドをお試しください";
 
-
-
-
-## Reverb
-"smallRoom"="小さい部屋";
-"mediumRoom"="中くらいの部屋";
-"largeRoom"="大きい部屋";
+"smallRoom"="小部屋";
+"mediumRoom"="中部屋";
+"largeRoom"="大部屋";
 "mediumHall"="中ホール";
 "largeHall"="大ホール";
 "plate"="金属";
@@ -55,7 +51,6 @@
 "mediumHall3"="中ホール3";
 "largeHall2"="大ホール2";
 
-## DistortionType
 "drumsBitBrush"="ドラムビート";
 "drumsBufferBeats"="ビートバッファ";
 "drumsLoFi"="低品質";
@@ -79,7 +74,6 @@
 "speechRadioTower"="ラジオ感";
 "speechWaves"="波感";
 
-## EQ
 "parametric"="細かいイコライザー";
 "lowPass"="ローパスフィルター";
 "highPass"="ハイパスフィルター";

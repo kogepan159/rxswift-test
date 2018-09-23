@@ -6,7 +6,7 @@
   Copyright © 2018年 堅固潤也. All rights reserved.
 */
 
-
+"CFBundleDisplayName" = "KOETORU";
 "doNotUse"="Do Not Use";
 "appVersion"="App Version";
 "yourOpinion"="Opinion";
@@ -36,7 +36,6 @@
 "compositeFailure"="Composite Failure";
 "existsFile"="Please check whether the same file name exists. \n Please try the left slide on the sound source selection screen for the file deletion method";
 
-## Reverb
 "smallRoom"="smallRoom";
 "mediumRoom"="mediumRoom";
 "largeRoom"="largeRoom";
@@ -51,7 +50,6 @@
 "mediumHall3"="mediumHall3";
 "largeHall2"="largeHall2";
 
-## DistortionType
 "drumsBitBrush"="drumsBitBrush";
 "drumsBufferBeats"="drumsBufferBeats";
 "drumsLoFi"="drumsLoFi";
@@ -75,7 +73,6 @@
 "speechRadioTower"="speechRadioTower";
 "speechWaves"="speechWaves";
 
-## EQ
 "parametric"="parametric";
 "lowPass"="lowPass";
 "highPass"="highPass";
