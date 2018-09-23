@@ -51,13 +51,15 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>twitter</string>
 		<string>twitterauth</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<true/>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>声を録音するために、マイクの許可をしてください</string>
@@ -82,5 +84,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UISupportsDocumentBrowser</key>
+	<true/>
 </dict>
 </plist>
