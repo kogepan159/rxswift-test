@@ -35,6 +35,8 @@
 "gobackFileList"="Please go back and select a file";
 "compositeFailure"="Composite Failure";
 "existsFile"="Please check whether the same file name exists. \n Please try the left slide on the sound source selection screen for the file deletion method";
+"shareTitle"="Select the file you want to share";
+"shareContext"="Which voice file do you share?";
 
 "smallRoom"="smallRoom";
 "mediumRoom"="mediumRoom";

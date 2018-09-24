@@ -41,17 +41,7 @@ class HomeViewController: UIViewController, UIDocumentInteractionControllerDeleg
     
     var documentInteraction:UIDocumentInteractionController!
     @objc func shareAction() {
-        
-        print(getURL(fileName: "a"))
-        documentInteraction = UIDocumentInteractionController()
-        documentInteraction.url = getURL(fileName: "a")
-        documentInteraction.delegate = self
-        if !documentInteraction.presentOpenInMenu(from: self.view.frame, in: self.view, animated: true) {
-            // 送信できるアプリが見つからなかった時の処理
-            let alert = UIAlertController(title: "送信失敗", message: "ファイルを送れるアプリが見つかりません", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
+        self.dialog(title: NSLocalizedString("shareTitle", comment: ""), message: NSLocalizedString("shareContext", comment: ""))
     }
     
     public func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
@@ -60,6 +50,54 @@ class HomeViewController: UIViewController, UIDocumentInteractionControllerDeleg
     
     public func documentInteractionControllerDidEndPreview(_ controller: UIDocumentInteractionController) {
         documentInteraction = nil
+    }
+    
+    func dialog(title: String, message:String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        if let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first {
+            
+            do {
+                var items = try FileManager.default.contentsOfDirectory(atPath: documentDirectory)
+                if items.index(of: "Inbox") != nil {
+                    items.remove(at: items.index(of: "Inbox")!)//[fileNameArray.index(of: "Inbox")!]
+                }
+                do {
+                    let otherFileNameArray = try FileManager.default.contentsOfDirectory(atPath: documentDirectory + "/Inbox")
+                    for oFile in  otherFileNameArray {
+                        items += ["Inbox/" + oFile]
+                    }
+                } catch let error {
+                    print(error)
+                }
+                for item in items {
+                    let okAction = UIAlertAction(title: item, style: UIAlertActionStyle.default){ (action: UIAlertAction) in
+                        
+                        self.sentShare(fileName: item)
+                    }
+                    alertController.addAction(okAction)
+                }
+            } catch let error {
+                print(error)
+            }
+        }
+        let cancelButton = UIAlertAction(title: "CANCEL", style: UIAlertActionStyle.cancel, handler: nil)
+        alertController.addAction(cancelButton)
+        
+       
+        present(alertController,animated: true,completion: nil)
+    }
+    
+    func sentShare(fileName: String) {
+        print(getURL(fileName: fileName, m4aAddFlag: false))
+        documentInteraction = UIDocumentInteractionController()
+        documentInteraction.url = getURL(fileName: fileName, m4aAddFlag: false)
+        documentInteraction.delegate = self
+        if !documentInteraction.presentOpenInMenu(from: self.view.frame, in: self.view, animated: true) {
+            // 送信できるアプリが見つからなかった時の処理
+            let alert = UIAlertController(title: "送信失敗", message: "ファイルを送れるアプリが見つかりません", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 
 }

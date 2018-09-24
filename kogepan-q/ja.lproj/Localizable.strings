@@ -36,6 +36,8 @@
 "gobackFileList"="一度戻って、ファイルを選択してください";
 "compositeFailure"="合成失敗";
 "existsFile"="同じファイル名が存在しないかご確認ください。\nファイル削除方法は、音源選択画面で左スライドをお試しください";
+"shareTitle"="共有したいファイルを選択";
+"shareContext"="どの音声ファイルをシェアしますか？";
 
 "smallRoom"="小部屋";
 "mediumRoom"="中部屋";
