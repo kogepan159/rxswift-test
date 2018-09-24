@@ -98,17 +98,17 @@ class RecodeViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         
         if let type = userDefault.object(forKey: "distortionLabel") as? String {
             distortionLabel.text = NSLocalizedString(type, comment: "")
-            distortionType = type
+            distortionType = type == "利用しない" ? "doNotUse" : type
         }
         
         if let type = userDefault.object(forKey: "eqLabel") as? String{
             eqLabel.text = NSLocalizedString(type, comment: "")
-            eqType = type
+            eqType = type == "利用しない" ? "doNotUse" : type
         }
         
         if let type = userDefault.object(forKey: "reverbLabel") as? String {
             reverbLabel.text = NSLocalizedString(type, comment: "")
-            reverbType = type
+            reverbType = type == "利用しない" ? "doNotUse" : type
         }
         
         bothPlaySwitch.isOn = userDefault.object(forKey: "bothPlaySwitch") != nil  ?  userDefault.bool(forKey: "bothPlaySwitch"): false

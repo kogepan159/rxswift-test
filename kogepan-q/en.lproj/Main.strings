@@ -78,7 +78,7 @@
 "lGx-d5-oTV.text" = "After Name:";
 
 /* Class = "UIButton"; normalTitle = "シェア"; ObjectID = "lhl-mZ-lz2"; */
-"lhl-mZ-lz2.normalTitle" = "share";
+"lhl-mZ-lz2.normalTitle" = "Share";
 
 /* Class = "UIButton"; normalTitle = "音声編集"; ObjectID = "miX-DJ-emr"; */
 "miX-DJ-emr.normalTitle" = "Audio Editing";
