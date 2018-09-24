@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UIDocumentInteractionControllerDelegate {
 
     @IBOutlet weak var shareButton: UIButton!
     let dis = DisposeBag()
@@ -39,19 +39,27 @@ class HomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
+    var documentInteraction:UIDocumentInteractionController!
     @objc func shareAction() {
         
-        let documentInteraction = UIDocumentInteractionController.init(url: getURL(fileName: "123"))
-        
+        print(getURL(fileName: "a"))
+        documentInteraction = UIDocumentInteractionController()
+        documentInteraction.url = getURL(fileName: "a")
+        documentInteraction.delegate = self
         if !documentInteraction.presentOpenInMenu(from: self.view.frame, in: self.view, animated: true) {
             // 送信できるアプリが見つからなかった時の処理
             let alert = UIAlertController(title: "送信失敗", message: "ファイルを送れるアプリが見つかりません", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
-
-        
+    }
+    
+    public func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+        return self
+    }
+    
+    public func documentInteractionControllerDidEndPreview(_ controller: UIDocumentInteractionController) {
+        documentInteraction = nil
     }
 
 }
