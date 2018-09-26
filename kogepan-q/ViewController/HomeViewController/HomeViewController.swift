@@ -92,7 +92,10 @@ class HomeViewController: UIViewController, UIDocumentInteractionControllerDeleg
         documentInteraction = UIDocumentInteractionController()
         documentInteraction.url = getURL(fileName: fileName, m4aAddFlag: false)
         documentInteraction.delegate = self
-        if !documentInteraction.presentOpenInMenu(from: CGRect(x: 0, y: 0, width: 200, height: 300), in: self.view, animated: true) {
+        
+        let shareWidth = self.view.frame.width/2
+        let shareHeigth = self.view.frame.height/2
+        if !documentInteraction.presentOpenInMenu(from: CGRect(x: shareWidth - 150, y: shareHeigth - 150, width: 300, height:300), in: self.view, animated: true) {
             // 送信できるアプリが見つからなかった時の処理
             let alert = UIAlertController(title: "送信失敗", message: "ファイルを送れるアプリが見つかりません", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

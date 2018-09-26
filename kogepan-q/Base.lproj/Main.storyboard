@@ -72,7 +72,6 @@
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="GWY-nR-2Mq"/>
-                                    <constraint firstAttribute="width" constant="210" id="TyB-cO-Ehp"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="音声編集">
@@ -161,6 +160,7 @@
                             <constraint firstItem="nl0-HN-2Ua" firstAttribute="leading" secondItem="lhl-mZ-lz2" secondAttribute="trailing" constant="9" id="c0Q-8e-SpL"/>
                             <constraint firstItem="miX-DJ-emr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lAZ-Hy-hh3"/>
                             <constraint firstItem="miX-DJ-emr" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="mPR-Mz-zYt"/>
+                            <constraint firstItem="07I-rb-gLY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="81" id="o1f-IH-0h1"/>
                             <constraint firstItem="nl0-HN-2Ua" firstAttribute="top" secondItem="l5t-Sw-mDS" secondAttribute="bottom" constant="66" id="olZ-32-lu3"/>
                             <constraint firstItem="2Fv-Hl-d4H" firstAttribute="leading" secondItem="07I-rb-gLY" secondAttribute="trailing" constant="20" id="qg9-vL-7NV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="l5t-Sw-mDS" secondAttribute="trailing" constant="13" id="skz-UK-a1r"/>
